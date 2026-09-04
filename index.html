@@ -7,6 +7,11 @@
   <title>생태계 시뮬레이션</title>
 
   <style>
+
+    /* =========================================================
+       기본
+    ========================================================= */
+
     * {
       margin: 0;
       padding: 0;
@@ -18,9 +23,15 @@
     }
 
     body {
-      font-family: Arial, "Noto Sans KR", sans-serif;
-      background: #f7faf7;
-      color: #17201a;
+      font-family:
+        Pretendard,
+        "Noto Sans KR",
+        Arial,
+        sans-serif;
+
+      background: #f5f8f5;
+      color: #152018;
+
       overflow-x: hidden;
     }
 
@@ -29,68 +40,93 @@
     }
 
 
-    /* =========================
-       HEADER
-    ========================= */
+    /* =========================================================
+       헤더
+    ========================================================= */
 
     header {
       position: fixed;
+
       top: 0;
       left: 0;
+
       width: 100%;
       height: 76px;
 
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
 
       padding: 0 7%;
 
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.91);
 
-      border-bottom: 1px solid #e6ebe7;
+      backdrop-filter: blur(15px);
+
+      border-bottom: 1px solid rgba(25,50,30,0.08);
 
       z-index: 1000;
     }
 
+
+    /* 로고 */
+
     .logo {
       display: flex;
       align-items: center;
+
       gap: 12px;
 
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 800;
+
+      letter-spacing: -0.5px;
+
+      white-space: nowrap;
     }
 
-    .logo-icon {
-      width: 38px;
-      height: 38px;
+
+    .logo-symbol {
+      width: 39px;
+      height: 39px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      border-radius: 12px;
+      border-radius: 11px;
 
-      background: #e7f5ea;
+      background: #edf5ef;
 
-      font-size: 21px;
+      border: 1px solid #dce9df;
+
+      color: #246b3c;
+
+      font-size: 16px;
+      font-weight: 900;
     }
+
+
+    /* 헤더 오른쪽 */
 
     .header-right {
       display: flex;
       align-items: center;
+
       gap: 30px;
     }
+
 
     nav {
       display: flex;
+
       gap: 30px;
     }
 
+
     nav a {
-      color: #464d48;
+      color: #57615a;
+
       text-decoration: none;
 
       font-size: 14px;
@@ -99,14 +135,15 @@
       transition: 0.2s;
     }
 
+
     nav a:hover {
-      color: #19713d;
+      color: #176b39;
     }
 
 
-    /* =========================
-       로그인 버튼
-    ========================= */
+    /* =========================================================
+       Google 로그인
+    ========================================================= */
 
     .google-login {
       min-height: 43px;
@@ -121,31 +158,50 @@
 
       background: white;
 
-      border: 1px solid #dadce0;
-      border-radius: 11px;
+      border: 1px solid #d9dedb;
 
-      color: #202124;
+      border-radius: 10px;
 
-      font-size: 14px;
-      font-weight: 600;
+      color: #252a27;
+
+      font-size: 13px;
+      font-weight: 700;
 
       cursor: pointer;
 
       transition: 0.2s;
 
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.035);
     }
+
 
     .google-login:hover {
-      background: #f8f9fa;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      background: #f7f9f7;
+
+      box-shadow:
+        0 5px 15px rgba(0,0,0,0.07);
     }
 
+
     .google-symbol {
-      font-size: 18px;
-      font-weight: 800;
+      width: 24px;
+      height: 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: #ffffff;
+
       color: #4285f4;
+
+      font-size: 15px;
+      font-weight: 900;
     }
+
 
     .profile-image {
       width: 28px;
@@ -157,35 +213,42 @@
     }
 
 
-    /* =========================
-       MAIN
-    ========================= */
+    /* =========================================================
+       메인
+    ========================================================= */
 
     .hero {
       min-height: 100vh;
 
-      padding: 145px 7% 80px;
-
       display: grid;
 
       grid-template-columns:
-        1.05fr
-        0.95fr;
+        0.95fr
+        1.05fr;
 
       align-items: center;
 
-      gap: 70px;
+      gap: 75px;
+
+      padding:
+        145px 7%
+        80px;
 
       position: relative;
     }
 
-    .background-circle {
+
+    /* 배경 그라디언트 */
+
+    .hero::before {
+      content: "";
+
       position: absolute;
 
-      width: 600px;
-      height: 600px;
+      width: 650px;
+      height: 650px;
 
-      right: -150px;
+      right: -170px;
       top: 80px;
 
       border-radius: 50%;
@@ -193,70 +256,124 @@
       background:
         radial-gradient(
           circle,
-          rgba(134, 201, 153, 0.22),
-          rgba(134, 201, 153, 0)
+          rgba(83,142,97,0.12),
+          rgba(83,142,97,0)
+        );
+
+      pointer-events: none;
+
+      z-index: -1;
+    }
+
+
+    .hero::after {
+      content: "";
+
+      position: absolute;
+
+      width: 480px;
+      height: 480px;
+
+      left: -250px;
+      bottom: -150px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(126,175,144,0.08),
+          transparent
         );
 
       z-index: -1;
     }
 
 
-    /* =========================
+    /* =========================================================
        왼쪽
-    ========================= */
+    ========================================================= */
 
     .hero-left {
-      max-width: 650px;
+      max-width: 660px;
     }
+
 
     .badge {
       display: inline-flex;
       align-items: center;
 
-      padding: 8px 14px;
+      gap: 8px;
 
-      margin-bottom: 23px;
+      padding: 8px 13px;
+
+      margin-bottom: 24px;
 
       border-radius: 30px;
 
-      background: #eaf6ec;
-      color: #267344;
+      background: #eaf3ec;
 
-      font-size: 13px;
-      font-weight: 700;
+      border: 1px solid #dbeade;
+
+      color: #287044;
+
+      font-size: 12px;
+      font-weight: 800;
     }
+
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #2f8b51;
+
+      box-shadow:
+        0 0 0 4px rgba(47,139,81,0.10);
+    }
+
 
     h1 {
       margin-bottom: 25px;
 
-      font-size: clamp(47px, 5vw, 76px);
+      font-size:
+        clamp(
+          48px,
+          5vw,
+          76px
+        );
 
       line-height: 1.08;
+
       letter-spacing: -4px;
 
-      color: #17251b;
+      color: #172019;
     }
+
 
     h1 span {
-      color: #27854a;
+      color: #287344;
     }
 
+
     .description {
-      max-width: 570px;
+      max-width: 580px;
 
-      font-size: 18px;
+      font-size: 17px;
 
-      line-height: 1.85;
+      line-height: 1.9;
 
-      color: #68716b;
+      color: #6d766f;
 
       word-break: keep-all;
     }
 
 
-    /* =========================
+    /* =========================================================
        메인 버튼
-    ========================= */
+    ========================================================= */
 
     .main-buttons {
       display: flex;
@@ -267,42 +384,48 @@
       margin-top: 35px;
     }
 
+
     .start-button {
-      padding: 15px 26px;
+      padding: 15px 25px;
 
       border: none;
-      border-radius: 11px;
+      border-radius: 10px;
 
-      background: #267a43;
+      background: #266f40;
+
       color: white;
 
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 800;
 
       cursor: pointer;
 
       transition: 0.25s;
 
       box-shadow:
-        0 7px 20px rgba(38, 122, 67, 0.2);
+        0 8px 25px rgba(38,111,64,0.16);
     }
+
 
     .start-button:hover {
       transform: translateY(-2px);
-      background: #1f6838;
+
+      background: #1f5f36;
     }
+
 
     .login-save-button {
       padding: 15px 23px;
 
-      border: 1px solid #d5ddd7;
-      border-radius: 11px;
+      border: 1px solid #d6ded8;
+
+      border-radius: 10px;
 
       background: white;
 
-      color: #39423c;
+      color: #3e4741;
 
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
 
       cursor: pointer;
@@ -310,62 +433,95 @@
       transition: 0.2s;
     }
 
+
     .login-save-button:hover {
-      background: #f2f7f3;
+      background: #f1f5f2;
     }
 
 
-    /* =========================
+    /* =========================================================
        특징
-    ========================= */
+    ========================================================= */
 
     .features {
       display: flex;
 
-      gap: 38px;
+      gap: 40px;
 
       margin-top: 48px;
     }
 
-    .feature {
-      display: flex;
-      flex-direction: column;
-
-      gap: 5px;
-    }
 
     .feature-title {
-      font-size: 20px;
-      font-weight: 800;
+      margin-bottom: 4px;
 
-      color: #1e6b3a;
+      color: #1f6538;
+
+      font-size: 16px;
+      font-weight: 800;
     }
+
 
     .feature-description {
-      font-size: 13px;
+      color: #848c87;
 
-      color: #7a827c;
+      font-size: 12px;
     }
 
 
-    /* =========================
-       시뮬레이션 카드
-    ========================= */
+    /* =========================================================
+       오른쪽 고급 환경 분석 패널
+    ========================================================= */
 
     .simulation-card {
       position: relative;
 
-      padding: 24px;
+      padding: 17px;
 
-      background: white;
+      border-radius: 23px;
 
-      border: 1px solid #e2e8e3;
-      border-radius: 25px;
+      background:
+        linear-gradient(
+          145deg,
+          #15211b,
+          #0c1510
+        );
+
+      border:
+        1px solid rgba(255,255,255,0.08);
 
       box-shadow:
-        0 25px 60px
-        rgba(31, 70, 42, 0.12);
+        0 30px 70px rgba(21,60,32,0.20);
+
+      overflow: visible;
     }
+
+
+    .simulation-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 230px;
+      height: 230px;
+
+      right: -50px;
+      top: -80px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(78,157,99,0.10);
+
+      filter: blur(35px);
+
+      pointer-events: none;
+    }
+
+
+    /* =========================================================
+       패널 헤더
+    ========================================================= */
 
     .simulation-header {
       display: flex;
@@ -373,26 +529,50 @@
       justify-content: space-between;
       align-items: center;
 
-      margin-bottom: 17px;
+      padding: 4px 4px 15px;
     }
 
+
+    .simulation-header-left {
+      display: flex;
+      flex-direction: column;
+
+      gap: 3px;
+    }
+
+
+    .simulation-label {
+      color: #688374;
+
+      font-size: 9px;
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+    }
+
+
     .simulation-title {
-      font-size: 15px;
+      color: #f0f5f2;
+
+      font-size: 14px;
       font-weight: 800;
     }
 
+
     .simulation-status {
       display: flex;
-
       align-items: center;
 
-      gap: 6px;
+      gap: 7px;
 
-      font-size: 11px;
-      font-weight: 700;
+      color: #79d89b;
 
-      color: #22864b;
+      font-size: 9px;
+      font-weight: 800;
+
+      letter-spacing: 0.7px;
     }
+
 
     .status-dot {
       width: 7px;
@@ -400,225 +580,301 @@
 
       border-radius: 50%;
 
-      background: #37a85c;
+      background: #58cb82;
 
-      animation: blink 1.5s infinite;
+      box-shadow:
+        0 0 10px rgba(88,203,130,0.7);
+
+      animation: pulse 1.6s infinite;
     }
 
-    @keyframes blink {
+
+    @keyframes pulse {
+
       50% {
-        opacity: 0.35;
+        opacity: 0.3;
       }
+
     }
 
 
-    /* =========================
-       자연 화면
-    ========================= */
+    /* =========================================================
+       메인 관측 화면
+    ========================================================= */
 
-    .ecosystem {
+    .ecosystem-monitor {
       position: relative;
 
-      height: 390px;
+      height: 350px;
 
       overflow: hidden;
 
-      border-radius: 18px;
+      border-radius: 16px;
 
       background:
         linear-gradient(
           to bottom,
-          #cfe9f6 0%,
-          #dff0de 61%,
-          #8fb77d 61%,
-          #638a59 100%
+          #162922 0%,
+          #13231c 100%
         );
+
+      border:
+        1px solid rgba(255,255,255,0.055);
     }
 
-    .sun {
+
+    /* 모니터 그리드 */
+
+    .ecosystem-monitor::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background-image:
+        linear-gradient(
+          rgba(125,185,143,0.055) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(125,185,143,0.055) 1px,
+          transparent 1px
+        );
+
+      background-size:
+        30px 30px;
+
+      z-index: 1;
+
+      pointer-events: none;
+    }
+
+
+    /* =========================================================
+       SVG 환경 지도
+    ========================================================= */
+
+    .landscape-svg {
       position: absolute;
 
-      top: 40px;
-      right: 45px;
+      width: 100%;
+      height: 100%;
 
-      width: 60px;
-      height: 60px;
+      inset: 0;
+    }
 
-      border-radius: 50%;
 
-      background: #fff3a5;
+    .scan-line {
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 2px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(104,219,141,0.65),
+          transparent
+        );
 
       box-shadow:
-        0 0 35px
-        rgba(255, 226, 93, 0.7);
-    }
-
-    .mountain {
-      position: absolute;
-
-      bottom: 135px;
-
-      width: 0;
-      height: 0;
-
-      border-left:
-        150px solid transparent;
-
-      border-right:
-        150px solid transparent;
-
-      border-bottom:
-        175px solid #93ad97;
-
-      opacity: 0.75;
-    }
-
-    .mountain1 {
-      left: -50px;
-    }
-
-    .mountain2 {
-      right: -80px;
-
-      border-left-width: 170px;
-      border-right-width: 170px;
-
-      border-bottom-width: 205px;
-
-      border-bottom-color: #7e9f83;
-    }
-
-
-    /* =========================
-       나무
-    ========================= */
-
-    .tree {
-      position: absolute;
-
-      bottom: 55px;
-
-      width: 12px;
-      height: 70px;
-
-      border-radius: 4px;
-
-      background: #765942;
-    }
-
-    .tree::before {
-      content: "";
-
-      position: absolute;
-
-      top: -40px;
-      left: 50%;
-
-      width: 65px;
-      height: 65px;
-
-      transform:
-        translateX(-50%);
-
-      border-radius: 50%;
-
-      background: #4e8959;
-    }
-
-    .tree::after {
-      content: "";
-
-      position: absolute;
-
-      top: -63px;
-      left: 50%;
-
-      width: 48px;
-      height: 48px;
-
-      transform:
-        translateX(-50%);
-
-      border-radius: 50%;
-
-      background: #6ba16c;
-    }
-
-    .tree1 {
-      left: 60px;
-    }
-
-    .tree2 {
-      left: 145px;
-
-      transform: scale(0.85);
-    }
-
-    .tree3 {
-      right: 80px;
-
-      transform: scale(1.15);
-    }
-
-
-    /* =========================
-       동물
-    ========================= */
-
-    .animal {
-      position: absolute;
-
-      font-size: 29px;
-
-      filter:
-        drop-shadow(
-          0 3px 2px
-          rgba(0,0,0,0.1)
-        );
+        0 0 15px rgba(104,219,141,0.35);
 
       animation:
-        floating
-        3s ease-in-out
-        infinite;
+        scanMove 5s linear infinite;
+
+      z-index: 4;
     }
 
-    .rabbit {
-      bottom: 43px;
-      left: 235px;
-    }
 
-    .deer {
-      bottom: 43px;
-      right: 145px;
+    @keyframes scanMove {
 
-      animation-delay: 1s;
-    }
-
-    .bird {
-      top: 105px;
-      left: 190px;
-
-      animation-delay: 0.5s;
-    }
-
-    @keyframes floating {
-      0%, 100% {
-        transform:
-          translateY(0);
+      0% {
+        top: 0;
+        opacity: 0;
       }
 
-      50% {
-        transform:
-          translateY(-6px);
+      10% {
+        opacity: 1;
       }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+
     }
 
 
-    /* =========================
-       데이터
-    ========================= */
+    /* =========================================================
+       좌측 상단 관측 지표
+    ========================================================= */
 
-    .data-panel {
+    .monitor-info {
+      position: absolute;
+
+      top: 17px;
+      left: 17px;
+
+      z-index: 5;
+    }
+
+
+    .monitor-info-label {
+      margin-bottom: 3px;
+
+      color: #789284;
+
+      font-size: 8px;
+      font-weight: 800;
+
+      letter-spacing: 1.4px;
+    }
+
+
+    .monitor-info-value {
+      color: #dbe8df;
+
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+
+    /* =========================================================
+       우측 상단 환경 점수
+    ========================================================= */
+
+    .health-score {
+      position: absolute;
+
+      top: 17px;
+      right: 17px;
+
+      z-index: 5;
+
+      text-align: right;
+    }
+
+
+    .score-label {
+      margin-bottom: 2px;
+
+      color: #72897a;
+
+      font-size: 8px;
+      font-weight: 800;
+
+      letter-spacing: 1.2px;
+    }
+
+
+    .score-row {
+      display: flex;
+      align-items: flex-end;
+
+      gap: 4px;
+    }
+
+
+    .score-number {
+      color: #8be2a8;
+
+      font-size: 31px;
+      font-weight: 800;
+
+      line-height: 1;
+    }
+
+
+    .score-unit {
+      padding-bottom: 3px;
+
+      color: #6d8173;
+
+      font-size: 9px;
+    }
+
+
+    /* =========================================================
+       지도 라벨
+    ========================================================= */
+
+    .map-marker {
+      position: absolute;
+
+      z-index: 5;
+
+      display: flex;
+      align-items: center;
+
+      gap: 6px;
+
+      padding: 6px 8px;
+
+      border-radius: 7px;
+
+      background:
+        rgba(12,24,17,0.72);
+
+      border:
+        1px solid rgba(137,214,159,0.13);
+
+      backdrop-filter: blur(7px);
+
+      color: #afc4b5;
+
+      font-size: 8px;
+      font-weight: 700;
+    }
+
+
+    .map-marker::before {
+      content: "";
+
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+
+      background: #75d995;
+
+      box-shadow:
+        0 0 7px rgba(117,217,149,0.8);
+    }
+
+
+    .marker-a {
+      left: 19%;
+      top: 53%;
+    }
+
+
+    .marker-b {
+      right: 17%;
+      top: 45%;
+    }
+
+
+    .marker-c {
+      left: 45%;
+      bottom: 21%;
+    }
+
+
+    /* =========================================================
+       하단 데이터
+    ========================================================= */
+
+    .monitor-data {
       position: absolute;
 
       left: 15px;
@@ -628,89 +884,230 @@
       display: grid;
 
       grid-template-columns:
-        repeat(3, 1fr);
+        repeat(4, 1fr);
 
-      gap: 8px;
+      gap: 7px;
+
+      z-index: 5;
     }
 
-    .data-box {
-      padding: 11px;
 
-      border-radius: 11px;
+    .monitor-data-card {
+      padding: 9px 10px;
+
+      border-radius: 9px;
 
       background:
-        rgba(
-          255,
-          255,
-          255,
-          0.88
-        );
+        rgba(12,25,17,0.75);
 
-      backdrop-filter:
-        blur(8px);
+      border:
+        1px solid rgba(255,255,255,0.06);
+
+      backdrop-filter: blur(8px);
     }
 
-    .data-name {
-      margin-bottom: 4px;
+
+    .monitor-data-name {
+      margin-bottom: 3px;
+
+      color: #74877a;
+
+      font-size: 8px;
+    }
+
+
+    .monitor-data-value {
+      color: #d7e4da;
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+
+    .monitor-data-value.green {
+      color: #89dba3;
+    }
+
+
+    /* =========================================================
+       아래쪽 분석 데이터
+    ========================================================= */
+
+    .analysis-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.1fr
+        0.9fr;
+
+      gap: 9px;
+
+      margin-top: 10px;
+    }
+
+
+    .population-panel,
+    .ai-panel {
+      padding: 13px;
+
+      border-radius: 12px;
+
+      background:
+        rgba(255,255,255,0.035);
+
+      border:
+        1px solid rgba(255,255,255,0.055);
+    }
+
+
+    .panel-top {
+      display: flex;
+
+      justify-content: space-between;
+
+      margin-bottom: 10px;
+    }
+
+
+    .panel-title {
+      color: #cdd9d1;
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+
+    .panel-small {
+      color: #64776a;
+
+      font-size: 8px;
+    }
+
+
+    /* =========================================================
+       미니 그래프
+    ========================================================= */
+
+    .mini-chart {
+      width: 100%;
+      height: 70px;
+    }
+
+
+    /* =========================================================
+       AI 패널
+    ========================================================= */
+
+    .ai-title {
+      margin-bottom: 7px;
+
+      color: #88daa2;
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+
+    .ai-text {
+      color: #87998d;
 
       font-size: 10px;
 
-      color: #758078;
-    }
-
-    .data-value {
-      font-size: 16px;
-      font-weight: 800;
-
-      color: #24372a;
+      line-height: 1.65;
     }
 
 
-    /* =========================
-       AI 분석
-    ========================= */
+    /* =========================================================
+       떠있는 사이드 카드
+    ========================================================= */
 
-    .ai-card {
+    .floating-card {
       position: absolute;
 
-      right: -25px;
-      bottom: 70px;
+      right: -28px;
+      top: 120px;
 
-      width: 215px;
+      width: 190px;
 
-      padding: 15px;
+      padding: 14px;
 
-      border: 1px solid #e4e9e5;
-      border-radius: 15px;
+      border-radius: 12px;
 
-      background: white;
+      background:
+        rgba(255,255,255,0.95);
+
+      border: 1px solid #dde6df;
 
       box-shadow:
-        0 15px 35px
-        rgba(0,0,0,0.13);
+        0 18px 35px rgba(23,57,33,0.16);
+
+      backdrop-filter: blur(10px);
     }
 
-    .ai-title {
-      margin-bottom: 6px;
 
-      font-size: 11px;
+    .floating-label {
+      margin-bottom: 5px;
+
+      color: #8a9990;
+
+      font-size: 8px;
       font-weight: 800;
 
-      color: #3c8253;
+      letter-spacing: 1px;
     }
 
-    .ai-text {
-      font-size: 11px;
+
+    .floating-title {
+      margin-bottom: 7px;
+
+      color: #26322a;
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+
+    .floating-text {
+      color: #6f7d74;
+
+      font-size: 10px;
 
       line-height: 1.55;
-
-      color: #6c756f;
     }
 
 
-    /* =========================
+    .floating-meter {
+      width: 100%;
+      height: 5px;
+
+      margin-top: 11px;
+
+      overflow: hidden;
+
+      border-radius: 20px;
+
+      background: #e8ede9;
+    }
+
+
+    .floating-meter-inner {
+      width: 76%;
+      height: 100%;
+
+      border-radius: inherit;
+
+      background:
+        linear-gradient(
+          90deg,
+          #417c53,
+          #7ab98d
+        );
+    }
+
+
+    /* =========================================================
        로그인 모달
-    ========================= */
+    ========================================================= */
 
     .login-overlay {
       position: fixed;
@@ -725,17 +1122,18 @@
       padding: 20px;
 
       background:
-        rgba(20, 35, 25, 0.38);
+        rgba(18,30,21,0.42);
 
-      backdrop-filter:
-        blur(7px);
+      backdrop-filter: blur(9px);
 
       z-index: 3000;
     }
 
+
     .login-overlay.show {
       display: flex;
     }
+
 
     .login-modal {
       position: relative;
@@ -743,18 +1141,18 @@
       width: 100%;
       max-width: 420px;
 
-      padding: 37px;
+      padding: 38px;
 
-      border-radius: 21px;
+      border-radius: 20px;
 
       background: white;
 
       text-align: center;
 
       box-shadow:
-        0 25px 70px
-        rgba(0,0,0,0.2);
+        0 30px 80px rgba(0,0,0,0.22);
     }
+
 
     .close-button {
       position: absolute;
@@ -773,39 +1171,49 @@
       cursor: pointer;
     }
 
+
     .modal-icon {
       width: 62px;
       height: 62px;
 
       display: flex;
-
       justify-content: center;
       align-items: center;
 
       margin: 0 auto 18px;
 
-      border-radius: 18px;
+      border-radius: 17px;
 
-      background: #e9f5eb;
+      background: #edf5ef;
 
-      font-size: 29px;
+      border: 1px solid #ddebe1;
+
+      color: #2b7144;
+
+      font-size: 18px;
+      font-weight: 900;
     }
+
 
     .login-modal h2 {
       margin-bottom: 10px;
 
-      font-size: 24px;
+      color: #1e2821;
+
+      font-size: 23px;
     }
+
 
     .login-modal p {
       margin-bottom: 25px;
 
-      color: #737b75;
+      color: #717b74;
 
-      font-size: 14px;
+      font-size: 13px;
 
       line-height: 1.7;
     }
+
 
     .modal-google-button {
       width: 100%;
@@ -818,8 +1226,9 @@
 
       gap: 10px;
 
-      border: 1px solid #dadce0;
-      border-radius: 11px;
+      border: 1px solid #d9dedb;
+
+      border-radius: 10px;
 
       background: white;
 
@@ -831,14 +1240,16 @@
       transition: 0.2s;
     }
 
+
     .modal-google-button:hover {
-      background: #f7f8f7;
+      background: #f6f8f7;
     }
+
 
     .login-error {
       display: none;
 
-      margin-top: 15px;
+      margin-top: 14px;
 
       padding: 10px;
 
@@ -846,21 +1257,22 @@
 
       background: #fff0f0;
 
-      color: #c0392b;
+      color: #c33d3d;
 
-      font-size: 12px;
+      font-size: 11px;
     }
 
 
-    /* =========================
+    /* =========================================================
        반응형
-    ========================= */
+    ========================================================= */
 
-    @media(max-width: 950px) {
+    @media(max-width: 1050px) {
 
       nav {
         display: none;
       }
+
 
       .hero {
         grid-template-columns: 1fr;
@@ -870,69 +1282,101 @@
         padding-top: 130px;
       }
 
+
       .hero-left {
         margin: auto;
       }
 
+
       .description {
         margin: auto;
       }
+
 
       .main-buttons,
       .features {
         justify-content: center;
       }
 
+
       .simulation-card {
         width: 100%;
-        max-width: 600px;
+        max-width: 680px;
 
         margin: auto;
       }
 
-      .ai-card {
+
+      .floating-card {
         right: 15px;
       }
+
     }
 
 
-    @media(max-width: 600px) {
+    @media(max-width: 650px) {
 
       header {
-        padding: 0 5%;
+        padding: 0 4%;
       }
 
+
       .logo {
-        font-size: 16px;
+        font-size: 14px;
       }
+
+
+      .logo-symbol {
+        width: 34px;
+        height: 34px;
+      }
+
 
       .google-login .login-text {
         display: none;
       }
 
+
       h1 {
         letter-spacing: -2px;
       }
 
+
       .description {
-        font-size: 16px;
+        font-size: 15px;
       }
+
 
       .features {
         gap: 20px;
       }
 
-      .ecosystem {
-        height: 330px;
+
+      .ecosystem-monitor {
+        height: 300px;
       }
 
-      .ai-card {
+
+      .monitor-data {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+
+      .analysis-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .floating-card {
         display: none;
       }
+
 
       .login-modal {
         padding: 34px 22px;
       }
+
     }
 
   </style>
@@ -942,16 +1386,16 @@
 <body>
 
 
-<!-- =========================
+<!-- =========================================================
      HEADER
-========================= -->
+========================================================= -->
 
 <header>
 
   <div class="logo">
 
-    <div class="logo-icon">
-      🌱
+    <div class="logo-symbol">
+      ES
     </div>
 
     생태계 시뮬레이션
@@ -962,9 +1406,22 @@
   <div class="header-right">
 
     <nav>
-      <a href="#">홈</a>
-      <a href="#" onclick="startSimulation()">시뮬레이션</a>
-      <a href="#">프로젝트 소개</a>
+
+      <a href="#">
+        홈
+      </a>
+
+      <a
+        href="#"
+        onclick="startSimulation(); return false;"
+      >
+        시뮬레이션
+      </a>
+
+      <a href="#">
+        프로젝트 소개
+      </a>
+
     </nav>
 
 
@@ -990,19 +1447,26 @@
 
 
 
-<!-- =========================
+<!-- =========================================================
      MAIN
-========================= -->
+========================================================= -->
 
 <main class="hero">
 
-  <div class="background-circle"></div>
 
+  <!-- =======================================================
+       왼쪽
+  ======================================================== -->
 
   <section class="hero-left">
 
+
     <div class="badge">
+
+      <div class="badge-dot"></div>
+
       AI 기반 과학 교육 프로젝트
+
     </div>
 
 
@@ -1011,7 +1475,7 @@
       변화하는 생태계를<br>
 
       <span>
-        직접 관찰하세요.
+        데이터로 관찰하세요.
       </span>
 
     </h1>
@@ -1019,16 +1483,18 @@
 
     <p class="description">
 
-      생태계의 환경과 개체수를 직접 조절하고
-      변화 과정을 관찰해 보세요.
+      온도, 강수량, 식생, 개체수와 같은
+      환경 요소를 직접 조절하고 생태계의 변화를 관찰해 보세요.
 
-      인공지능이 시뮬레이션 데이터를 분석하여
-      앞으로의 생태계 변화를 예측합니다.
+      시뮬레이션에서 생성된 데이터를 분석하고
+      인공지능의 예측과 실제 결과를 비교하며
+      생태계의 상호작용을 탐구합니다.
 
     </p>
 
 
     <div class="main-buttons">
+
 
       <button
         class="start-button"
@@ -1046,15 +1512,17 @@
         로그인하고 기록 저장
       </button>
 
+
     </div>
 
 
     <div class="features">
 
-      <div class="feature">
+
+      <div>
 
         <div class="feature-title">
-          실시간
+          SIMULATION
         </div>
 
         <div class="feature-description">
@@ -1064,45 +1532,61 @@
       </div>
 
 
-      <div class="feature">
+      <div>
 
         <div class="feature-title">
           AI
         </div>
 
         <div class="feature-description">
-          변화 예측
+          변화 패턴 분석
         </div>
 
       </div>
 
 
-      <div class="feature">
+      <div>
 
         <div class="feature-title">
           DATA
         </div>
 
         <div class="feature-description">
-          결과 분석
+          결과 비교 및 해석
         </div>
 
       </div>
 
+
     </div>
+
 
   </section>
 
 
 
-  <!-- 오른쪽 시뮬레이션 화면 -->
+  <!-- =======================================================
+       오른쪽 고급 분석 패널
+  ======================================================== -->
 
   <section class="simulation-card">
 
+
+    <!-- 헤더 -->
+
     <div class="simulation-header">
 
-      <div class="simulation-title">
-        생태계 관찰 화면
+
+      <div class="simulation-header-left">
+
+        <div class="simulation-label">
+          ECOSYSTEM OBSERVATION SYSTEM
+        </div>
+
+        <div class="simulation-title">
+          생태 환경 모니터링
+        </div>
+
       </div>
 
 
@@ -1110,107 +1594,678 @@
 
         <div class="status-dot"></div>
 
-        SIMULATION
+        LIVE ANALYSIS
 
       </div>
+
 
     </div>
 
 
-    <div class="ecosystem">
 
-      <div class="sun"></div>
+    <!-- 메인 관측 화면 -->
 
-      <div class="mountain mountain1"></div>
-      <div class="mountain mountain2"></div>
+    <div class="ecosystem-monitor">
 
-      <div class="tree tree1"></div>
-      <div class="tree tree2"></div>
-      <div class="tree tree3"></div>
 
-      <div class="animal rabbit">
-        🐇
+      <div class="scan-line"></div>
+
+
+      <!-- 상단 정보 -->
+
+      <div class="monitor-info">
+
+        <div class="monitor-info-label">
+          OBSERVATION AREA
+        </div>
+
+        <div class="monitor-info-value">
+          Zone A-17
+        </div>
+
       </div>
 
-      <div class="animal deer">
-        🦌
-      </div>
 
-      <div class="animal bird">
-        🐦
-      </div>
+      <div class="health-score">
 
+        <div class="score-label">
+          ECOSYSTEM HEALTH
+        </div>
 
-      <div class="data-panel">
+        <div class="score-row">
 
-        <div class="data-box">
-
-          <div class="data-name">
-            초식동물
+          <div
+            class="score-number"
+            id="healthScore"
+          >
+            84
           </div>
 
-          <div class="data-value">
-            124
+          <div class="score-unit">
+            /100
           </div>
 
         </div>
 
-
-        <div class="data-box">
-
-          <div class="data-name">
-            식물
-          </div>
-
-          <div class="data-value">
-            83%
-          </div>
-
-        </div>
+      </div>
 
 
-        <div class="data-box">
 
-          <div class="data-name">
+      <!-- 환경 지도 SVG -->
+
+      <svg
+        class="landscape-svg"
+        viewBox="0 0 700 380"
+        preserveAspectRatio="xMidYMid slice"
+      >
+
+        <defs>
+
+          <!-- 하늘 -->
+          <linearGradient
+            id="skyGradient"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="1"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#183128"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#1d372b"
+            />
+
+          </linearGradient>
+
+
+          <!-- 멀리 산 -->
+          <linearGradient
+            id="mountainGradient1"
+            x1="0"
+            y1="0"
+            x2="1"
+            y2="1"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#294737"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#203a2d"
+            />
+
+          </linearGradient>
+
+
+          <!-- 가까운 산 -->
+          <linearGradient
+            id="mountainGradient2"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="1"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#355b44"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#203e2d"
+            />
+
+          </linearGradient>
+
+
+          <!-- 땅 -->
+          <linearGradient
+            id="groundGradient"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="1"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#285039"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#173221"
+            />
+
+          </linearGradient>
+
+
+          <!-- 물 -->
+          <linearGradient
+            id="waterGradient"
+            x1="0"
+            y1="0"
+            x2="1"
+            y2="1"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#3b7569"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#244e48"
+            />
+
+          </linearGradient>
+
+
+          <!-- 글로우 -->
+          <filter id="softGlow">
+
+            <feGaussianBlur
+              stdDeviation="8"
+              result="blur"
+            />
+
+          </filter>
+
+        </defs>
+
+
+        <!-- 하늘 -->
+
+        <rect
+          width="700"
+          height="380"
+          fill="url(#skyGradient)"
+        />
+
+
+        <!-- 아주 먼 산 -->
+
+        <path
+          d="
+            M0 240
+            L95 135
+            L165 205
+            L270 105
+            L370 215
+            L490 120
+            L610 215
+            L700 150
+            L700 380
+            L0 380
+            Z
+          "
+          fill="#233f31"
+          opacity="0.45"
+        />
+
+
+        <!-- 중간 산 -->
+
+        <path
+          d="
+            M0 270
+            C80 210 135 190 205 220
+            C280 255 330 165 410 185
+            C485 205 535 240 700 185
+            L700 380
+            L0 380
+            Z
+          "
+          fill="url(#mountainGradient1)"
+        />
+
+
+        <!-- 가까운 능선 -->
+
+        <path
+          d="
+            M0 290
+            C90 250 170 275 235 245
+            C300 215 370 230 430 255
+            C510 285 600 235 700 255
+            L700 380
+            L0 380
+            Z
+          "
+          fill="url(#mountainGradient2)"
+        />
+
+
+        <!-- 지면 -->
+
+        <path
+          d="
+            M0 310
+            C100 280 180 290 255 310
+            C350 335 435 295 515 300
+            C590 305 650 300 700 285
+            L700 380
+            L0 380
+            Z
+          "
+          fill="url(#groundGradient)"
+        />
+
+
+        <!-- 강 -->
+
+        <path
+          d="
+            M420 265
+            C390 290 370 310 385 330
+            C410 360 480 365 540 380
+            L700 380
+            L700 340
+            C620 330 550 310 505 285
+            C470 266 450 257 420 265
+            Z
+          "
+          fill="url(#waterGradient)"
+          opacity="0.9"
+        />
+
+
+        <!-- 숲 군집 -->
+
+        <g opacity="0.92">
+
+          <circle
+            cx="105"
+            cy="282"
+            r="28"
+            fill="#467557"
+          />
+
+          <circle
+            cx="138"
+            cy="270"
+            r="35"
+            fill="#3b6b4b"
+          />
+
+          <circle
+            cx="175"
+            cy="286"
+            r="26"
+            fill="#4c7d5a"
+          />
+
+          <circle
+            cx="219"
+            cy="278"
+            r="34"
+            fill="#3e704e"
+          />
+
+          <circle
+            cx="262"
+            cy="288"
+            r="24"
+            fill="#568464"
+          />
+
+        </g>
+
+
+        <!-- 나무형 실루엣 -->
+
+        <g
+          fill="#75a67e"
+          opacity="0.70"
+        >
+
+          <circle cx="70" cy="305" r="7"/>
+          <circle cx="92" cy="299" r="6"/>
+          <circle cx="300" cy="296" r="7"/>
+          <circle cx="322" cy="291" r="5"/>
+          <circle cx="340" cy="301" r="8"/>
+          <circle cx="570" cy="286" r="7"/>
+          <circle cx="595" cy="282" r="6"/>
+          <circle cx="620" cy="290" r="8"/>
+
+        </g>
+
+
+        <!-- 센서 포인트 -->
+
+        <g>
+
+          <circle
+            cx="170"
+            cy="265"
+            r="4"
+            fill="#9fe8b4"
+          />
+
+          <circle
+            cx="170"
+            cy="265"
+            r="12"
+            fill="none"
+            stroke="#9fe8b4"
+            stroke-width="1"
+            opacity="0.30"
+          />
+
+
+          <circle
+            cx="460"
+            cy="230"
+            r="4"
+            fill="#9fe8b4"
+          />
+
+          <circle
+            cx="460"
+            cy="230"
+            r="13"
+            fill="none"
+            stroke="#9fe8b4"
+            stroke-width="1"
+            opacity="0.30"
+          />
+
+
+          <circle
+            cx="330"
+            cy="315"
+            r="4"
+            fill="#9fe8b4"
+          />
+
+          <circle
+            cx="330"
+            cy="315"
+            r="12"
+            fill="none"
+            stroke="#9fe8b4"
+            stroke-width="1"
+            opacity="0.30"
+          />
+
+        </g>
+
+
+        <!-- 아주 약한 빛 -->
+
+        <circle
+          cx="570"
+          cy="85"
+          r="55"
+          fill="#9ac69e"
+          opacity="0.08"
+          filter="url(#softGlow)"
+        />
+
+      </svg>
+
+
+      <!-- 지도 마커 -->
+
+      <div class="map-marker marker-a">
+        식생 밀집 지역
+      </div>
+
+      <div class="map-marker marker-b">
+        개체군 감지
+      </div>
+
+      <div class="map-marker marker-c">
+        수질 센서
+      </div>
+
+
+
+      <!-- 아래 정보 -->
+
+      <div class="monitor-data">
+
+
+        <div class="monitor-data-card">
+
+          <div class="monitor-data-name">
             평균 온도
           </div>
 
-          <div class="data-value">
-            21°C
+          <div
+            class="monitor-data-value"
+            id="temperatureValue"
+          >
+            21.4°C
           </div>
+
+        </div>
+
+
+        <div class="monitor-data-card">
+
+          <div class="monitor-data-name">
+            습도
+          </div>
+
+          <div class="monitor-data-value">
+            67%
+          </div>
+
+        </div>
+
+
+        <div class="monitor-data-card">
+
+          <div class="monitor-data-name">
+            식생 지수
+          </div>
+
+          <div class="monitor-data-value green">
+            0.82
+          </div>
+
+        </div>
+
+
+        <div class="monitor-data-card">
+
+          <div class="monitor-data-name">
+            개체수
+          </div>
+
+          <div
+            class="monitor-data-value"
+            id="populationValue"
+          >
+            428
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         하단 분석
+    ====================================================== -->
+
+    <div class="analysis-grid">
+
+
+      <!-- 개체수 변화 -->
+
+      <div class="population-panel">
+
+
+        <div class="panel-top">
+
+          <div class="panel-title">
+            개체수 변화
+          </div>
+
+          <div class="panel-small">
+            최근 12개월
+          </div>
+
+        </div>
+
+
+        <svg
+          class="mini-chart"
+          viewBox="0 0 300 80"
+          preserveAspectRatio="none"
+        >
+
+          <!-- 가이드 -->
+
+          <line
+            x1="0"
+            y1="20"
+            x2="300"
+            y2="20"
+            stroke="rgba(255,255,255,0.05)"
+          />
+
+          <line
+            x1="0"
+            y1="40"
+            x2="300"
+            y2="40"
+            stroke="rgba(255,255,255,0.05)"
+          />
+
+          <line
+            x1="0"
+            y1="60"
+            x2="300"
+            y2="60"
+            stroke="rgba(255,255,255,0.05)"
+          />
+
+
+          <!-- 영역 -->
+
+          <path
+            d="
+              M0 65
+              C35 63 55 55 75 57
+              C105 60 125 42 150 47
+              C180 53 205 30 230 33
+              C255 36 275 22 300 25
+
+              L300 80
+              L0 80
+              Z
+            "
+            fill="rgba(90,190,119,0.09)"
+          />
+
+
+          <!-- 라인 -->
+
+          <path
+            d="
+              M0 65
+              C35 63 55 55 75 57
+              C105 60 125 42 150 47
+              C180 53 205 30 230 33
+              C255 36 275 22 300 25
+            "
+            fill="none"
+            stroke="#70c88d"
+            stroke-width="2"
+          />
+
+        </svg>
+
+
+      </div>
+
+
+
+      <!-- AI -->
+
+      <div class="ai-panel">
+
+        <div class="ai-title">
+          AI 생태 분석
+        </div>
+
+
+        <div class="ai-text">
+
+          식생 지수와 초식동물 개체수가 함께 증가하고 있습니다.
+          현재 생태계는 안정적인 범위로 분석되지만,
+          개체수 증가가 계속될 경우 식생 감소 가능성이 있습니다.
 
         </div>
 
       </div>
 
-    </div>
-
-
-    <div class="ai-card">
-
-      <div class="ai-title">
-        AI 생태 분석
-      </div>
-
-      <div class="ai-text">
-
-        초식동물의 개체수가 증가하고 있습니다.
-        현재 추세가 지속될 경우
-        식물 개체량이 감소할 가능성이 있습니다.
-
-      </div>
 
     </div>
+
+
+
+    <!-- 부유 카드 -->
+
+    <div class="floating-card">
+
+
+      <div class="floating-label">
+        ENVIRONMENT REPORT
+      </div>
+
+
+      <div class="floating-title">
+        생태 안정도
+      </div>
+
+
+      <div class="floating-text">
+
+        현재 주요 환경 지표는
+        기준 범위 내에 있습니다.
+
+      </div>
+
+
+      <div class="floating-meter">
+
+        <div class="floating-meter-inner"></div>
+
+      </div>
+
+
+    </div>
+
 
   </section>
+
 
 </main>
 
 
 
-<!-- =========================
-     LOGIN MODAL
-========================= -->
+<!-- =========================================================
+     로그인 모달
+========================================================= -->
 
 <div
   class="login-overlay"
@@ -1229,7 +2284,7 @@
 
 
     <div class="modal-icon">
-      🌿
+      ES
     </div>
 
 
@@ -1241,8 +2296,8 @@
     <p>
 
       Google 계정으로 로그인하면
-      앞으로 시뮬레이션 결과와
-      연구 기록을 저장할 수 있습니다.
+      시뮬레이션 결과와 분석 기록을
+      계정별로 저장할 수 있습니다.
 
     </p>
 
@@ -1267,17 +2322,19 @@
       id="loginError"
     ></div>
 
+
   </div>
 
 </div>
 
 
 
-<!-- =========================
+<!-- =========================================================
      FIREBASE
-========================= -->
+========================================================= -->
 
 <script type="module">
+
 
   import {
     initializeApp
@@ -1296,9 +2353,9 @@
 
 
 
-  /* =========================
+  /* =========================================================
      Firebase 설정
-  ========================= */
+  ========================================================= */
 
   const firebaseConfig = {
 
@@ -1326,9 +2383,6 @@
   };
 
 
-
-  /* Firebase 시작 */
-
   const app =
     initializeApp(firebaseConfig);
 
@@ -1341,8 +2395,9 @@
     new GoogleAuthProvider();
 
 
+  let currentUser =
+    null;
 
-  /* 로그인할 계정 선택 */
 
   provider.setCustomParameters({
 
@@ -1353,9 +2408,9 @@
 
 
 
-  /* =========================
-     로그인 창 열기
-  ========================= */
+  /* =========================================================
+     로그인 창
+  ========================================================= */
 
   window.openLogin =
     function () {
@@ -1370,11 +2425,6 @@
     };
 
 
-
-  /* =========================
-     로그인 창 닫기
-  ========================= */
-
   window.closeLogin =
     function () {
 
@@ -1385,16 +2435,15 @@
         .classList
         .remove("show");
 
-
       hideLoginError();
 
     };
 
 
 
-  /* =========================
-     로그인 오류 표시
-  ========================= */
+  /* =========================================================
+     오류
+  ========================================================= */
 
   function showLoginError(
     message
@@ -1405,16 +2454,13 @@
         "loginError"
       );
 
-
     box.textContent =
       message;
-
 
     box.style.display =
       "block";
 
   }
-
 
 
   function hideLoginError() {
@@ -1424,7 +2470,6 @@
         "loginError"
       );
 
-
     box.style.display =
       "none";
 
@@ -1432,9 +2477,9 @@
 
 
 
-  /* =========================
+  /* =========================================================
      Google 로그인
-  ========================= */
+  ========================================================= */
 
   window.googleLogin =
     async function () {
@@ -1465,14 +2510,8 @@
           );
 
 
-        const user =
+        currentUser =
           result.user;
-
-
-        console.log(
-          "로그인 성공",
-          user
-        );
 
 
         closeLogin();
@@ -1483,6 +2522,7 @@
       catch (error) {
 
         console.error(
+          "로그인 오류:",
           error
         );
 
@@ -1493,7 +2533,7 @@
         ) {
 
           showLoginError(
-            "로그인 창이 닫혔습니다."
+            "Google 로그인 창이 닫혔습니다."
           );
 
         }
@@ -1517,7 +2557,7 @@
         ) {
 
           showLoginError(
-            "현재 웹사이트 주소가 Firebase 허용 도메인에 등록되어 있지 않습니다."
+            "현재 사이트 주소가 Firebase 승인된 도메인에 등록되어 있지 않습니다."
           );
 
         }
@@ -1556,9 +2596,9 @@
 
 
 
-  /* =========================
+  /* =========================================================
      로그아웃
-  ========================= */
+  ========================================================= */
 
   window.googleLogout =
     async function () {
@@ -1571,9 +2611,7 @@
 
       catch (error) {
 
-        console.error(
-          error
-        );
+        console.error(error);
 
       }
 
@@ -1581,14 +2619,19 @@
 
 
 
-  /* =========================
-     로그인 상태 확인
-  ========================= */
+  /* =========================================================
+     로그인 상태
+  ========================================================= */
 
   onAuthStateChanged(
+
     auth,
 
     function (user) {
+
+      currentUser =
+        user;
+
 
       const authButton =
         document.getElementById(
@@ -1602,7 +2645,7 @@
         );
 
 
-      /* 로그인됨 */
+      /* 로그인 상태 */
 
       if (user) {
 
@@ -1662,7 +2705,9 @@
 
             const result =
               confirm(
+
                 `${user.displayName || "사용자"}님으로 로그인되어 있습니다.\n로그아웃하시겠습니까?`
+
               );
 
 
@@ -1676,14 +2721,16 @@
 
 
         saveButton.textContent =
-          "로그인 완료 ✓";
+          "기록 저장 준비 완료";
 
 
         saveButton.onclick =
           function () {
 
             alert(
-              `${user.displayName || "사용자"}님으로 로그인되어 있습니다.`
+
+              `${user.displayName || "사용자"}님의 계정으로 로그인되어 있습니다.`
+
             );
 
           };
@@ -1691,46 +2738,21 @@
       }
 
 
-      /* 로그아웃됨 */
+      /* 로그아웃 상태 */
 
       else {
 
-        authButton.innerHTML =
-          "";
+        authButton.innerHTML = `
 
+          <span class="google-symbol">
+            G
+          </span>
 
-        const google =
-          document.createElement(
-            "span"
-          );
+          <span class="login-text">
+            Google로 로그인
+          </span>
 
-
-        google.className =
-          "google-symbol";
-
-
-        google.textContent =
-          "G";
-
-
-        const text =
-          document.createElement(
-            "span"
-          );
-
-
-        text.className =
-          "login-text";
-
-
-        text.textContent =
-          "Google로 로그인";
-
-
-        authButton.append(
-          google,
-          text
-        );
+        `;
 
 
         authButton.onclick =
@@ -1752,9 +2774,9 @@
 
 
 
-  /* =========================
+  /* =========================================================
      팝업 밖 클릭
-  ========================= */
+  ========================================================= */
 
   const overlay =
     document.getElementById(
@@ -1763,6 +2785,7 @@
 
 
   overlay.addEventListener(
+
     "click",
 
     function (event) {
@@ -1782,11 +2805,12 @@
 
 
 
-  /* =========================
-     ESC 누르면 로그인 창 닫기
-  ========================= */
+  /* =========================================================
+     ESC
+  ========================================================= */
 
   document.addEventListener(
+
     "keydown",
 
     function (event) {
@@ -1806,19 +2830,3043 @@
 
 
 
-  /* =========================
+  /* =========================================================
      시뮬레이션 시작
-     나중에 게임 연결
-  ========================= */
+  ========================================================= */
 
   window.startSimulation =
     function () {
 
+      if (!currentUser) {
+
+        const answer =
+          confirm(
+
+            "Google 계정으로 로그인하면 시뮬레이션 기록을 저장할 수 있습니다.\n먼저 로그인하시겠습니까?"
+
+          );
+
+
+        if (answer) {
+
+          openLogin();
+
+          return;
+
+        }
+
+      }
+
+
       alert(
-        "아직 시뮬레이션 게임 화면을 제작 중입니다."
+
+        "현재는 메인 화면입니다.\n다음 단계에서 실제 생태계 시뮬레이션을 연결하면 됩니다."
+
       );
 
     };
+
+
+
+  /* =========================================================
+     메인 화면 데이터 살짝 움직이기
+  ========================================================= */
+
+  const healthScore =
+    document.getElementById(
+      "healthScore"
+    );
+
+
+  const temperatureValue =
+    document.getElementById(
+      "temperatureValue"
+    );
+
+
+  const populationValue =
+    document.getElementById(
+      "populationValue"
+    );
+
+
+  setInterval(
+
+    function () {
+
+      const score =
+        Math.floor(
+          Math.random() * 4
+        ) + 82;
+
+
+      const temp =
+        (
+          20.8 +
+          Math.random() * 1.2
+        ).toFixed(1);
+
+
+      const population =
+        Math.floor(
+          Math.random() * 12
+        ) + 423;
+
+
+      healthScore.textContent =
+        score;
+
+
+      temperatureValue.textContent =
+        temp + "°C";
+
+
+      populationValue.textContent =
+        population;
+
+    },
+
+    2300
+
+  );
+
+
+</script>
+
+
+</body>
+</html><!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>생태계 시뮬레이션</title>
+
+  <style>
+
+    /* =========================================================
+       기본
+    ========================================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Pretendard,
+        "Noto Sans KR",
+        Arial,
+        sans-serif;
+
+      background: #f5f8f5;
+      color: #152018;
+
+      overflow-x: hidden;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+
+    /* =========================================================
+       헤더
+    ========================================================= */
+
+    header {
+      position: fixed;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 76px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 7%;
+
+      background: rgba(255,255,255,0.91);
+
+      backdrop-filter: blur(15px);
+
+      border-bottom: 1px solid rgba(25,50,30,0.08);
+
+      z-index: 1000;
+    }
+
+
+    /* 로고 */
+
+    .logo {
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+
+      font-size: 19px;
+      font-weight: 800;
+
+      letter-spacing: -0.5px;
+
+      white-space: nowrap;
+    }
+
+
+    .logo-symbol {
+      width: 39px;
+      height: 39px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 11px;
+
+      background: #edf5ef;
+
+      border: 1px solid #dce9df;
+
+      color: #246b3c;
+
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+
+    /* 헤더 오른쪽 */
+
+    .header-right {
+      display: flex;
+      align-items: center;
+
+      gap: 30px;
+    }
+
+
+    nav {
+      display: flex;
+
+      gap: 30px;
+    }
+
+
+    nav a {
+      color: #57615a;
+
+      text-decoration: none;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      transition: 0.2s;
+    }
+
+
+    nav a:hover {
+      color: #176b39;
+    }
+
+
+    /* =========================================================
+       Google 로그인
+    ========================================================= */
+
+    .google-login {
+      min-height: 43px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 9px;
+
+      padding: 0 16px;
+
+      background: white;
+
+      border: 1px solid #d9dedb;
+
+      border-radius: 10px;
+
+      color: #252a27;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.035);
+    }
+
+
+    .google-login:hover {
+      background: #f7f9f7;
+
+      box-shadow:
+        0 5px 15px rgba(0,0,0,0.07);
+    }
+
+
+    .google-symbol {
+      width: 24px;
+      height: 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: #ffffff;
+
+      color: #4285f4;
+
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+
+    .profile-image {
+      width: 28px;
+      height: 28px;
+
+      object-fit: cover;
+
+      border-radius: 50%;
+    }
+
+
+    /* =========================================================
+       메인
+    ========================================================= */
+
+    .hero {
+      min-height: 100vh;
+
+      display: grid;
+
+      grid-template-columns:
+        0.95fr
+        1.05fr;
+
+      align-items: center;
+
+      gap: 75px;
+
+      padding:
+        145px 7%
+        80px;
+
+      position: relative;
+    }
+
+
+    /* 배경 그라디언트 */
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 650px;
+      height: 650px;
+
+      right: -170px;
+      top: 80px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(83,142,97,0.12),
+          rgba(83,142,97,0)
+        );
+
+      pointer-events: none;
+
+      z-index: -1;
+    }
+
+
+    .hero::after {
+      content: "";
+
+      position: absolute;
+
+      width: 480px;
+      height: 480px;
+
+      left: -250px;
+      bottom: -150px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(126,175,144,0.08),
+          transparent
+        );
+
+      z-index: -1;
+    }
+
+
+    /* =========================================================
+       왼쪽
+    ========================================================= */
+
+    .hero-left {
+      max-width: 660px;
+    }
+
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 8px;
+
+      padding: 8px 13px;
+
+      margin-bottom: 24px;
+
+      border-radius: 30px;
+
+      background: #eaf3ec;
+
+      border: 1px solid #dbeade;
+
+      color: #287044;
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #2f8b51;
+
+      box-shadow:
+        0 0 0 4px rgba(47,139,81,0.10);
+    }
+
+
+    h1 {
+      margin-bottom: 25px;
+
+      font-size:
+        clamp(
+          48px,
+          5vw,
+          76px
+        );
+
+      line-height: 1.08;
+
+      letter-spacing: -4px;
+
+      color: #172019;
+    }
+
+
+    h1 span {
+      color: #287344;
+    }
+
+
+    .description {
+      max-width: 580px;
+
+      font-size: 17px;
+
+      line-height: 1.9;
+
+      color: #6d766f;
+
+      word-break: keep-all;
+    }
+
+
+    /* =========================================================
+       메인 버튼
+    ========================================================= */
+
+    .main-buttons {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 35px;
+    }
+
+
+    .start-button {
+      padding: 15px 25px;
+
+      border: none;
+      border-radius: 10px;
+
+      background: #266f40;
+
+      color: white;
+
+      font-size: 14px;
+      font-weight: 800;
+
+      cursor: pointer;
+
+      transition: 0.25s;
+
+      box-shadow:
+        0 8px 25px rgba(38,111,64,0.16);
+    }
+
+
+    .start-button:hover {
+      transform: translateY(-2px);
+
+      background: #1f5f36;
+    }
+
+
+    .login-save-button {
+      padding: 15px 23px;
+
+      border: 1px solid #d6ded8;
+
+      border-radius: 10px;
+
+      background: white;
+
+      color: #3e4741;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+
+    .login-save-button:hover {
+      background: #f1f5f2;
+    }
+
+
+    /* =========================================================
+       특징
+    ========================================================= */
+
+    .features {
+      display: flex;
+
+      gap: 40px;
+
+      margin-top: 48px;
+    }
+
+
+    .feature-title {
+      margin-bottom: 4px;
+
+      color: #1f6538;
+
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+
+    .feature-description {
+      color: #848c87;
+
+      font-size: 12px;
+    }
+
+
+    /* =========================================================
+       오른쪽 고급 환경 분석 패널
+    ========================================================= */
+
+    .simulation-card {
+      position: relative;
+
+      padding: 17px;
+
+      border-radius: 23px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #15211b,
+          #0c1510
+        );
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      box-shadow:
+        0 30px 70px rgba(21,60,32,0.20);
+
+      overflow: visible;
+    }
+
+
+    .simulation-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 230px;
+      height: 230px;
+
+      right: -50px;
+      top: -80px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(78,157,99,0.10);
+
+      filter: blur(35px);
+
+      pointer-events: none;
+    }
+
+
+    /* =========================================================
+       패널 헤더
+    ========================================================= */
+
+    .simulation-header {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 4px 4px 15px;
+    }
+
+
+    .simulation-header-left {
+      display: flex;
+      flex-direction: column;
+
+      gap: 3px;
+    }
+
+
+    .simulation-label {
+      color: #688374;
+
+      font-size: 9px;
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+    }
+
+
+    .simulation-title {
+      color: #f0f5f2;
+
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+
+    .simulation-status {
+      display: flex;
+      align-items: center;
+
+      gap: 7px;
+
+      color: #79d89b;
+
+      font-size: 9px;
+      font-weight: 800;
+
+      letter-spacing: 0.7px;
+    }
+
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #58cb82;
+
+      box-shadow:
+        0 0 10px rgba(88,203,130,0.7);
+
+      animation: pulse 1.6s infinite;
+    }
+
+
+    @keyframes pulse {
+
+      50% {
+        opacity: 0.3;
+      }
+
+    }
+
+
+    /* =========================================================
+       메인 관측 화면
+    ========================================================= */
+
+    .ecosystem-monitor {
+      position: relative;
+
+      height: 350px;
+
+      overflow: hidden;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          to bottom,
+          #162922 0%,
+          #13231c 100%
+        );
+
+      border:
+        1px solid rgba(255,255,255,0.055);
+    }
+
+
+    /* 모니터 그리드 */
+
+    .ecosystem-monitor::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background-image:
+        linear-gradient(
+          rgba(125,185,143,0.055) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(125,185,143,0.055) 1px,
+          transparent 1px
+        );
+
+      background-size:
+        30px 30px;
+
+      z-index: 1;
+
+      pointer-events: none;
+    }
+
+
+    /* =========================================================
+       SVG 환경 지도
+    ========================================================= */
+
+    .landscape-svg {
+      position: absolute;
+
+      width: 100%;
+      height: 100%;
+
+      inset: 0;
+    }
+
+
+    .scan-line {
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 2px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(104,219,141,0.65),
+          transparent
+        );
+
+      box-shadow:
+        0 0 15px rgba(104,219,141,0.35);
+
+      animation:
+        scanMove 5s linear infinite;
+
+      z-index: 4;
+    }
+
+
+    @keyframes scanMove {
+
+      0% {
+        top: 0;
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+
+    }
+
+
+    /* =========================================================
+       좌측 상단 관측 지표
+    ========================================================= */
+
+    .monitor-info {
+      position: absolute;
+
+      top: 17px;
+      left: 17px;
+
+      z-index: 5;
+    }
+
+
+    .monitor-info-label {
+      margin-bottom: 3px;
+
+      color: #789284;
+
+      font-size: 8px;
+      font-weight: 800;
+
+      letter-spacing: 1.4px;
+    }
+
+
+    .monitor-info-value {
+      color: #dbe8df;
+
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+
+    /* =========================================================
+       우측 상단 환경 점수
+    ========================================================= */
+
+    .health-score {
+      position: absolute;
+
+      top: 17px;
+      right: 17px;
+
+      z-index: 5;
+
+      text-align: right;
+    }
+
+
+    .score-label {
+      margin-bottom: 2px;
+
+      color: #72897a;
+
+      font-size: 8px;
+      font-weight: 800;
+
+      letter-spacing: 1.2px;
+    }
+
+
+    .score-row {
+      display: flex;
+      align-items: flex-end;
+
+      gap: 4px;
+    }
+
+
+    .score-number {
+      color: #8be2a8;
+
+      font-size: 31px;
+      font-weight: 800;
+
+      line-height: 1;
+    }
+
+
+    .score-unit {
+      padding-bottom: 3px;
+
+      color: #6d8173;
+
+      font-size: 9px;
+    }
+
+
+    /* =========================================================
+       지도 라벨
+    ========================================================= */
+
+    .map-marker {
+      position: absolute;
+
+      z-index: 5;
+
+      display: flex;
+      align-items: center;
+
+      gap: 6px;
+
+      padding: 6px 8px;
+
+      border-radius: 7px;
+
+      background:
+        rgba(12,24,17,0.72);
+
+      border:
+        1px solid rgba(137,214,159,0.13);
+
+      backdrop-filter: blur(7px);
+
+      color: #afc4b5;
+
+      font-size: 8px;
+      font-weight: 700;
+    }
+
+
+    .map-marker::before {
+      content: "";
+
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+
+      background: #75d995;
+
+      box-shadow:
+        0 0 7px rgba(117,217,149,0.8);
+    }
+
+
+    .marker-a {
+      left: 19%;
+      top: 53%;
+    }
+
+
+    .marker-b {
+      right: 17%;
+      top: 45%;
+    }
+
+
+    .marker-c {
+      left: 45%;
+      bottom: 21%;
+    }
+
+
+    /* =========================================================
+       하단 데이터
+    ========================================================= */
+
+    .monitor-data {
+      position: absolute;
+
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 7px;
+
+      z-index: 5;
+    }
+
+
+    .monitor-data-card {
+      padding: 9px 10px;
+
+      border-radius: 9px;
+
+      background:
+        rgba(12,25,17,0.75);
+
+      border:
+        1px solid rgba(255,255,255,0.06);
+
+      backdrop-filter: blur(8px);
+    }
+
+
+    .monitor-data-name {
+      margin-bottom: 3px;
+
+      color: #74877a;
+
+      font-size: 8px;
+    }
+
+
+    .monitor-data-value {
+      color: #d7e4da;
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+
+    .monitor-data-value.green {
+      color: #89dba3;
+    }
+
+
+    /* =========================================================
+       아래쪽 분석 데이터
+    ========================================================= */
+
+    .analysis-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.1fr
+        0.9fr;
+
+      gap: 9px;
+
+      margin-top: 10px;
+    }
+
+
+    .population-panel,
+    .ai-panel {
+      padding: 13px;
+
+      border-radius: 12px;
+
+      background:
+        rgba(255,255,255,0.035);
+
+      border:
+        1px solid rgba(255,255,255,0.055);
+    }
+
+
+    .panel-top {
+      display: flex;
+
+      justify-content: space-between;
+
+      margin-bottom: 10px;
+    }
+
+
+    .panel-title {
+      color: #cdd9d1;
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+
+    .panel-small {
+      color: #64776a;
+
+      font-size: 8px;
+    }
+
+
+    /* =========================================================
+       미니 그래프
+    ========================================================= */
+
+    .mini-chart {
+      width: 100%;
+      height: 70px;
+    }
+
+
+    /* =========================================================
+       AI 패널
+    ========================================================= */
+
+    .ai-title {
+      margin-bottom: 7px;
+
+      color: #88daa2;
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+
+    .ai-text {
+      color: #87998d;
+
+      font-size: 10px;
+
+      line-height: 1.65;
+    }
+
+
+    /* =========================================================
+       떠있는 사이드 카드
+    ========================================================= */
+
+    .floating-card {
+      position: absolute;
+
+      right: -28px;
+      top: 120px;
+
+      width: 190px;
+
+      padding: 14px;
+
+      border-radius: 12px;
+
+      background:
+        rgba(255,255,255,0.95);
+
+      border: 1px solid #dde6df;
+
+      box-shadow:
+        0 18px 35px rgba(23,57,33,0.16);
+
+      backdrop-filter: blur(10px);
+    }
+
+
+    .floating-label {
+      margin-bottom: 5px;
+
+      color: #8a9990;
+
+      font-size: 8px;
+      font-weight: 800;
+
+      letter-spacing: 1px;
+    }
+
+
+    .floating-title {
+      margin-bottom: 7px;
+
+      color: #26322a;
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+
+    .floating-text {
+      color: #6f7d74;
+
+      font-size: 10px;
+
+      line-height: 1.55;
+    }
+
+
+    .floating-meter {
+      width: 100%;
+      height: 5px;
+
+      margin-top: 11px;
+
+      overflow: hidden;
+
+      border-radius: 20px;
+
+      background: #e8ede9;
+    }
+
+
+    .floating-meter-inner {
+      width: 76%;
+      height: 100%;
+
+      border-radius: inherit;
+
+      background:
+        linear-gradient(
+          90deg,
+          #417c53,
+          #7ab98d
+        );
+    }
+
+
+    /* =========================================================
+       로그인 모달
+    ========================================================= */
+
+    .login-overlay {
+      position: fixed;
+
+      inset: 0;
+
+      display: none;
+
+      justify-content: center;
+      align-items: center;
+
+      padding: 20px;
+
+      background:
+        rgba(18,30,21,0.42);
+
+      backdrop-filter: blur(9px);
+
+      z-index: 3000;
+    }
+
+
+    .login-overlay.show {
+      display: flex;
+    }
+
+
+    .login-modal {
+      position: relative;
+
+      width: 100%;
+      max-width: 420px;
+
+      padding: 38px;
+
+      border-radius: 20px;
+
+      background: white;
+
+      text-align: center;
+
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.22);
+    }
+
+
+    .close-button {
+      position: absolute;
+
+      top: 15px;
+      right: 18px;
+
+      border: none;
+
+      background: none;
+
+      color: #777;
+
+      font-size: 25px;
+
+      cursor: pointer;
+    }
+
+
+    .modal-icon {
+      width: 62px;
+      height: 62px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin: 0 auto 18px;
+
+      border-radius: 17px;
+
+      background: #edf5ef;
+
+      border: 1px solid #ddebe1;
+
+      color: #2b7144;
+
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+
+    .login-modal h2 {
+      margin-bottom: 10px;
+
+      color: #1e2821;
+
+      font-size: 23px;
+    }
+
+
+    .login-modal p {
+      margin-bottom: 25px;
+
+      color: #717b74;
+
+      font-size: 13px;
+
+      line-height: 1.7;
+    }
+
+
+    .modal-google-button {
+      width: 100%;
+      height: 52px;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      gap: 10px;
+
+      border: 1px solid #d9dedb;
+
+      border-radius: 10px;
+
+      background: white;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+
+    .modal-google-button:hover {
+      background: #f6f8f7;
+    }
+
+
+    .login-error {
+      display: none;
+
+      margin-top: 14px;
+
+      padding: 10px;
+
+      border-radius: 8px;
+
+      background: #fff0f0;
+
+      color: #c33d3d;
+
+      font-size: 11px;
+    }
+
+
+    /* =========================================================
+       반응형
+    ========================================================= */
+
+    @media(max-width: 1050px) {
+
+      nav {
+        display: none;
+      }
+
+
+      .hero {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        padding-top: 130px;
+      }
+
+
+      .hero-left {
+        margin: auto;
+      }
+
+
+      .description {
+        margin: auto;
+      }
+
+
+      .main-buttons,
+      .features {
+        justify-content: center;
+      }
+
+
+      .simulation-card {
+        width: 100%;
+        max-width: 680px;
+
+        margin: auto;
+      }
+
+
+      .floating-card {
+        right: 15px;
+      }
+
+    }
+
+
+    @media(max-width: 650px) {
+
+      header {
+        padding: 0 4%;
+      }
+
+
+      .logo {
+        font-size: 14px;
+      }
+
+
+      .logo-symbol {
+        width: 34px;
+        height: 34px;
+      }
+
+
+      .google-login .login-text {
+        display: none;
+      }
+
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+
+      .description {
+        font-size: 15px;
+      }
+
+
+      .features {
+        gap: 20px;
+      }
+
+
+      .ecosystem-monitor {
+        height: 300px;
+      }
+
+
+      .monitor-data {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+
+      .analysis-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .floating-card {
+        display: none;
+      }
+
+
+      .login-modal {
+        padding: 34px 22px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+  <div class="logo">
+
+    <div class="logo-symbol">
+      ES
+    </div>
+
+    생태계 시뮬레이션
+
+  </div>
+
+
+  <div class="header-right">
+
+    <nav>
+
+      <a href="#">
+        홈
+      </a>
+
+      <a
+        href="#"
+        onclick="startSimulation(); return false;"
+      >
+        시뮬레이션
+      </a>
+
+      <a href="#">
+        프로젝트 소개
+      </a>
+
+    </nav>
+
+
+    <button
+      class="google-login"
+      id="authButton"
+      onclick="openLogin()"
+    >
+
+      <span class="google-symbol">
+        G
+      </span>
+
+      <span class="login-text">
+        Google로 로그인
+      </span>
+
+    </button>
+
+  </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="hero">
+
+
+  <!-- =======================================================
+       왼쪽
+  ======================================================== -->
+
+  <section class="hero-left">
+
+
+    <div class="badge">
+
+      <div class="badge-dot"></div>
+
+      AI 기반 과학 교육 프로젝트
+
+    </div>
+
+
+    <h1>
+
+      변화하는 생태계를<br>
+
+      <span>
+        데이터로 관찰하세요.
+      </span>
+
+    </h1>
+
+
+    <p class="description">
+
+      온도, 강수량, 식생, 개체수와 같은
+      환경 요소를 직접 조절하고 생태계의 변화를 관찰해 보세요.
+
+      시뮬레이션에서 생성된 데이터를 분석하고
+      인공지능의 예측과 실제 결과를 비교하며
+      생태계의 상호작용을 탐구합니다.
+
+    </p>
+
+
+    <div class="main-buttons">
+
+
+      <button
+        class="start-button"
+        onclick="startSimulation()"
+      >
+        시뮬레이션 시작
+      </button>
+
+
+      <button
+        class="login-save-button"
+        id="saveLoginButton"
+        onclick="openLogin()"
+      >
+        로그인하고 기록 저장
+      </button>
+
+
+    </div>
+
+
+    <div class="features">
+
+
+      <div>
+
+        <div class="feature-title">
+          SIMULATION
+        </div>
+
+        <div class="feature-description">
+          생태계 변화 관찰
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <div class="feature-title">
+          AI
+        </div>
+
+        <div class="feature-description">
+          변화 패턴 분석
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <div class="feature-title">
+          DATA
+        </div>
+
+        <div class="feature-description">
+          결과 비교 및 해석
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =======================================================
+       오른쪽 고급 분석 패널
+  ======================================================== -->
+
+  <section class="simulation-card">
+
+
+    <!-- 헤더 -->
+
+    <div class="simulation-header">
+
+
+      <div class="simulation-header-left">
+
+        <div class="simulation-label">
+          ECOSYSTEM OBSERVATION SYSTEM
+        </div>
+
+        <div class="simulation-title">
+          생태 환경 모니터링
+        </div>
+
+      </div>
+
+
+      <div class="simulation-status">
+
+        <div class="status-dot"></div>
+
+        LIVE ANALYSIS
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- 메인 관측 화면 -->
+
+    <div class="ecosystem-monitor">
+
+
+      <div class="scan-line"></div>
+
+
+      <!-- 상단 정보 -->
+
+      <div class="monitor-info">
+
+        <div class="monitor-info-label">
+          OBSERVATION AREA
+        </div>
+
+        <div class="monitor-info-value">
+          Zone A-17
+        </div>
+
+      </div>
+
+
+      <div class="health-score">
+
+        <div class="score-label">
+          ECOSYSTEM HEALTH
+        </div>
+
+        <div class="score-row">
+
+          <div
+            class="score-number"
+            id="healthScore"
+          >
+            84
+          </div>
+
+          <div class="score-unit">
+            /100
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- 환경 지도 SVG -->
+
+      <svg
+        class="landscape-svg"
+        viewBox="0 0 700 380"
+        preserveAspectRatio="xMidYMid slice"
+      >
+
+        <defs>
+
+          <!-- 하늘 -->
+          <linearGradient
+            id="skyGradient"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="1"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#183128"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#1d372b"
+            />
+
+          </linearGradient>
+
+
+          <!-- 멀리 산 -->
+          <linearGradient
+            id="mountainGradient1"
+            x1="0"
+            y1="0"
+            x2="1"
+            y2="1"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#294737"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#203a2d"
+            />
+
+          </linearGradient>
+
+
+          <!-- 가까운 산 -->
+          <linearGradient
+            id="mountainGradient2"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="1"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#355b44"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#203e2d"
+            />
+
+          </linearGradient>
+
+
+          <!-- 땅 -->
+          <linearGradient
+            id="groundGradient"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="1"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#285039"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#173221"
+            />
+
+          </linearGradient>
+
+
+          <!-- 물 -->
+          <linearGradient
+            id="waterGradient"
+            x1="0"
+            y1="0"
+            x2="1"
+            y2="1"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#3b7569"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#244e48"
+            />
+
+          </linearGradient>
+
+
+          <!-- 글로우 -->
+          <filter id="softGlow">
+
+            <feGaussianBlur
+              stdDeviation="8"
+              result="blur"
+            />
+
+          </filter>
+
+        </defs>
+
+
+        <!-- 하늘 -->
+
+        <rect
+          width="700"
+          height="380"
+          fill="url(#skyGradient)"
+        />
+
+
+        <!-- 아주 먼 산 -->
+
+        <path
+          d="
+            M0 240
+            L95 135
+            L165 205
+            L270 105
+            L370 215
+            L490 120
+            L610 215
+            L700 150
+            L700 380
+            L0 380
+            Z
+          "
+          fill="#233f31"
+          opacity="0.45"
+        />
+
+
+        <!-- 중간 산 -->
+
+        <path
+          d="
+            M0 270
+            C80 210 135 190 205 220
+            C280 255 330 165 410 185
+            C485 205 535 240 700 185
+            L700 380
+            L0 380
+            Z
+          "
+          fill="url(#mountainGradient1)"
+        />
+
+
+        <!-- 가까운 능선 -->
+
+        <path
+          d="
+            M0 290
+            C90 250 170 275 235 245
+            C300 215 370 230 430 255
+            C510 285 600 235 700 255
+            L700 380
+            L0 380
+            Z
+          "
+          fill="url(#mountainGradient2)"
+        />
+
+
+        <!-- 지면 -->
+
+        <path
+          d="
+            M0 310
+            C100 280 180 290 255 310
+            C350 335 435 295 515 300
+            C590 305 650 300 700 285
+            L700 380
+            L0 380
+            Z
+          "
+          fill="url(#groundGradient)"
+        />
+
+
+        <!-- 강 -->
+
+        <path
+          d="
+            M420 265
+            C390 290 370 310 385 330
+            C410 360 480 365 540 380
+            L700 380
+            L700 340
+            C620 330 550 310 505 285
+            C470 266 450 257 420 265
+            Z
+          "
+          fill="url(#waterGradient)"
+          opacity="0.9"
+        />
+
+
+        <!-- 숲 군집 -->
+
+        <g opacity="0.92">
+
+          <circle
+            cx="105"
+            cy="282"
+            r="28"
+            fill="#467557"
+          />
+
+          <circle
+            cx="138"
+            cy="270"
+            r="35"
+            fill="#3b6b4b"
+          />
+
+          <circle
+            cx="175"
+            cy="286"
+            r="26"
+            fill="#4c7d5a"
+          />
+
+          <circle
+            cx="219"
+            cy="278"
+            r="34"
+            fill="#3e704e"
+          />
+
+          <circle
+            cx="262"
+            cy="288"
+            r="24"
+            fill="#568464"
+          />
+
+        </g>
+
+
+        <!-- 나무형 실루엣 -->
+
+        <g
+          fill="#75a67e"
+          opacity="0.70"
+        >
+
+          <circle cx="70" cy="305" r="7"/>
+          <circle cx="92" cy="299" r="6"/>
+          <circle cx="300" cy="296" r="7"/>
+          <circle cx="322" cy="291" r="5"/>
+          <circle cx="340" cy="301" r="8"/>
+          <circle cx="570" cy="286" r="7"/>
+          <circle cx="595" cy="282" r="6"/>
+          <circle cx="620" cy="290" r="8"/>
+
+        </g>
+
+
+        <!-- 센서 포인트 -->
+
+        <g>
+
+          <circle
+            cx="170"
+            cy="265"
+            r="4"
+            fill="#9fe8b4"
+          />
+
+          <circle
+            cx="170"
+            cy="265"
+            r="12"
+            fill="none"
+            stroke="#9fe8b4"
+            stroke-width="1"
+            opacity="0.30"
+          />
+
+
+          <circle
+            cx="460"
+            cy="230"
+            r="4"
+            fill="#9fe8b4"
+          />
+
+          <circle
+            cx="460"
+            cy="230"
+            r="13"
+            fill="none"
+            stroke="#9fe8b4"
+            stroke-width="1"
+            opacity="0.30"
+          />
+
+
+          <circle
+            cx="330"
+            cy="315"
+            r="4"
+            fill="#9fe8b4"
+          />
+
+          <circle
+            cx="330"
+            cy="315"
+            r="12"
+            fill="none"
+            stroke="#9fe8b4"
+            stroke-width="1"
+            opacity="0.30"
+          />
+
+        </g>
+
+
+        <!-- 아주 약한 빛 -->
+
+        <circle
+          cx="570"
+          cy="85"
+          r="55"
+          fill="#9ac69e"
+          opacity="0.08"
+          filter="url(#softGlow)"
+        />
+
+      </svg>
+
+
+      <!-- 지도 마커 -->
+
+      <div class="map-marker marker-a">
+        식생 밀집 지역
+      </div>
+
+      <div class="map-marker marker-b">
+        개체군 감지
+      </div>
+
+      <div class="map-marker marker-c">
+        수질 센서
+      </div>
+
+
+
+      <!-- 아래 정보 -->
+
+      <div class="monitor-data">
+
+
+        <div class="monitor-data-card">
+
+          <div class="monitor-data-name">
+            평균 온도
+          </div>
+
+          <div
+            class="monitor-data-value"
+            id="temperatureValue"
+          >
+            21.4°C
+          </div>
+
+        </div>
+
+
+        <div class="monitor-data-card">
+
+          <div class="monitor-data-name">
+            습도
+          </div>
+
+          <div class="monitor-data-value">
+            67%
+          </div>
+
+        </div>
+
+
+        <div class="monitor-data-card">
+
+          <div class="monitor-data-name">
+            식생 지수
+          </div>
+
+          <div class="monitor-data-value green">
+            0.82
+          </div>
+
+        </div>
+
+
+        <div class="monitor-data-card">
+
+          <div class="monitor-data-name">
+            개체수
+          </div>
+
+          <div
+            class="monitor-data-value"
+            id="populationValue"
+          >
+            428
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         하단 분석
+    ====================================================== -->
+
+    <div class="analysis-grid">
+
+
+      <!-- 개체수 변화 -->
+
+      <div class="population-panel">
+
+
+        <div class="panel-top">
+
+          <div class="panel-title">
+            개체수 변화
+          </div>
+
+          <div class="panel-small">
+            최근 12개월
+          </div>
+
+        </div>
+
+
+        <svg
+          class="mini-chart"
+          viewBox="0 0 300 80"
+          preserveAspectRatio="none"
+        >
+
+          <!-- 가이드 -->
+
+          <line
+            x1="0"
+            y1="20"
+            x2="300"
+            y2="20"
+            stroke="rgba(255,255,255,0.05)"
+          />
+
+          <line
+            x1="0"
+            y1="40"
+            x2="300"
+            y2="40"
+            stroke="rgba(255,255,255,0.05)"
+          />
+
+          <line
+            x1="0"
+            y1="60"
+            x2="300"
+            y2="60"
+            stroke="rgba(255,255,255,0.05)"
+          />
+
+
+          <!-- 영역 -->
+
+          <path
+            d="
+              M0 65
+              C35 63 55 55 75 57
+              C105 60 125 42 150 47
+              C180 53 205 30 230 33
+              C255 36 275 22 300 25
+
+              L300 80
+              L0 80
+              Z
+            "
+            fill="rgba(90,190,119,0.09)"
+          />
+
+
+          <!-- 라인 -->
+
+          <path
+            d="
+              M0 65
+              C35 63 55 55 75 57
+              C105 60 125 42 150 47
+              C180 53 205 30 230 33
+              C255 36 275 22 300 25
+            "
+            fill="none"
+            stroke="#70c88d"
+            stroke-width="2"
+          />
+
+        </svg>
+
+
+      </div>
+
+
+
+      <!-- AI -->
+
+      <div class="ai-panel">
+
+        <div class="ai-title">
+          AI 생태 분석
+        </div>
+
+
+        <div class="ai-text">
+
+          식생 지수와 초식동물 개체수가 함께 증가하고 있습니다.
+          현재 생태계는 안정적인 범위로 분석되지만,
+          개체수 증가가 계속될 경우 식생 감소 가능성이 있습니다.
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- 부유 카드 -->
+
+    <div class="floating-card">
+
+
+      <div class="floating-label">
+        ENVIRONMENT REPORT
+      </div>
+
+
+      <div class="floating-title">
+        생태 안정도
+      </div>
+
+
+      <div class="floating-text">
+
+        현재 주요 환경 지표는
+        기준 범위 내에 있습니다.
+
+      </div>
+
+
+      <div class="floating-meter">
+
+        <div class="floating-meter-inner"></div>
+
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     로그인 모달
+========================================================= -->
+
+<div
+  class="login-overlay"
+  id="loginOverlay"
+>
+
+  <div class="login-modal">
+
+
+    <button
+      class="close-button"
+      onclick="closeLogin()"
+    >
+      ×
+    </button>
+
+
+    <div class="modal-icon">
+      ES
+    </div>
+
+
+    <h2>
+      생태계 시뮬레이션
+    </h2>
+
+
+    <p>
+
+      Google 계정으로 로그인하면
+      시뮬레이션 결과와 분석 기록을
+      계정별로 저장할 수 있습니다.
+
+    </p>
+
+
+    <button
+      class="modal-google-button"
+      id="googleLoginButton"
+      onclick="googleLogin()"
+    >
+
+      <span class="google-symbol">
+        G
+      </span>
+
+      Google 계정으로 계속하기
+
+    </button>
+
+
+    <div
+      class="login-error"
+      id="loginError"
+    ></div>
+
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
+
+<script type="module">
+
+
+  import {
+    initializeApp
+  }
+  from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+
+  import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signOut,
+    onAuthStateChanged
+  }
+  from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+
+
+  /* =========================================================
+     Firebase 설정
+  ========================================================= */
+
+  const firebaseConfig = {
+
+    apiKey:
+      "AIzaSyDQM1XA8P27v40HbzBRxd1eTGlvEfhR9Zw",
+
+    authDomain:
+      "science-education-game.firebaseapp.com",
+
+    projectId:
+      "science-education-game",
+
+    storageBucket:
+      "science-education-game.firebasestorage.app",
+
+    messagingSenderId:
+      "282089058152",
+
+    appId:
+      "1:282089058152:web:8e35d365280a2c8646f0dd",
+
+    measurementId:
+      "G-TD1L07ZJTV"
+
+  };
+
+
+  const app =
+    initializeApp(firebaseConfig);
+
+
+  const auth =
+    getAuth(app);
+
+
+  const provider =
+    new GoogleAuthProvider();
+
+
+  let currentUser =
+    null;
+
+
+  provider.setCustomParameters({
+
+    prompt:
+      "select_account"
+
+  });
+
+
+
+  /* =========================================================
+     로그인 창
+  ========================================================= */
+
+  window.openLogin =
+    function () {
+
+      document
+        .getElementById(
+          "loginOverlay"
+        )
+        .classList
+        .add("show");
+
+    };
+
+
+  window.closeLogin =
+    function () {
+
+      document
+        .getElementById(
+          "loginOverlay"
+        )
+        .classList
+        .remove("show");
+
+      hideLoginError();
+
+    };
+
+
+
+  /* =========================================================
+     오류
+  ========================================================= */
+
+  function showLoginError(
+    message
+  ) {
+
+    const box =
+      document.getElementById(
+        "loginError"
+      );
+
+    box.textContent =
+      message;
+
+    box.style.display =
+      "block";
+
+  }
+
+
+  function hideLoginError() {
+
+    const box =
+      document.getElementById(
+        "loginError"
+      );
+
+    box.style.display =
+      "none";
+
+  }
+
+
+
+  /* =========================================================
+     Google 로그인
+  ========================================================= */
+
+  window.googleLogin =
+    async function () {
+
+      hideLoginError();
+
+
+      const button =
+        document.getElementById(
+          "googleLoginButton"
+        );
+
+
+      button.disabled =
+        true;
+
+
+      button.textContent =
+        "로그인 중...";
+
+
+      try {
+
+        const result =
+          await signInWithPopup(
+            auth,
+            provider
+          );
+
+
+        currentUser =
+          result.user;
+
+
+        closeLogin();
+
+      }
+
+
+      catch (error) {
+
+        console.error(
+          "로그인 오류:",
+          error
+        );
+
+
+        if (
+          error.code ===
+          "auth/popup-closed-by-user"
+        ) {
+
+          showLoginError(
+            "Google 로그인 창이 닫혔습니다."
+          );
+
+        }
+
+
+        else if (
+          error.code ===
+          "auth/popup-blocked"
+        ) {
+
+          showLoginError(
+            "브라우저에서 로그인 팝업을 차단했습니다."
+          );
+
+        }
+
+
+        else if (
+          error.code ===
+          "auth/unauthorized-domain"
+        ) {
+
+          showLoginError(
+            "현재 사이트 주소가 Firebase 승인된 도메인에 등록되어 있지 않습니다."
+          );
+
+        }
+
+
+        else {
+
+          showLoginError(
+            "로그인 중 오류가 발생했습니다."
+          );
+
+        }
+
+      }
+
+
+      finally {
+
+        button.disabled =
+          false;
+
+
+        button.innerHTML = `
+
+          <span class="google-symbol">
+            G
+          </span>
+
+          Google 계정으로 계속하기
+
+        `;
+
+      }
+
+    };
+
+
+
+  /* =========================================================
+     로그아웃
+  ========================================================= */
+
+  window.googleLogout =
+    async function () {
+
+      try {
+
+        await signOut(auth);
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+      }
+
+    };
+
+
+
+  /* =========================================================
+     로그인 상태
+  ========================================================= */
+
+  onAuthStateChanged(
+
+    auth,
+
+    function (user) {
+
+      currentUser =
+        user;
+
+
+      const authButton =
+        document.getElementById(
+          "authButton"
+        );
+
+
+      const saveButton =
+        document.getElementById(
+          "saveLoginButton"
+        );
+
+
+      /* 로그인 상태 */
+
+      if (user) {
+
+        authButton.innerHTML =
+          "";
+
+
+        if (user.photoURL) {
+
+          const image =
+            document.createElement(
+              "img"
+            );
+
+
+          image.src =
+            user.photoURL;
+
+
+          image.alt =
+            "프로필";
+
+
+          image.className =
+            "profile-image";
+
+
+          authButton.appendChild(
+            image
+          );
+
+        }
+
+
+        const name =
+          document.createElement(
+            "span"
+          );
+
+
+        name.className =
+          "login-text";
+
+
+        name.textContent =
+          user.displayName ||
+          "사용자";
+
+
+        authButton.appendChild(
+          name
+        );
+
+
+        authButton.onclick =
+          function () {
+
+            const result =
+              confirm(
+
+                `${user.displayName || "사용자"}님으로 로그인되어 있습니다.\n로그아웃하시겠습니까?`
+
+              );
+
+
+            if (result) {
+
+              googleLogout();
+
+            }
+
+          };
+
+
+        saveButton.textContent =
+          "기록 저장 준비 완료";
+
+
+        saveButton.onclick =
+          function () {
+
+            alert(
+
+              `${user.displayName || "사용자"}님의 계정으로 로그인되어 있습니다.`
+
+            );
+
+          };
+
+      }
+
+
+      /* 로그아웃 상태 */
+
+      else {
+
+        authButton.innerHTML = `
+
+          <span class="google-symbol">
+            G
+          </span>
+
+          <span class="login-text">
+            Google로 로그인
+          </span>
+
+        `;
+
+
+        authButton.onclick =
+          openLogin;
+
+
+        saveButton.textContent =
+          "로그인하고 기록 저장";
+
+
+        saveButton.onclick =
+          openLogin;
+
+      }
+
+    }
+
+  );
+
+
+
+  /* =========================================================
+     팝업 밖 클릭
+  ========================================================= */
+
+  const overlay =
+    document.getElementById(
+      "loginOverlay"
+    );
+
+
+  overlay.addEventListener(
+
+    "click",
+
+    function (event) {
+
+      if (
+        event.target ===
+        overlay
+      ) {
+
+        closeLogin();
+
+      }
+
+    }
+
+  );
+
+
+
+  /* =========================================================
+     ESC
+  ========================================================= */
+
+  document.addEventListener(
+
+    "keydown",
+
+    function (event) {
+
+      if (
+        event.key ===
+        "Escape"
+      ) {
+
+        closeLogin();
+
+      }
+
+    }
+
+  );
+
+
+
+  /* =========================================================
+     시뮬레이션 시작
+  ========================================================= */
+
+  window.startSimulation =
+    function () {
+
+      if (!currentUser) {
+
+        const answer =
+          confirm(
+
+            "Google 계정으로 로그인하면 시뮬레이션 기록을 저장할 수 있습니다.\n먼저 로그인하시겠습니까?"
+
+          );
+
+
+        if (answer) {
+
+          openLogin();
+
+          return;
+
+        }
+
+      }
+
+
+      alert(
+
+        "현재는 메인 화면입니다.\n다음 단계에서 실제 생태계 시뮬레이션을 연결하면 됩니다."
+
+      );
+
+    };
+
+
+
+  /* =========================================================
+     메인 화면 데이터 살짝 움직이기
+  ========================================================= */
+
+  const healthScore =
+    document.getElementById(
+      "healthScore"
+    );
+
+
+  const temperatureValue =
+    document.getElementById(
+      "temperatureValue"
+    );
+
+
+  const populationValue =
+    document.getElementById(
+      "populationValue"
+    );
+
+
+  setInterval(
+
+    function () {
+
+      const score =
+        Math.floor(
+          Math.random() * 4
+        ) + 82;
+
+
+      const temp =
+        (
+          20.8 +
+          Math.random() * 1.2
+        ).toFixed(1);
+
+
+      const population =
+        Math.floor(
+          Math.random() * 12
+        ) + 423;
+
+
+      healthScore.textContent =
+        score;
+
+
+      temperatureValue.textContent =
+        temp + "°C";
+
+
+      populationValue.textContent =
+        population;
+
+    },
+
+    2300
+
+  );
+
 
 </script>
 
