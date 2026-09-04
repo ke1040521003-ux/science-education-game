@@ -4,91 +4,1335 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Science Education Game</title>
+  <title>생태계 시뮬레이션</title>
 
   <style>
+    /* =========================
+       기본 설정
+    ========================== */
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7f9fc;
-      color: #222;
+    html {
+      scroll-behavior: smooth;
     }
 
+    body {
+      font-family:
+        Pretendard,
+        "Noto Sans KR",
+        Arial,
+        sans-serif;
+
+      background: #f7faf7;
+      color: #17201a;
+      overflow-x: hidden;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+
+    /* =========================
+       헤더
+    ========================== */
+
     header {
-      height: 70px;
-      background: white;
-      border-bottom: 1px solid #ddd;
+      width: 100%;
+      height: 76px;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      padding: 0 8%;
+      padding: 0 7%;
+
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
     }
 
+
+    /* 로고 */
+
     .logo {
-      font-size: 22px;
-      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+
+      font-size: 20px;
+      font-weight: 800;
+
+      cursor: pointer;
+    }
+
+    .logo-icon {
+      width: 37px;
+      height: 37px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 12px;
+
+      background: #e8f5e9;
+
+      font-size: 21px;
+    }
+
+
+    /* 헤더 오른쪽 */
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
     }
 
     nav a {
       text-decoration: none;
-      color: #222;
-      margin-left: 30px;
+      color: #454d47;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      transition: 0.2s;
     }
 
-    .hero {
-      height: calc(100vh - 70px);
+    nav a:hover {
+      color: #17713c;
+    }
+
+
+    /* =========================
+       구글 로그인 버튼
+    ========================== */
+
+    .google-login {
+      height: 43px;
 
       display: flex;
+      align-items: center;
+      gap: 10px;
+
+      padding: 0 17px;
+
+      border: 1px solid #dadce0;
+      border-radius: 10px;
+
+      background: white;
+
+      color: #202124;
+      font-size: 14px;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.05);
+
+      transition: 0.2s;
+    }
+
+    .google-login:hover {
+      background: #f8f9fa;
+      box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .google-icon {
+      width: 21px;
+      height: 21px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 15px;
+      font-weight: 800;
+
+      color: #4285f4;
+    }
+
+
+    /* =========================
+       메인 화면
+    ========================== */
+
+    .hero {
+      min-height: 100vh;
+
+      padding:
+        145px 7%
+        80px;
+
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+
+      align-items: center;
+      gap: 65px;
+
+      position: relative;
+
+      overflow: hidden;
+    }
+
+
+    /* 배경 원 */
+
+    .background-circle {
+      position: absolute;
+
+      width: 550px;
+      height: 550px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(152, 210, 166, 0.22),
+          rgba(152, 210, 166, 0)
+        );
+
+      right: -100px;
+      top: 80px;
+
+      z-index: -1;
+    }
+
+
+    /* =========================
+       왼쪽 소개
+    ========================== */
+
+    .hero-left {
+      max-width: 650px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 8px 13px;
+
+      background: #eaf6ec;
+
+      color: #267344;
+
+      border-radius: 30px;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      margin-bottom: 23px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 5vw, 76px);
+
+      line-height: 1.08;
+
+      letter-spacing: -4px;
+
+      margin-bottom: 25px;
+
+      color: #17251b;
+    }
+
+    h1 span {
+      color: #27854a;
+    }
+
+    .hero-description {
+      max-width: 580px;
+
+      font-size: 18px;
+      line-height: 1.8;
+
+      color: #68716b;
+
+      word-break: keep-all;
+    }
+
+
+    /* 버튼 */
+
+    .hero-buttons {
+      margin-top: 35px;
+
+      display: flex;
+      gap: 12px;
+
+      flex-wrap: wrap;
+    }
+
+    .start-button {
+      border: none;
+
+      padding: 15px 25px;
+
+      background: #267a43;
+      color: white;
+
+      border-radius: 11px;
+
+      font-size: 15px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.25s;
+
+      box-shadow:
+        0 7px 20px rgba(38, 122, 67, 0.2);
+    }
+
+    .start-button:hover {
+      transform: translateY(-2px);
+      background: #1f6838;
+    }
+
+    .outline-button {
+      border: 1px solid #d5ddd7;
+
+      padding: 15px 23px;
+
+      background: white;
+      color: #39423c;
+
+      border-radius: 11px;
+
+      font-size: 15px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.25s;
+    }
+
+    .outline-button:hover {
+      background: #f2f7f3;
+    }
+
+
+    /* =========================
+       특징 작은 카드
+    ========================== */
+
+    .features {
+      margin-top: 48px;
+
+      display: flex;
+      gap: 35px;
+    }
+
+    .feature {
+      display: flex;
       flex-direction: column;
+      gap: 4px;
+    }
+
+    .feature-number {
+      font-size: 21px;
+      font-weight: 800;
+
+      color: #1e6b3a;
+    }
+
+    .feature-text {
+      font-size: 13px;
+      color: #7a827c;
+    }
+
+
+    /* =========================
+       오른쪽 시뮬레이션 카드
+    ========================== */
+
+    .simulation-card {
+      background: white;
+
+      border: 1px solid #e3e8e4;
+      border-radius: 25px;
+
+      padding: 24px;
+
+      box-shadow:
+        0 25px 60px rgba(31, 70, 42, 0.12);
+
+      position: relative;
+    }
+
+    .simulation-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 17px;
+    }
+
+    .simulation-title {
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .live {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      font-size: 11px;
+      font-weight: 700;
+
+      color: #22864b;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+
+      background: #37a85c;
+
+      border-radius: 50%;
+
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0.35;
+      }
+    }
+
+
+    /* 생태계 그림 */
+
+    .ecosystem-view {
+      height: 390px;
+
+      border-radius: 18px;
+
+      overflow: hidden;
+
+      position: relative;
+
+      background:
+        linear-gradient(
+          to bottom,
+          #cfe9f6 0%,
+          #dff0de 61%,
+          #8fb77d 61%,
+          #638a59 100%
+        );
+    }
+
+
+    /* 태양 */
+
+    .sun {
+      position: absolute;
+
+      width: 60px;
+      height: 60px;
+
+      border-radius: 50%;
+
+      top: 38px;
+      right: 45px;
+
+      background: #fff5b8;
+
+      box-shadow:
+        0 0 35px rgba(255, 226, 93, 0.65);
+    }
+
+
+    /* 산 */
+
+    .mountain {
+      position: absolute;
+
+      bottom: 135px;
+
+      width: 0;
+      height: 0;
+
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+      border-bottom: 175px solid #93ad97;
+
+      opacity: 0.75;
+    }
+
+    .mountain.one {
+      left: -50px;
+    }
+
+    .mountain.two {
+      right: -80px;
+
+      border-left-width: 170px;
+      border-right-width: 170px;
+      border-bottom-width: 205px;
+
+      border-bottom-color: #7e9f83;
+    }
+
+
+    /* 나무 */
+
+    .tree {
+      position: absolute;
+
+      bottom: 54px;
+
+      width: 12px;
+      height: 70px;
+
+      background: #765942;
+
+      border-radius: 4px;
+    }
+
+    .tree::before {
+      content: "";
+
+      position: absolute;
+
+      width: 65px;
+      height: 65px;
+
+      left: 50%;
+      transform: translateX(-50%);
+
+      top: -39px;
+
+      border-radius: 50%;
+
+      background: #4e8959;
+    }
+
+    .tree::after {
+      content: "";
+
+      position: absolute;
+
+      width: 48px;
+      height: 48px;
+
+      left: 50%;
+      transform: translateX(-50%);
+
+      top: -62px;
+
+      border-radius: 50%;
+
+      background: #6ba16c;
+    }
+
+    .tree1 {
+      left: 60px;
+    }
+
+    .tree2 {
+      left: 145px;
+      transform: scale(0.85);
+    }
+
+    .tree3 {
+      right: 80px;
+      transform: scale(1.15);
+    }
+
+
+    /* 동물 아이콘 */
+
+    .animal {
+      position: absolute;
+
+      font-size: 28px;
+
+      filter:
+        drop-shadow(0 3px 2px rgba(0,0,0,0.1));
+
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .rabbit {
+      bottom: 40px;
+      left: 235px;
+    }
+
+    .deer {
+      bottom: 42px;
+      right: 150px;
+
+      animation-delay: 1s;
+    }
+
+    .bird {
+      top: 105px;
+      left: 190px;
+
+      animation-delay: 0.5s;
+    }
+
+    @keyframes float {
+
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+
+    /* =========================
+       데이터 표시
+    ========================== */
+
+    .data-panel {
+      position: absolute;
+
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .data-box {
+      padding: 11px;
+
+      border-radius: 11px;
+
+      background:
+        rgba(255, 255, 255, 0.88);
+
+      backdrop-filter: blur(8px);
+    }
+
+    .data-name {
+      font-size: 10px;
+
+      color: #758078;
+
+      margin-bottom: 4px;
+    }
+
+    .data-value {
+      font-size: 16px;
+      font-weight: 800;
+
+      color: #24372a;
+    }
+
+
+    /* =========================
+       AI 카드
+    ========================== */
+
+    .ai-box {
+      position: absolute;
+
+      right: -25px;
+      bottom: 70px;
+
+      width: 210px;
+
+      background: white;
+
+      padding: 15px;
+
+      border-radius: 15px;
+
+      box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.13);
+
+      border: 1px solid #e4e9e5;
+    }
+
+    .ai-title {
+      font-size: 11px;
+
+      font-weight: 800;
+
+      color: #3c8253;
+
+      margin-bottom: 6px;
+    }
+
+    .ai-message {
+      font-size: 11px;
+
+      color: #6c756f;
+
+      line-height: 1.55;
+    }
+
+
+    /* =========================
+       로그인 팝업
+    ========================== */
+
+    .login-overlay {
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(20, 35, 25, 0.35);
+
+      backdrop-filter: blur(6px);
+
+      display: none;
+
       justify-content: center;
       align-items: center;
 
+      z-index: 2000;
+    }
+
+    .login-overlay.show {
+      display: flex;
+    }
+
+    .login-modal {
+      width: 90%;
+      max-width: 420px;
+
+      background: white;
+
+      border-radius: 20px;
+
+      padding: 35px;
+
       text-align: center;
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,0.2);
+
+      position: relative;
     }
 
-    .hero h1 {
-      font-size: 50px;
-      margin-bottom: 15px;
+    .close-button {
+      position: absolute;
+
+      top: 15px;
+      right: 18px;
+
+      border: none;
+      background: none;
+
+      font-size: 23px;
+
+      cursor: pointer;
+
+      color: #777;
     }
 
-    .hero p {
-      font-size: 18px;
-      color: #666;
+    .login-icon {
+      width: 60px;
+      height: 60px;
+
+      margin: 0 auto 17px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 17px;
+
+      background: #e9f5eb;
+
+      font-size: 28px;
     }
+
+    .login-modal h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .login-modal p {
+      font-size: 14px;
+
+      color: #737b75;
+
+      line-height: 1.6;
+
+      margin-bottom: 25px;
+    }
+
+    .modal-google-button {
+      width: 100%;
+      height: 50px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      border: 1px solid #dadce0;
+      border-radius: 11px;
+
+      background: white;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+    .modal-google-button:hover {
+      background: #f6f7f6;
+    }
+
+    .login-note {
+      margin-top: 15px !important;
+
+      font-size: 11px !important;
+
+      color: #a0a6a1 !important;
+    }
+
+
+    /* =========================
+       반응형
+    ========================== */
+
+    @media (max-width: 950px) {
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+
+        padding-top: 130px;
+
+        text-align: center;
+      }
+
+      .hero-left {
+        margin: auto;
+      }
+
+      .hero-description {
+        margin: auto;
+      }
+
+      .hero-buttons,
+      .features {
+        justify-content: center;
+      }
+
+      .simulation-card {
+        max-width: 600px;
+        width: 100%;
+
+        margin: auto;
+      }
+
+      .ai-box {
+        right: 15px;
+      }
+    }
+
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 0 5%;
+      }
+
+      .logo {
+        font-size: 16px;
+      }
+
+      .google-login span {
+        display: none;
+      }
+
+      .google-login {
+        width: 43px;
+
+        justify-content: center;
+
+        padding: 0;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .features {
+        gap: 18px;
+      }
+
+      .ecosystem-view {
+        height: 330px;
+      }
+
+      .ai-box {
+        display: none;
+      }
+    }
+
   </style>
 </head>
 
+
 <body>
 
-<header>
 
-  <div class="logo">
-    SCIENCE GAME
+  <!-- =========================
+       헤더
+  ========================== -->
+
+  <header>
+
+    <div class="logo">
+
+      <div class="logo-icon">
+        🌱
+      </div>
+
+      생태계 시뮬레이션
+
+    </div>
+
+
+    <div class="header-right">
+
+      <nav>
+        <a href="#">홈</a>
+        <a href="#">시뮬레이션</a>
+        <a href="#">프로젝트 소개</a>
+      </nav>
+
+
+      <button
+        class="google-login"
+        onclick="openLogin()"
+      >
+
+        <div class="google-icon">
+          G
+        </div>
+
+        <span>Google로 로그인</span>
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =========================
+       메인 화면
+  ========================== -->
+
+  <main class="hero">
+
+    <div class="background-circle"></div>
+
+
+    <!-- 왼쪽 -->
+
+    <section class="hero-left">
+
+      <div class="badge">
+        AI 기반 과학 교육 프로젝트
+      </div>
+
+
+      <h1>
+
+        변화하는 생태계를<br>
+
+        <span>
+          직접 관찰하세요.
+        </span>
+
+      </h1>
+
+
+      <p class="hero-description">
+
+        생태계의 다양한 요소를 직접 조절하고,
+        개체수와 환경 변화를 관찰해 보세요.
+
+        인공지능이 데이터를 분석하여
+        앞으로 생태계가 어떻게 변화할지 예측합니다.
+
+      </p>
+
+
+      <div class="hero-buttons">
+
+        <button
+          class="start-button"
+          onclick="startSimulation()"
+        >
+          시뮬레이션 시작
+        </button>
+
+
+        <button
+          class="outline-button"
+          onclick="openLogin()"
+        >
+          로그인하고 기록 저장
+        </button>
+
+      </div>
+
+
+
+      <div class="features">
+
+        <div class="feature">
+
+          <div class="feature-number">
+            실시간
+          </div>
+
+          <div class="feature-text">
+            생태계 변화 관찰
+          </div>
+
+        </div>
+
+
+        <div class="feature">
+
+          <div class="feature-number">
+            AI
+          </div>
+
+          <div class="feature-text">
+            변화 예측
+          </div>
+
+        </div>
+
+
+        <div class="feature">
+
+          <div class="feature-number">
+            DATA
+          </div>
+
+          <div class="feature-text">
+            결과 분석
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- 오른쪽 -->
+
+    <section class="simulation-card">
+
+
+      <div class="simulation-top">
+
+        <div class="simulation-title">
+          생태계 관찰 화면
+        </div>
+
+
+        <div class="live">
+
+          <div class="live-dot"></div>
+
+          SIMULATION
+
+        </div>
+
+      </div>
+
+
+
+      <div class="ecosystem-view">
+
+
+        <div class="sun"></div>
+
+
+        <div class="mountain one"></div>
+
+        <div class="mountain two"></div>
+
+
+        <div class="tree tree1"></div>
+
+        <div class="tree tree2"></div>
+
+        <div class="tree tree3"></div>
+
+
+        <div class="animal rabbit">
+          🐇
+        </div>
+
+        <div class="animal deer">
+          🦌
+        </div>
+
+        <div class="animal bird">
+          🐦
+        </div>
+
+
+
+        <div class="data-panel">
+
+
+          <div class="data-box">
+
+            <div class="data-name">
+              초식동물
+            </div>
+
+            <div class="data-value">
+              124
+            </div>
+
+          </div>
+
+
+          <div class="data-box">
+
+            <div class="data-name">
+              식물
+            </div>
+
+            <div class="data-value">
+              83%
+            </div>
+
+          </div>
+
+
+          <div class="data-box">
+
+            <div class="data-name">
+              평균 온도
+            </div>
+
+            <div class="data-value">
+              21°C
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+      <!-- AI 분석 예시 -->
+
+      <div class="ai-box">
+
+        <div class="ai-title">
+          AI 생태 분석
+        </div>
+
+        <div class="ai-message">
+
+          초식동물 개체수가 증가하고 있습니다.
+          현재 추세가 지속될 경우
+          식물 개체량이 감소할 가능성이 있습니다.
+
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =========================
+       로그인 팝업
+  ========================== -->
+
+  <div
+    class="login-overlay"
+    id="loginOverlay"
+  >
+
+    <div class="login-modal">
+
+
+      <button
+        class="close-button"
+        onclick="closeLogin()"
+      >
+        ×
+      </button>
+
+
+      <div class="login-icon">
+        🌿
+      </div>
+
+
+      <h2>
+        생태계 시뮬레이션
+      </h2>
+
+
+      <p>
+
+        Google 계정으로 로그인하면
+        시뮬레이션 기록과 분석 결과를
+        저장할 수 있습니다.
+
+      </p>
+
+
+      <button
+        class="modal-google-button"
+        onclick="googleLogin()"
+      >
+
+        <div class="google-icon">
+          G
+        </div>
+
+        Google 계정으로 계속하기
+
+      </button>
+
+
+      <p class="login-note">
+
+        현재는 로그인 화면 디자인만 연결되어 있습니다.
+
+      </p>
+
+
+    </div>
+
   </div>
 
-  <nav>
-    <a href="#">HOME</a>
-  </nav>
-
-</header>
 
 
-<section class="hero">
+  <script>
 
-  <h1>Science Education Game</h1>
+    /* 로그인 창 열기 */
 
-  <p>
-    과학을 게임으로 배우는 교육 프로젝트
-  </p>
+    function openLogin() {
 
-</section>
+      document
+        .getElementById("loginOverlay")
+        .classList
+        .add("show");
+
+    }
+
+
+    /* 로그인 창 닫기 */
+
+    function closeLogin() {
+
+      document
+        .getElementById("loginOverlay")
+        .classList
+        .remove("show");
+
+    }
+
+
+    /* 바깥쪽 눌러서 닫기 */
+
+    document
+      .getElementById("loginOverlay")
+      .addEventListener(
+        "click",
+        function(event) {
+
+          if (event.target === this) {
+
+            closeLogin();
+
+          }
+
+        }
+      );
+
+
+    /* Google 로그인
+       나중에 Firebase 연결할 부분
+    */
+
+    function googleLogin() {
+
+      alert(
+        "Google 로그인 기능은 Firebase 연결 후 사용할 수 있습니다."
+      );
+
+    }
+
+
+    /* 시뮬레이션 시작 */
+
+    function startSimulation() {
+
+      alert(
+        "다음 단계에서 실제 생태계 시뮬레이션 화면을 연결할 예정입니다."
+      );
+
+    }
+
+  </script>
 
 
 </body>
