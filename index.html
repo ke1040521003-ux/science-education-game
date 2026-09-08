@@ -1085,6 +1085,809 @@
 
     }
 
+
+    /* =====================================================
+       IN-GAME : CASE INVESTIGATION
+    ====================================================== */
+
+    body.game-active {
+      background: #eef2ed;
+    }
+
+    body.game-active > header,
+    body.game-active > .hero {
+      display: none;
+    }
+
+    .game-screen {
+      display: none;
+      min-height: 100vh;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 85% 8%, rgba(115, 145, 122, 0.14), transparent 26%),
+        #eef2ed;
+    }
+
+    body.game-active .game-screen {
+      display: block;
+    }
+
+    .game-wrap {
+      width: min(1500px, 100%);
+      margin: 0 auto;
+    }
+
+    .game-topbar {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+      padding: 15px 18px;
+      border: 1px solid #d9e1da;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.94);
+      box-shadow: 0 12px 35px rgba(47, 73, 53, 0.07);
+    }
+
+    .game-back {
+      padding: 10px 14px;
+      border: 1px solid #d8dfd9;
+      border-radius: 9px;
+      background: #ffffff;
+      color: #59645d;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .case-heading {
+      min-width: 0;
+    }
+
+    .case-kicker {
+      margin-bottom: 4px;
+      color: #819087;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    .case-heading h2 {
+      color: #273129;
+      font-size: clamp(18px, 2vw, 27px);
+      letter-spacing: -1px;
+    }
+
+    .case-heading p {
+      margin-top: 5px;
+      color: #7b867f;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .case-status {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+    }
+
+    .status-chip {
+      min-width: 88px;
+      padding: 10px 12px;
+      border: 1px solid #e0e6e1;
+      border-radius: 10px;
+      background: #f9fbf9;
+      text-align: center;
+    }
+
+    .status-chip span {
+      display: block;
+      margin-bottom: 3px;
+      color: #96a098;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: .8px;
+    }
+
+    .status-chip strong {
+      color: #4d6754;
+      font-size: 15px;
+    }
+
+    .game-layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr) 300px;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .game-card {
+      border: 1px solid #dce3dd;
+      border-radius: 17px;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 10px 28px rgba(47, 73, 53, 0.055);
+    }
+
+    .game-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 15px 16px 12px;
+      border-bottom: 1px solid #edf0ed;
+    }
+
+    .game-card-header span {
+      color: #9aa39d;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: 1.1px;
+    }
+
+    .game-card-header strong {
+      color: #445148;
+      font-size: 12px;
+    }
+
+    .env-list {
+      padding: 8px 14px 14px;
+    }
+
+    .env-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 3px;
+      border-bottom: 1px solid #eef1ee;
+    }
+
+    .env-row:last-child {
+      border-bottom: none;
+    }
+
+    .env-label {
+      color: #7d8881;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .env-value {
+      color: #344039;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .env-value.locked {
+      color: #aab2ac;
+      font-size: 11px;
+    }
+
+    .field-card {
+      overflow: hidden;
+    }
+
+    .field-visual {
+      position: relative;
+      min-height: 430px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, #edf2ed 0%, #e8eee8 46%, #dce7dc 46%, #cfdccf 100%);
+    }
+
+    .field-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(76, 96, 82, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(76, 96, 82, .035) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+
+    .field-hill {
+      position: absolute;
+      left: -5%;
+      right: -5%;
+      bottom: 130px;
+      height: 160px;
+      border-radius: 50% 50% 0 0;
+      background: #8fa58f;
+      opacity: .60;
+      transform: rotate(-2deg);
+    }
+
+    .field-pond {
+      position: absolute;
+      right: 8%;
+      bottom: 36px;
+      width: 46%;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #bfd0d2, #9fb9bd);
+      border: 1px solid rgba(83,110,115,.16);
+      box-shadow: inset 0 12px 25px rgba(255,255,255,.22);
+    }
+
+    .field-grass {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 145px;
+      background: linear-gradient(180deg, #789579, #6f8b72);
+      opacity: .82;
+    }
+
+    .species-node {
+      position: absolute;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid rgba(53,72,59,.24);
+      background: rgba(248,251,248,.88);
+      color: #405146;
+      font-size: 8px;
+      font-weight: 900;
+      box-shadow: 0 5px 15px rgba(42,63,48,.10);
+      transition: .35s;
+    }
+
+    .species-node.frog {
+      width: 28px;
+      height: 28px;
+    }
+
+    .species-node.insect {
+      width: 13px;
+      height: 13px;
+      font-size: 6px;
+    }
+
+    .species-node.fish {
+      width: 24px;
+      height: 24px;
+      color: #597278;
+    }
+
+    .field-label {
+      position: absolute;
+      z-index: 6;
+      padding: 7px 9px;
+      border: 1px solid rgba(85,105,91,.13);
+      border-radius: 8px;
+      background: rgba(250,252,249,.86);
+      color: #718079;
+      font-size: 8px;
+      font-weight: 800;
+      backdrop-filter: blur(6px);
+    }
+
+    .field-alert {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      z-index: 7;
+      max-width: 330px;
+      padding: 11px 13px;
+      border: 1px solid #d9e2da;
+      border-radius: 10px;
+      background: rgba(255,255,255,.90);
+    }
+
+    .field-alert b {
+      display: block;
+      margin-bottom: 4px;
+      color: #536e5a;
+      font-size: 9px;
+      letter-spacing: .8px;
+    }
+
+    .field-alert p {
+      color: #6f7a73;
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    .field-footer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding: 10px;
+      background: #fbfcfb;
+      border-top: 1px solid #e4e9e5;
+    }
+
+    .field-stat {
+      padding: 10px;
+      border: 1px solid #e5eae6;
+      border-radius: 9px;
+      background: #ffffff;
+    }
+
+    .field-stat span {
+      display: block;
+      margin-bottom: 4px;
+      color: #99a19b;
+      font-size: 8px;
+      font-weight: 800;
+    }
+
+    .field-stat strong {
+      color: #435148;
+      font-size: 13px;
+    }
+
+    .ai-side {
+      padding-bottom: 14px;
+    }
+
+    .ai-side-body {
+      padding: 14px 15px;
+    }
+
+    .ai-model-box {
+      padding: 13px;
+      border: 1px solid #e1e7e2;
+      border-radius: 11px;
+      background: #f7faf7;
+    }
+
+    .ai-model-box .small {
+      margin-bottom: 6px;
+      color: #8c9890;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: .9px;
+    }
+
+    .ai-model-box h3 {
+      margin-bottom: 7px;
+      color: #425048;
+      font-size: 14px;
+    }
+
+    .ai-model-box p {
+      color: #77827b;
+      font-size: 10px;
+      line-height: 1.65;
+    }
+
+    .ai-confidence {
+      margin-top: 11px;
+    }
+
+    .confidence-line {
+      height: 7px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: #e7ece8;
+    }
+
+    .confidence-line > div {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: #6d8d74;
+      transition: .45s;
+    }
+
+    .confidence-text {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+      color: #929d96;
+      font-size: 8px;
+      font-weight: 800;
+    }
+
+    .ai-warning {
+      margin-top: 10px;
+      padding: 9px 10px;
+      border-left: 3px solid #8aa08f;
+      background: #f4f7f4;
+      color: #7a857e;
+      font-size: 9px;
+      line-height: 1.55;
+    }
+
+    .side-action {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px 11px;
+      border: none;
+      border-radius: 8px;
+      background: #53725b;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .side-action.secondary {
+      border: 1px solid #dce4dd;
+      background: #fff;
+      color: #56645b;
+    }
+
+    .workbench {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      overflow: hidden;
+    }
+
+    .workbench-menu {
+      padding: 12px;
+      border-right: 1px solid #e5eae6;
+      background: #f7f9f7;
+    }
+
+    .workbench-menu button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 7px;
+      padding: 11px 12px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      background: transparent;
+      color: #69756d;
+      font-size: 11px;
+      font-weight: 800;
+      text-align: left;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .workbench-menu button:hover,
+    .workbench-menu button.active {
+      border-color: #dbe4dc;
+      background: #ffffff;
+      color: #496451;
+    }
+
+    .workbench-menu button small {
+      color: #9aa49d;
+      font-size: 8px;
+    }
+
+    .workbench-content {
+      min-height: 255px;
+      padding: 19px 21px;
+    }
+
+    .panel-kicker {
+      margin-bottom: 5px;
+      color: #8c9890;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+    }
+
+    .panel-title {
+      margin-bottom: 7px;
+      color: #344039;
+      font-size: 17px;
+      letter-spacing: -.5px;
+    }
+
+    .panel-desc {
+      max-width: 850px;
+      margin-bottom: 15px;
+      color: #7b867f;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .investigation-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .investigation-btn {
+      min-height: 118px;
+      padding: 13px;
+      border: 1px solid #e0e6e1;
+      border-radius: 11px;
+      background: #fbfcfb;
+      text-align: left;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .investigation-btn:hover {
+      transform: translateY(-2px);
+      border-color: #cbd9cd;
+      box-shadow: 0 7px 20px rgba(52,76,58,.06);
+    }
+
+    .investigation-btn.done {
+      background: #eef4ef;
+      border-color: #d4e0d5;
+    }
+
+    .investigation-btn .cost {
+      display: inline-block;
+      margin-bottom: 17px;
+      padding: 4px 6px;
+      border-radius: 6px;
+      background: #eef2ee;
+      color: #718078;
+      font-size: 8px;
+      font-weight: 900;
+    }
+
+    .investigation-btn h4 {
+      margin-bottom: 5px;
+      color: #465249;
+      font-size: 11px;
+    }
+
+    .investigation-btn p {
+      color: #8b958e;
+      font-size: 9px;
+      line-height: 1.55;
+    }
+
+    .evidence-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border: 1px solid #e3e8e4;
+      border-radius: 10px;
+      font-size: 10px;
+    }
+
+    .evidence-table th,
+    .evidence-table td {
+      padding: 10px 11px;
+      border-bottom: 1px solid #edf0ed;
+      text-align: left;
+    }
+
+    .evidence-table th {
+      background: #f6f8f6;
+      color: #78847c;
+      font-size: 9px;
+    }
+
+    .evidence-table td {
+      color: #56635b;
+    }
+
+    .evidence-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .note-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .note-item {
+      padding: 11px 12px;
+      border: 1px solid #e2e8e3;
+      border-radius: 9px;
+      background: #fafbfa;
+      color: #667269;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .note-item b {
+      color: #496451;
+    }
+
+    .experiment-box,
+    .conclusion-box {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+      margin-top: 11px;
+      padding: 14px;
+      border: 1px solid #e1e7e2;
+      border-radius: 11px;
+      background: #f9fbf9;
+    }
+
+    .form-field label {
+      display: block;
+      margin-bottom: 6px;
+      color: #7e8982;
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .form-field select {
+      width: 100%;
+      height: 40px;
+      padding: 0 10px;
+      border: 1px solid #d8e0d9;
+      border-radius: 8px;
+      background: white;
+      color: #47534b;
+      font: inherit;
+      font-size: 10px;
+    }
+
+    .run-button {
+      height: 40px;
+      padding: 0 16px;
+      border: none;
+      border-radius: 8px;
+      background: #4f7259;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .experiment-result,
+    .conclusion-result {
+      margin-top: 12px;
+      padding: 12px 13px;
+      border: 1px solid #dce4dd;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #68746c;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .experiment-result strong,
+    .conclusion-result strong {
+      color: #47614f;
+    }
+
+    .result-bars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .result-bar {
+      padding: 9px 10px;
+      border: 1px solid #e4e9e5;
+      border-radius: 8px;
+      background: #fafbfa;
+    }
+
+    .result-bar span {
+      display: block;
+      margin-bottom: 4px;
+      color: #939d96;
+      font-size: 8px;
+    }
+
+    .result-bar b {
+      color: #4d5b52;
+      font-size: 12px;
+    }
+
+    .game-toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 5000;
+      max-width: 360px;
+      padding: 12px 15px;
+      border: 1px solid #d6e0d7;
+      border-radius: 10px;
+      background: rgba(255,255,255,.97);
+      color: #56635b;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.55;
+      box-shadow: 0 15px 35px rgba(42,61,47,.14);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: .25s;
+    }
+
+    .game-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media(max-width: 1100px) {
+      .game-layout {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .field-card {
+        grid-column: 1 / -1;
+        grid-row: 1;
+      }
+
+      .workbench {
+        grid-column: 1 / -1;
+      }
+
+      .investigation-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width: 720px) {
+      .game-screen {
+        padding: 12px;
+      }
+
+      .game-topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .case-status {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .game-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .field-card,
+      .workbench {
+        grid-column: 1;
+      }
+
+      .field-visual {
+        min-height: 355px;
+      }
+
+      .field-footer {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .workbench {
+        grid-template-columns: 1fr;
+      }
+
+      .workbench-menu {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+        border-right: 0;
+        border-bottom: 1px solid #e5eae6;
+      }
+
+      .workbench-menu button {
+        justify-content: center;
+        margin-bottom: 0;
+        padding: 9px 5px;
+        font-size: 9px;
+        text-align: center;
+      }
+
+      .workbench-menu button small {
+        display: none;
+      }
+
+      .investigation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experiment-box,
+      .conclusion-box {
+        grid-template-columns: 1fr;
+      }
+
+      .run-button {
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 
@@ -1847,6 +2650,206 @@
 
 
 
+
+<!-- =====================================================
+     IN-GAME : CASE 01
+====================================================== -->
+
+<section class="game-screen" id="gameScreen">
+  <div class="game-wrap">
+
+    <div class="game-topbar">
+      <button class="game-back" onclick="exitSimulation()">메인으로</button>
+
+      <div class="case-heading">
+        <div class="case-kicker">CASE 01 · WETLAND A-17</div>
+        <h2>사라진 개구리</h2>
+        <p>3개월 동안 개구리 개체수가 62% 감소했습니다. 제한된 연구 포인트로 원인을 찾아내세요.</p>
+      </div>
+
+      <div class="case-status">
+        <div class="status-chip">
+          <span>DAY</span>
+          <strong id="gameDay">07</strong>
+        </div>
+
+        <div class="status-chip">
+          <span>RESEARCH POINT</span>
+          <strong><b id="researchPoint">10</b> RP</strong>
+        </div>
+
+        <button class="game-back" onclick="resetCase()">사건 초기화</button>
+      </div>
+    </div>
+
+    <div class="game-layout">
+
+      <!-- LEFT : ENVIRONMENT -->
+      <aside class="game-card">
+        <div class="game-card-header">
+          <div>
+            <span>FIELD DATA</span><br>
+            <strong>환경 관측값</strong>
+          </div>
+          <strong id="gameHealth">58 / 100</strong>
+        </div>
+
+        <div class="env-list">
+          <div class="env-row">
+            <span class="env-label">평균 기온</span>
+            <span class="env-value">26.8°C</span>
+          </div>
+
+          <div class="env-row">
+            <span class="env-label">평균 습도</span>
+            <span class="env-value">71%</span>
+          </div>
+
+          <div class="env-row">
+            <span class="env-label">식생 지수</span>
+            <span class="env-value">0.72</span>
+          </div>
+
+          <div class="env-row">
+            <span class="env-label">수질 pH</span>
+            <span class="env-value locked" id="gamePh">조사 필요</span>
+          </div>
+
+          <div class="env-row">
+            <span class="env-label">곤충 개체 지수</span>
+            <span class="env-value locked" id="gameInsectIndex">조사 필요</span>
+          </div>
+
+          <div class="env-row">
+            <span class="env-label">개구리 개체 지수</span>
+            <span class="env-value">38 / 100</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- CENTER : FIELD -->
+      <section class="game-card field-card">
+        <div class="game-card-header">
+          <div>
+            <span>LIVE ECOSYSTEM</span><br>
+            <strong>습지 A-17 현장</strong>
+          </div>
+          <strong id="fieldStatusText">이상 징후 감지</strong>
+        </div>
+
+        <div class="field-visual" id="fieldVisual">
+          <div class="field-alert">
+            <b>OBSERVATION ALERT</b>
+            <p id="fieldAlertText">개구리 개체수의 급격한 감소가 확인되었습니다. 원인은 아직 특정되지 않았습니다.</p>
+          </div>
+
+          <div class="field-hill"></div>
+          <div class="field-grass"></div>
+          <div class="field-pond"></div>
+
+          <span class="species-node insect" style="left:21%; bottom:118px;">I</span>
+          <span class="species-node insect" style="left:29%; bottom:151px;">I</span>
+          <span class="species-node insect" style="left:39%; bottom:109px;">I</span>
+
+          <span class="species-node frog" id="frog1" style="left:49%; bottom:94px;">F</span>
+          <span class="species-node frog" id="frog2" style="left:58%; bottom:70px;">F</span>
+          <span class="species-node frog" id="frog3" style="left:66%; bottom:112px; opacity:.28;">F</span>
+
+          <span class="species-node fish" style="right:18%; bottom:72px;">Fi</span>
+          <span class="species-node fish" style="right:29%; bottom:90px;">Fi</span>
+
+          <span class="field-label" style="left:18px; bottom:18px;">Vegetation 72</span>
+          <span class="field-label" style="right:18px; bottom:18px;">Water zone</span>
+        </div>
+
+        <div class="field-footer">
+          <div class="field-stat">
+            <span>개구리</span>
+            <strong id="frogStat">38</strong>
+          </div>
+          <div class="field-stat">
+            <span>곤충</span>
+            <strong id="insectStat">?</strong>
+          </div>
+          <div class="field-stat">
+            <span>어류</span>
+            <strong>102</strong>
+          </div>
+          <div class="field-stat">
+            <span>식생</span>
+            <strong>72</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT : AI -->
+      <aside class="game-card ai-side">
+        <div class="game-card-header">
+          <div>
+            <span>AI ASSISTANT</span><br>
+            <strong>예측 모델</strong>
+          </div>
+          <strong id="aiStateLabel">대기</strong>
+        </div>
+
+        <div class="ai-side-body">
+          <div class="ai-model-box">
+            <div class="small">MODEL HYPOTHESIS</div>
+            <h3 id="aiHypothesis">분석 데이터가 부족합니다.</h3>
+            <p id="aiText">AI 분석을 실행하면 현재 관측값만으로 가장 가능성이 높은 원인을 제시합니다.</p>
+
+            <div class="ai-confidence">
+              <div class="confidence-line">
+                <div id="aiConfidenceBar"></div>
+              </div>
+              <div class="confidence-text">
+                <span>신뢰도</span>
+                <span id="aiConfidenceText">--</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ai-warning">
+            AI의 분석은 정답이 아닙니다. 직접 수집한 데이터와 실험 결과로 검증해야 합니다.
+          </div>
+
+          <button class="side-action" onclick="performInvestigation('ai')">
+            AI 분석 실행 · 2 RP
+          </button>
+
+          <button class="side-action secondary" onclick="openGamePanel('conclusion')">
+            최종 원인 제출
+          </button>
+        </div>
+      </aside>
+
+      <!-- BOTTOM : WORKBENCH -->
+      <section class="game-card workbench">
+        <div class="workbench-menu">
+          <button id="menu-investigate" class="active" onclick="openGamePanel('investigate')">
+            조사 <small>FIELD</small>
+          </button>
+          <button id="menu-data" onclick="openGamePanel('data')">
+            데이터 <small>DATA</small>
+          </button>
+          <button id="menu-experiment" onclick="openGamePanel('experiment')">
+            실험 <small>LAB</small>
+          </button>
+          <button id="menu-note" onclick="openGamePanel('note')">
+            연구노트 <small>NOTE</small>
+          </button>
+        </div>
+
+        <div class="workbench-content" id="workbenchContent"></div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="game-toast" id="gameToast"></div>
+</section>
+
+
 <!-- =====================================================
      LOGIN
 ====================================================== -->
@@ -2408,8 +3411,31 @@
 
 
   /* =====================================================
-     시뮬레이션 시작
+     시뮬레이션 / CASE 01
   ====================================================== */
+
+  const initialCaseState = () => ({
+    day: 7,
+    rp: 10,
+    health: 58,
+    solved: false,
+    restored: false,
+    experimentDone: false,
+    experimentType: "",
+    done: {
+      water: false,
+      insects: false,
+      weather: false,
+      ai: false
+    },
+    notes: [
+      "3개월 동안 개구리 개체수가 기준치 100에서 38까지 감소했다.",
+      "어류와 식생은 같은 기간 큰 폭의 감소가 관찰되지 않았다."
+    ]
+  });
+
+  let caseState = initialCaseState();
+
 
   window.startSimulation =
     function () {
@@ -2418,31 +3444,838 @@
 
         const answer =
           confirm(
-
-            "로그인하면 시뮬레이션 기록을 저장할 수 있습니다.\n먼저 로그인하시겠습니까?"
-
+            "로그인하면 나중에 시뮬레이션 기록을 계정별로 저장할 수 있습니다.\n먼저 로그인하시겠습니까?"
           );
 
-
         if (answer) {
-
           openLogin();
-
           return;
-
         }
 
       }
 
-
-      alert(
-
-        "현재는 메인 화면입니다.\n다음 단계에서 실제 생태계 시뮬레이션을 연결하면 됩니다."
-
-      );
+      document.body.classList.add("game-active");
+      window.scrollTo(0, 0);
+      resetCase(false);
 
     };
 
+
+  window.exitSimulation =
+    function () {
+
+      document.body.classList.remove("game-active");
+      window.scrollTo(0, 0);
+
+    };
+
+
+  function toast(message) {
+
+    const box =
+      document.getElementById("gameToast");
+
+    box.textContent = message;
+    box.classList.add("show");
+
+    clearTimeout(window.__gameToastTimer);
+
+    window.__gameToastTimer =
+      setTimeout(
+        () => box.classList.remove("show"),
+        2300
+      );
+
+  }
+
+
+  function spendRP(cost) {
+
+    if (caseState.rp < cost) {
+      toast("연구 포인트가 부족합니다. 이미 확보한 증거를 이용해 결론을 내려보세요.");
+      return false;
+    }
+
+    caseState.rp -= cost;
+    return true;
+
+  }
+
+
+  function setMenuActive(name) {
+
+    document
+      .querySelectorAll(".workbench-menu button")
+      .forEach(button => button.classList.remove("active"));
+
+    const target =
+      document.getElementById("menu-" + name);
+
+    if (target) {
+      target.classList.add("active");
+    }
+
+  }
+
+
+  window.openGamePanel =
+    function (panel) {
+
+      const content =
+        document.getElementById("workbenchContent");
+
+      if (!content) return;
+
+      if (panel === "investigate") {
+
+        setMenuActive("investigate");
+
+        content.innerHTML = `
+          <div class="panel-kicker">FIELD INVESTIGATION</div>
+          <h3 class="panel-title">어떤 정보를 먼저 조사하시겠습니까?</h3>
+          <p class="panel-desc">
+            모든 조사를 할 필요는 없습니다. 제한된 연구 포인트를 사용해 원인을 설명하는 데 필요한 증거를 선택하세요.
+          </p>
+
+          <div class="investigation-grid">
+
+            <button class="investigation-btn ${caseState.done.weather ? "done" : ""}" onclick="performInvestigation('weather')">
+              <span class="cost">${caseState.done.weather ? "조사 완료" : "1 RP"}</span>
+              <h4>기상 기록 비교</h4>
+              <p>최근 3개월의 기온과 평년값을 비교합니다.</p>
+            </button>
+
+            <button class="investigation-btn ${caseState.done.water ? "done" : ""}" onclick="performInvestigation('water')">
+              <span class="cost">${caseState.done.water ? "조사 완료" : "2 RP"}</span>
+              <h4>수질 검사</h4>
+              <p>pH와 수계 변화가 개구리 감소와 관련 있는지 확인합니다.</p>
+            </button>
+
+            <button class="investigation-btn ${caseState.done.insects ? "done" : ""}" onclick="performInvestigation('insects')">
+              <span class="cost">${caseState.done.insects ? "조사 완료" : "3 RP"}</span>
+              <h4>곤충 개체 조사</h4>
+              <p>개구리의 주요 먹이원이 얼마나 변했는지 조사합니다.</p>
+            </button>
+
+            <button class="investigation-btn ${caseState.done.ai ? "done" : ""}" onclick="performInvestigation('ai')">
+              <span class="cost">${caseState.done.ai ? "분석 완료" : "2 RP"}</span>
+              <h4>AI 패턴 분석</h4>
+              <p>현재 관측값을 바탕으로 AI가 가장 가능성 높은 원인을 예측합니다.</p>
+            </button>
+
+          </div>
+        `;
+
+        return;
+      }
+
+
+      if (panel === "data") {
+
+        setMenuActive("data");
+
+        content.innerHTML = `
+          <div class="panel-kicker">OBSERVATION DATA</div>
+          <h3 class="panel-title">수집된 데이터 비교</h3>
+          <p class="panel-desc">
+            기준값을 100으로 두고 현재 상태를 비교합니다. 조사하지 않은 항목은 아직 확인할 수 없습니다.
+          </p>
+
+          <table class="evidence-table">
+            <thead>
+              <tr>
+                <th>관측 항목</th>
+                <th>기준값</th>
+                <th>현재값</th>
+                <th>변화</th>
+                <th>해석</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>개구리 개체 지수</td>
+                <td>100</td>
+                <td>38</td>
+                <td>-62%</td>
+                <td>큰 폭 감소</td>
+              </tr>
+              <tr>
+                <td>식생 지수</td>
+                <td>76</td>
+                <td>72</td>
+                <td>-5.3%</td>
+                <td>큰 변화 없음</td>
+              </tr>
+              <tr>
+                <td>어류 개체 지수</td>
+                <td>100</td>
+                <td>102</td>
+                <td>+2%</td>
+                <td>안정</td>
+              </tr>
+              <tr>
+                <td>평균 기온</td>
+                <td>26.5°C</td>
+                <td>${caseState.done.weather ? "26.8°C" : "미조사"}</td>
+                <td>${caseState.done.weather ? "+0.3°C" : "--"}</td>
+                <td>${caseState.done.weather ? "평년 범위" : "조사 필요"}</td>
+              </tr>
+              <tr>
+                <td>수질 pH</td>
+                <td>6.8</td>
+                <td>${caseState.done.water ? "5.3" : "미조사"}</td>
+                <td>${caseState.done.water ? "-1.5" : "--"}</td>
+                <td>${caseState.done.water ? "산성화 확인" : "조사 필요"}</td>
+              </tr>
+              <tr>
+                <td>곤충 개체 지수</td>
+                <td>100</td>
+                <td>${caseState.done.insects ? "63" : "미조사"}</td>
+                <td>${caseState.done.insects ? "-37%" : "--"}</td>
+                <td>${caseState.done.insects ? "먹이원 급감" : "조사 필요"}</td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+
+        return;
+      }
+
+
+      if (panel === "experiment") {
+
+        setMenuActive("experiment");
+
+        content.innerHTML = `
+          <div class="panel-kicker">CONTROLLED EXPERIMENT</div>
+          <h3 class="panel-title">가설을 실험으로 검증하세요.</h3>
+          <p class="panel-desc">
+            한 번의 모의 실험에 2 RP가 필요합니다. 다른 조건은 통제하고 한 요인만 변화시켜 결과를 비교합니다.
+            이 수치는 교육용 시뮬레이션 모델의 결과입니다.
+          </p>
+
+          <div class="experiment-box">
+            <div class="form-field">
+              <label>검증할 가설</label>
+              <select id="experimentSelect">
+                <option value="temperature">높은 기온이 개구리 감소의 주원인이다.</option>
+                <option value="water">낮은 pH가 개구리 감소의 주원인이다.</option>
+                <option value="insects">먹이 곤충 감소가 개구리 감소의 주원인이다.</option>
+              </select>
+            </div>
+
+            <button class="run-button" onclick="runCaseExperiment()">
+              실험 실행 · 2 RP
+            </button>
+          </div>
+
+          <div id="experimentOutput">
+            ${renderExperimentResult()}
+          </div>
+        `;
+
+        return;
+      }
+
+
+      if (panel === "note") {
+
+        setMenuActive("note");
+
+        const noteHtml =
+          caseState.notes
+            .map((note, index) => `
+              <div class="note-item">
+                <b>NOTE ${String(index + 1).padStart(2, "0")}</b><br>
+                ${note}
+              </div>
+            `)
+            .join("");
+
+        content.innerHTML = `
+          <div class="panel-kicker">RESEARCH NOTE</div>
+          <h3 class="panel-title">현재까지의 연구 기록</h3>
+          <p class="panel-desc">
+            관찰, 조사, 실험에서 얻은 근거가 자동으로 정리됩니다. 결론을 낼 때는 한 가지 수치보다 여러 근거의 관계를 확인하세요.
+          </p>
+
+          <div class="note-list">
+            ${noteHtml}
+          </div>
+        `;
+
+        return;
+      }
+
+
+      if (panel === "conclusion") {
+
+        document
+          .querySelectorAll(".workbench-menu button")
+          .forEach(button => button.classList.remove("active"));
+
+        content.innerHTML = `
+          <div class="panel-kicker">FINAL CONCLUSION</div>
+          <h3 class="panel-title">개구리 개체수 감소의 가장 직접적인 원인을 제출하세요.</h3>
+          <p class="panel-desc">
+            AI의 예측보다 직접 수집한 데이터와 실험 결과를 우선해 판단하세요.
+          </p>
+
+          <div class="conclusion-box">
+            <div class="form-field">
+              <label>최종 원인</label>
+              <select id="conclusionSelect">
+                <option value="">원인을 선택하세요.</option>
+                <option value="temperature">평균 기온 상승</option>
+                <option value="water">수질 산성화</option>
+                <option value="insects">먹이 곤충 개체수 감소</option>
+                <option value="vegetation">식생 감소</option>
+              </select>
+            </div>
+
+            <button class="run-button" onclick="submitCaseConclusion()">
+              결론 제출
+            </button>
+          </div>
+
+          <div id="conclusionOutput">
+            ${caseState.solved ? renderSolvedResult() : ""}
+          </div>
+        `;
+
+      }
+
+    };
+
+
+  window.performInvestigation =
+    function (type) {
+
+      const costs = {
+        weather: 1,
+        water: 2,
+        insects: 3,
+        ai: 2
+      };
+
+      if (caseState.done[type]) {
+
+        toast("이미 완료한 조사입니다. 연구 포인트는 추가로 사용되지 않습니다.");
+
+        if (type === "ai") {
+          updateAI();
+        }
+
+        openGamePanel("investigate");
+        return;
+
+      }
+
+      if (!spendRP(costs[type])) return;
+
+      caseState.done[type] = true;
+      caseState.day += 1;
+
+
+      if (type === "weather") {
+
+        caseState.notes.push(
+          "기상 기록: 현재 평균 26.8°C는 평년 26.5°C보다 0.3°C 높지만 정상 변동 범위에 있다."
+        );
+
+        toast("기상 기록을 확보했습니다. 큰 이상 변화는 확인되지 않았습니다.");
+
+      }
+
+
+      if (type === "water") {
+
+        caseState.notes.push(
+          "수질 검사: pH 5.3으로 산성화가 확인되었다. 개구리에게 부담을 줄 수 있으나 다른 수생생물의 급감은 나타나지 않았다."
+        );
+
+        toast("수질 검사 완료: pH 5.3. 산성화가 확인되었습니다.");
+
+      }
+
+
+      if (type === "insects") {
+
+        caseState.notes.push(
+          "곤충 조사: 기준 개체 지수 100에서 63으로 37% 감소했다. 개구리의 주요 먹이원이 크게 줄어든 상태다."
+        );
+
+        toast("곤충 개체 지수가 37% 감소한 사실을 확인했습니다.");
+
+      }
+
+
+      if (type === "ai") {
+
+        caseState.notes.push(
+          "AI 분석: 평균 기온을 주요 원인으로 예측했지만 신뢰도는 72%이며, 아직 먹이원 자료를 반영하지 못했다."
+        );
+
+        toast("AI 분석이 완료되었습니다. 예측을 직접 검증해야 합니다.");
+
+      }
+
+
+      updateCaseUI();
+
+      if (type === "ai") {
+        updateAI();
+      }
+
+      openGamePanel("investigate");
+
+    };
+
+
+  function updateAI() {
+
+    const title =
+      document.getElementById("aiHypothesis");
+
+    const text =
+      document.getElementById("aiText");
+
+    const bar =
+      document.getElementById("aiConfidenceBar");
+
+    const confidence =
+      document.getElementById("aiConfidenceText");
+
+    const state =
+      document.getElementById("aiStateLabel");
+
+
+    if (!caseState.done.ai) {
+
+      title.textContent =
+        "분석 데이터가 부족합니다.";
+
+      text.textContent =
+        "AI 분석을 실행하면 현재 관측값만으로 가장 가능성이 높은 원인을 제시합니다.";
+
+      bar.style.width =
+        "0%";
+
+      confidence.textContent =
+        "--";
+
+      state.textContent =
+        "대기";
+
+      return;
+
+    }
+
+
+    title.textContent =
+      "기온 상승 가능성";
+
+    text.textContent =
+      "현재 확보된 기본 관측값만 보면 기온 변화가 개구리 감소와 관련될 가능성이 가장 높다고 예측합니다. 추가 생물 조사 데이터는 아직 반영되지 않았습니다.";
+
+    bar.style.width =
+      "72%";
+
+    confidence.textContent =
+      "72%";
+
+    state.textContent =
+      "분석 완료";
+
+  }
+
+
+  window.runCaseExperiment =
+    function () {
+
+      const select =
+        document.getElementById("experimentSelect");
+
+      if (!select) return;
+
+      const type =
+        select.value;
+
+      if (caseState.experimentDone) {
+
+        toast("이 사건에서는 모의 실험을 한 번만 실행할 수 있습니다.");
+
+        return;
+
+      }
+
+
+      if (!spendRP(2)) return;
+
+
+      caseState.experimentDone =
+        true;
+
+      caseState.experimentType =
+        type;
+
+      caseState.day +=
+        1;
+
+
+      if (type === "temperature") {
+
+        caseState.notes.push(
+          "통제 실험: 24.5°C와 26.8°C 조건에서 개구리 생존 지수는 각각 93, 89였다. 차이는 있으나 실제 62% 감소를 설명하기에는 작았다."
+        );
+
+      }
+
+
+      if (type === "water") {
+
+        caseState.notes.push(
+          "통제 실험: pH 6.8과 pH 5.3 조건에서 생존 지수는 각각 96, 81이었다. 산성화의 영향은 확인되지만 실제 감소 폭 전체를 설명하지 못했다."
+        );
+
+      }
+
+
+      if (type === "insects") {
+
+        caseState.notes.push(
+          "통제 실험: 먹이 공급 100%와 63% 조건에서 개구리 생존·활동 지수는 각각 96, 61이었다. 실제 관측된 감소 패턴과 가장 유사했다."
+        );
+
+      }
+
+
+      updateCaseUI();
+      openGamePanel("experiment");
+      toast("통제 실험이 완료되어 연구노트에 기록되었습니다.");
+
+    };
+
+
+  function renderExperimentResult() {
+
+    if (!caseState.experimentDone) {
+
+      return `
+        <div class="experiment-result">
+          아직 실행한 실험이 없습니다. 독립변인을 하나 선택하고 다른 조건을 통제해 비교해 보세요.
+        </div>
+      `;
+
+    }
+
+
+    if (caseState.experimentType === "temperature") {
+
+      return `
+        <div class="experiment-result">
+          <strong>실험 결과</strong><br>
+          온도만 변화시켰을 때 두 집단의 차이는 작았습니다. 현재 기온 상승만으로 실제 개구리 감소 폭을 설명하기 어렵습니다.
+
+          <div class="result-bars">
+            <div class="result-bar"><span>24.5°C</span><b>생존 지수 93</b></div>
+            <div class="result-bar"><span>26.8°C</span><b>생존 지수 89</b></div>
+          </div>
+        </div>
+      `;
+
+    }
+
+
+    if (caseState.experimentType === "water") {
+
+      return `
+        <div class="experiment-result">
+          <strong>실험 결과</strong><br>
+          산성화는 개구리에 부정적 영향을 주었지만, 실험 결과만으로 62%의 급격한 감소 전체를 설명하지 못했습니다.
+
+          <div class="result-bars">
+            <div class="result-bar"><span>pH 6.8</span><b>생존 지수 96</b></div>
+            <div class="result-bar"><span>pH 5.3</span><b>생존 지수 81</b></div>
+          </div>
+        </div>
+      `;
+
+    }
+
+
+    return `
+      <div class="experiment-result">
+        <strong>실험 결과</strong><br>
+        먹이량 감소 조건에서 개구리의 생존·활동 지수가 크게 감소했습니다. 현장 관측 패턴과 가장 강하게 일치합니다.
+
+        <div class="result-bars">
+          <div class="result-bar"><span>먹이 공급 100%</span><b>생존 지수 96</b></div>
+          <div class="result-bar"><span>먹이 공급 63%</span><b>생존 지수 61</b></div>
+        </div>
+      </div>
+    `;
+
+  }
+
+
+  window.submitCaseConclusion =
+    function () {
+
+      const select =
+        document.getElementById("conclusionSelect");
+
+      const output =
+        document.getElementById("conclusionOutput");
+
+      if (!select || !output) return;
+
+      const value =
+        select.value;
+
+
+      if (!value) {
+
+        output.innerHTML = `
+          <div class="conclusion-result">
+            원인을 먼저 선택해 주세요.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      if (value !== "insects") {
+
+        const feedback = {
+          temperature:
+            "기온은 평년보다 0.3°C 높지만 정상 변동 범위입니다. 이 변화 하나로 개구리 62% 감소를 설명하기 어렵습니다.",
+          water:
+            "pH 5.3의 산성화는 영향을 줄 수 있지만, 어류는 안정적이며 모의 실험에서도 실제 감소 폭보다 영향이 작았습니다.",
+          vegetation:
+            "식생 지수는 약 5% 감소에 그쳤습니다. 개구리 감소 폭과 직접 대응하지 않습니다."
+        };
+
+        output.innerHTML = `
+          <div class="conclusion-result">
+            <strong>결론이 충분히 지지되지 않습니다.</strong><br>
+            ${feedback[value]} 데이터 탭과 연구노트에서 다른 요인과 비교해 보세요.
+          </div>
+        `;
+
+        toast("결론을 다시 검토해 보세요. 틀려도 연구 포인트는 차감되지 않습니다.");
+
+        return;
+
+      }
+
+
+      caseState.solved =
+        true;
+
+      caseState.notes.push(
+        "최종 결론: 먹이 곤충의 37% 감소가 개구리 개체수 감소를 가장 잘 설명한다. 수질 산성화는 보조 요인으로 판단한다."
+      );
+
+      output.innerHTML =
+        renderSolvedResult();
+
+      toast("CASE 01의 주요 원인을 찾아냈습니다.");
+
+    };
+
+
+  function renderSolvedResult() {
+
+    const evidenceCount =
+      Object.values(caseState.done)
+        .filter(Boolean)
+        .length;
+
+    let rank =
+      "B";
+
+    if (caseState.rp >= 3 && evidenceCount >= 2) {
+      rank = "A";
+    }
+
+    if (caseState.rp >= 4 && caseState.done.insects && caseState.experimentType === "insects") {
+      rank = "S";
+    }
+
+
+    return `
+      <div class="conclusion-result">
+        <strong>CASE SOLVED · ${rank} RANK</strong><br>
+        가장 직접적인 원인은 <b>먹이 곤충 개체수 감소</b>입니다.
+        곤충은 기준치보다 37% 감소했고, 이는 개구리의 먹이 부족으로 이어질 수 있습니다.
+        수질 산성화는 추가적인 스트레스 요인이지만 관측된 감소를 단독으로 설명하기에는 근거가 부족합니다.
+        <br><br>
+        <b>학습 개념</b> · 먹이 관계 / 생태계 상호작용 / 독립변인·종속변인 / 대조군 / AI 예측 검증
+
+        <br><br>
+        ${caseState.restored
+          ? "<b>복원 완료</b> · 먹이원 보호와 수질 개선 후 개구리 개체 지수가 회복되기 시작했습니다."
+          : '<button class="run-button" style="margin-top:8px;" onclick="restoreEcosystem()">생태계 복원 실행</button>'
+        }
+      </div>
+    `;
+
+  }
+
+
+  window.restoreEcosystem =
+    function () {
+
+      if (!caseState.solved) return;
+
+      caseState.restored =
+        true;
+
+      caseState.health =
+        79;
+
+      document.getElementById("frogStat").textContent =
+        "61";
+
+      document.getElementById("fieldStatusText").textContent =
+        "회복 관찰 중";
+
+      document.getElementById("fieldAlertText").textContent =
+        "먹이원 보호와 수질 개선 조치 후 개구리 활동 지수가 회복되고 있습니다.";
+
+      document.getElementById("frog3").style.opacity =
+        "1";
+
+      updateCaseUI();
+      openGamePanel("conclusion");
+
+      toast("복원 조치가 적용되었습니다. 생태계 건강도가 상승했습니다.");
+
+    };
+
+
+  window.resetCase =
+    function (showMessage = true) {
+
+      caseState =
+        initialCaseState();
+
+      const frog3 =
+        document.getElementById("frog3");
+
+      if (frog3) {
+        frog3.style.opacity = ".28";
+      }
+
+      const frogStat =
+        document.getElementById("frogStat");
+
+      if (frogStat) {
+        frogStat.textContent = "38";
+      }
+
+      const status =
+        document.getElementById("fieldStatusText");
+
+      if (status) {
+        status.textContent = "이상 징후 감지";
+      }
+
+      const alertText =
+        document.getElementById("fieldAlertText");
+
+      if (alertText) {
+        alertText.textContent =
+          "개구리 개체수의 급격한 감소가 확인되었습니다. 원인은 아직 특정되지 않았습니다.";
+      }
+
+      updateCaseUI();
+      openGamePanel("investigate");
+
+      if (showMessage) {
+        toast("CASE 01을 처음 상태로 되돌렸습니다.");
+      }
+
+    };
+
+
+  function updateCaseUI() {
+
+    const day =
+      document.getElementById("gameDay");
+
+    const rp =
+      document.getElementById("researchPoint");
+
+    const health =
+      document.getElementById("gameHealth");
+
+    const ph =
+      document.getElementById("gamePh");
+
+    const insectIndex =
+      document.getElementById("gameInsectIndex");
+
+    const insectStat =
+      document.getElementById("insectStat");
+
+
+    if (day) {
+      day.textContent =
+        String(caseState.day).padStart(2, "0");
+    }
+
+
+    if (rp) {
+      rp.textContent =
+        caseState.rp;
+    }
+
+
+    if (health) {
+      health.textContent =
+        caseState.health + " / 100";
+    }
+
+
+    if (ph) {
+
+      if (caseState.done.water) {
+        ph.textContent = "5.3";
+        ph.classList.remove("locked");
+      } else {
+        ph.textContent = "조사 필요";
+        ph.classList.add("locked");
+      }
+
+    }
+
+
+    if (insectIndex) {
+
+      if (caseState.done.insects) {
+        insectIndex.textContent = "63 / 100";
+        insectIndex.classList.remove("locked");
+      } else {
+        insectIndex.textContent = "조사 필요";
+        insectIndex.classList.add("locked");
+      }
+
+    }
+
+
+    if (insectStat) {
+      insectStat.textContent =
+        caseState.done.insects ? "63" : "?";
+    }
+
+
+    updateAI();
+
+  }
 
 
   /* =====================================================
