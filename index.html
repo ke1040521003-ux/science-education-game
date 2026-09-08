@@ -2435,6 +2435,493 @@
       line-height: 1.45;
     }
 
+
+    /* =====================================================
+       RESEARCH NOTEBOOK + CASE CLEAR
+    ====================================================== */
+
+    .research-note-button {
+      position: fixed;
+      right: 22px;
+      bottom: 82px;
+      z-index: 3600;
+      width: 74px;
+      height: 92px;
+      padding: 0;
+      border: 1px solid #c9d7cc;
+      border-radius: 8px 13px 13px 8px;
+      background:
+        linear-gradient(90deg, #526f59 0 8px, transparent 8px),
+        repeating-linear-gradient(180deg, #fffdf5 0 17px, #e8e1d0 18px, #fffdf5 19px 20px);
+      color: #3f5145;
+      box-shadow: 0 12px 28px rgba(37, 56, 42, .16);
+      cursor: pointer;
+      transform: rotate(-1deg);
+      transition: .2s ease;
+    }
+
+    .research-note-button:hover {
+      transform: translateY(-3px) rotate(0deg);
+      box-shadow: 0 16px 32px rgba(37, 56, 42, .2);
+    }
+
+    .research-note-button::before {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: 14px;
+      width: 10px;
+      height: 5px;
+      border: 2px solid #738276;
+      border-left: 0;
+      border-radius: 0 7px 7px 0;
+      box-shadow: 0 16px 0 -2px #fffdf5, 0 16px 0 0 #738276, 0 32px 0 -2px #fffdf5, 0 32px 0 0 #738276, 0 48px 0 -2px #fffdf5, 0 48px 0 0 #738276;
+    }
+
+    .research-note-button .note-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 7px;
+      font-size: 11px;
+      font-weight: 950;
+      line-height: 1.25;
+      letter-spacing: -.3px;
+    }
+
+    .research-note-button .note-count {
+      position: absolute;
+      top: -9px;
+      right: -8px;
+      min-width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+      border: 2px solid #eef2ed;
+      border-radius: 999px;
+      background: #4f7259;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 950;
+    }
+
+    .research-note-overlay,
+    .case-clear-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 7000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(28, 40, 31, .44);
+      backdrop-filter: blur(10px);
+    }
+
+    .research-note-overlay.show,
+    .case-clear-overlay.show {
+      display: flex;
+    }
+
+    .research-notebook {
+      position: relative;
+      width: min(760px, 94vw);
+      max-height: min(720px, 88vh);
+      overflow: hidden;
+      padding: 28px 28px 25px 56px;
+      border: 1px solid #d7cfba;
+      border-radius: 10px 19px 19px 10px;
+      background:
+        linear-gradient(90deg, transparent 0 38px, rgba(188, 96, 92, .22) 38px 40px, transparent 40px),
+        repeating-linear-gradient(180deg, #fffdf6 0 31px, #dfe6dd 32px, #fffdf6 33px);
+      box-shadow: 0 28px 70px rgba(25, 39, 29, .24);
+    }
+
+    .research-notebook::before {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 0;
+      bottom: 0;
+      width: 12px;
+      background:
+        radial-gradient(circle, #768579 0 3px, transparent 3.5px) center 14px / 12px 28px repeat-y;
+      opacity: .82;
+    }
+
+    .notebook-header {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .notebook-kicker {
+      margin-bottom: 5px;
+      color: #829087;
+      font-size: 9px;
+      font-weight: 950;
+      letter-spacing: 1.6px;
+    }
+
+    .notebook-header h3 {
+      color: #344238;
+      font-size: 24px;
+      letter-spacing: -1px;
+    }
+
+    .notebook-header p {
+      margin-top: 6px;
+      color: #7b857f;
+      font-size: 11px;
+      line-height: 1.65;
+    }
+
+    .notebook-close {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      border: 1px solid #d7ddda;
+      border-radius: 9px;
+      background: rgba(255,255,255,.75);
+      color: #68746c;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .research-note-list {
+      display: grid;
+      gap: 10px;
+      max-height: calc(min(720px, 88vh) - 125px);
+      overflow: auto;
+      padding: 2px 8px 8px 0;
+      scrollbar-width: thin;
+    }
+
+    .research-note-entry {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 12px;
+      padding: 12px 13px;
+      border: 1px solid rgba(121, 133, 123, .16);
+      border-radius: 11px;
+      background: rgba(255,255,255,.64);
+    }
+
+    .note-entry-meta {
+      padding-right: 10px;
+      border-right: 1px dashed #cfd6d0;
+    }
+
+    .note-entry-meta span {
+      display: block;
+      margin-bottom: 5px;
+      color: #8c9890;
+      font-size: 8px;
+      font-weight: 950;
+      letter-spacing: 1px;
+    }
+
+    .note-entry-meta b {
+      color: #4a6251;
+      font-size: 11px;
+    }
+
+    .note-entry-action {
+      margin-bottom: 6px;
+      color: #465249;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .note-entry-result {
+      color: #707c74;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .note-entry-result strong {
+      color: #4f7259;
+    }
+
+    .case-clear-card {
+      width: min(780px, 94vw);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(133, 178, 143, .24), transparent 37%),
+        #fbfdfb;
+      box-shadow: 0 34px 90px rgba(24, 41, 29, .3);
+      text-align: center;
+    }
+
+    .clear-main {
+      padding: 34px 34px 25px;
+    }
+
+    .clear-kicker {
+      margin-bottom: 8px;
+      color: #6f8475;
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: 2.3px;
+    }
+
+    .clear-title {
+      color: #2f4936;
+      font-size: clamp(42px, 7vw, 78px);
+      font-weight: 1000;
+      line-height: .98;
+      letter-spacing: -4px;
+    }
+
+    .clear-subtitle {
+      margin: 11px auto 20px;
+      color: #76827a;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .clear-score-wrap {
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      gap: 8px;
+      margin: 8px 0 14px;
+    }
+
+    .clear-score-wrap strong {
+      color: #3d6448;
+      font-size: 72px;
+      line-height: 1;
+      letter-spacing: -5px;
+    }
+
+    .clear-score-wrap span {
+      padding-bottom: 9px;
+      color: #99a39c;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .clear-rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 74px;
+      height: 34px;
+      margin-bottom: 20px;
+      padding: 0 18px;
+      border: 1px solid #cddbd0;
+      border-radius: 999px;
+      background: #edf5ee;
+      color: #4b6f55;
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: .8px;
+    }
+
+    .clear-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 0 auto 20px;
+    }
+
+    .clear-stat {
+      padding: 11px 8px;
+      border: 1px solid #e0e7e1;
+      border-radius: 11px;
+      background: #fff;
+    }
+
+    .clear-stat span {
+      display: block;
+      margin-bottom: 4px;
+      color: #98a19b;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: .7px;
+    }
+
+    .clear-stat b {
+      color: #435148;
+      font-size: 14px;
+    }
+
+    .clear-reason {
+      margin: 0 auto 20px;
+      padding: 13px 14px;
+      border-left: 4px solid #6e9077;
+      background: #f2f6f2;
+      color: #667269;
+      font-size: 11px;
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    .clear-actions {
+      display: flex;
+      justify-content: center;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    .clear-action {
+      min-width: 145px;
+      padding: 12px 18px;
+      border: 1px solid #d6dfd8;
+      border-radius: 10px;
+      background: #fff;
+      color: #56645b;
+      font-size: 11px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .clear-action.primary {
+      border-color: #4f7259;
+      background: #4f7259;
+      color: #fff;
+    }
+
+    .next-level-panel {
+      display: none;
+      padding: 22px 30px 27px;
+      border-top: 1px solid #e5ebe6;
+      background: #f6f9f6;
+    }
+
+    .next-level-panel.show {
+      display: block;
+    }
+
+    .next-level-panel b {
+      display: block;
+      margin-bottom: 5px;
+      color: #48634f;
+      font-size: 14px;
+    }
+
+    .next-level-panel p {
+      color: #7d8881;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .requirement-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 7px;
+      margin-bottom: 8px;
+    }
+
+    .requirement-chip {
+      padding: 7px 8px;
+      border: 1px solid #e2e7e3;
+      border-radius: 8px;
+      background: #fafbfa;
+      color: #8a948d;
+      font-size: 8px;
+      font-weight: 850;
+      text-align: center;
+    }
+
+    .requirement-chip.ready {
+      border-color: #cfe0d2;
+      background: #eef5ef;
+      color: #52705a;
+    }
+
+    .conclusion-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .evidence-choice-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .evidence-choice {
+      position: relative;
+      display: flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      padding: 7px;
+      border: 1px solid #dde4de;
+      border-radius: 8px;
+      background: #fff;
+      color: #657168;
+      font-size: 8px;
+      font-weight: 850;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .evidence-choice input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .evidence-choice:has(input:checked) {
+      border-color: #9eb8a4;
+      background: #edf4ee;
+      color: #46604d;
+    }
+
+    .evidence-choice.disabled {
+      opacity: .42;
+      cursor: not-allowed;
+    }
+
+    @media(max-width: 720px) {
+      .research-note-button {
+        right: 14px;
+        bottom: 18px;
+        width: 62px;
+        height: 78px;
+      }
+
+      .research-notebook {
+        padding: 24px 18px 22px 44px;
+      }
+
+      .research-note-entry {
+        grid-template-columns: 1fr;
+      }
+
+      .note-entry-meta {
+        border-right: 0;
+        border-bottom: 1px dashed #cfd6d0;
+        padding: 0 0 7px;
+      }
+
+      .clear-stats,
+      .requirement-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .conclusion-form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .evidence-choice-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     /* Wetland life animation */
     .wet-cloud {
       transform-box: fill-box;
@@ -3342,7 +3829,7 @@
 
         <div class="status-chip">
           <span>RESEARCH POINT</span>
-          <strong><b id="researchPoint">10</b> RP</strong>
+          <strong><b id="researchPoint">18</b> RP</strong>
         </div>
 
         <button class="game-back" onclick="resetCase()">사건 초기화</button>
@@ -3744,7 +4231,7 @@
           </div>
 
           <button class="side-action" onclick="performInvestigation('ai')">
-            AI 분석 실행 · 2 RP
+            AI 분석 실행 · 3 RP
           </button>
 
           <button class="side-action secondary" onclick="openGamePanel('conclusion')">
@@ -3765,14 +4252,65 @@
           <button id="menu-experiment" onclick="openGamePanel('experiment')">
             실험 <small>LAB</small>
           </button>
-          <button id="menu-note" onclick="openGamePanel('note')">
-            연구노트 <small>NOTE</small>
-          </button>
         </div>
 
         <div class="workbench-content" id="workbenchContent"></div>
       </section>
 
+    </div>
+  </div>
+
+  <button class="research-note-button" id="researchNoteButton" onclick="openResearchNotebook()" aria-label="연구 노트 열기">
+    <span class="note-label">연구<br>노트</span>
+    <span class="note-count" id="noteCount">2</span>
+  </button>
+
+  <div class="research-note-overlay" id="researchNoteOverlay" onclick="closeResearchNotebook(event)">
+    <div class="research-notebook" onclick="event.stopPropagation()">
+      <div class="notebook-header">
+        <div>
+          <div class="notebook-kicker">FIELD RESEARCH LOG</div>
+          <h3>습지 A-17 연구 노트</h3>
+          <p>내가 한 행동과 그 뒤에 관측된 변화를 시간 순서대로 기록합니다.</p>
+        </div>
+        <button class="notebook-close" onclick="closeResearchNotebook()" aria-label="연구 노트 닫기">×</button>
+      </div>
+      <div class="research-note-list" id="researchNoteList"></div>
+    </div>
+  </div>
+
+  <div class="case-clear-overlay" id="caseClearOverlay">
+    <div class="case-clear-card">
+      <div class="clear-main" id="clearMainPanel">
+        <div class="clear-kicker">CASE 01 COMPLETE</div>
+        <div class="clear-title">CASE CLEAR</div>
+        <p class="clear-subtitle">원인을 규명하고 복원 조치까지 완료했습니다.</p>
+
+        <div class="clear-score-wrap">
+          <strong id="clearScore">0</strong>
+          <span>/ 100</span>
+        </div>
+        <div class="clear-rank" id="clearRank">B RANK</div>
+
+        <div class="clear-stats">
+          <div class="clear-stat"><span>남은 RP</span><b id="clearRp">0 RP</b></div>
+          <div class="clear-stat"><span>소요 일수</span><b id="clearDay">0 DAY</b></div>
+          <div class="clear-stat"><span>오답 제출</span><b id="clearWrong">0회</b></div>
+          <div class="clear-stat"><span>확보 근거</span><b id="clearEvidence">0개</b></div>
+        </div>
+
+        <div class="clear-reason" id="clearReason"></div>
+
+        <div class="clear-actions">
+          <button class="clear-action" onclick="closeClearOverlay()">현장 결과 다시 보기</button>
+          <button class="clear-action primary" onclick="goNextLevel()">다음 레벨로</button>
+        </div>
+      </div>
+
+      <div class="next-level-panel" id="nextLevelPanel">
+        <b>NEXT CASE UNLOCKED</b>
+        <p>다음 레벨 버튼이 연결될 자리입니다. CASE 02를 추가하면 이 화면에서 바로 이어서 시작할 수 있습니다.</p>
+      </div>
     </div>
   </div>
 
@@ -4346,12 +4884,17 @@
 
   const initialCaseState = () => ({
     day: 7,
-    rp: 10,
+    rp: 18,
     health: 58,
     solved: false,
     restored: false,
     experimentDone: false,
     experimentType: "",
+    wrongAttempts: 0,
+    conclusionAttempts: 0,
+    selectedEvidence: [],
+    score: 0,
+    rank: "",
     done: {
       water: false,
       insects: false,
@@ -4359,8 +4902,8 @@
       ai: false
     },
     notes: [
-      "3개월 동안 개구리 개체수가 기준치 100에서 38까지 감소했다.",
-      "어류와 식생은 같은 기간 큰 폭의 감소가 관찰되지 않았다."
+      { day: 7, type: "초기 관찰", action: "개구리 개체수 기록 확인", result: "3개월 동안 개구리 개체 지수가 기준치 100에서 38까지 감소했다." },
+      { day: 7, type: "초기 관찰", action: "다른 생물군 기록 비교", result: "어류와 식생은 같은 기간 큰 폭의 감소가 관찰되지 않았다." }
     ]
   });
 
@@ -4395,6 +4938,8 @@
     function () {
 
       document.body.classList.remove("game-active");
+      document.getElementById("researchNoteOverlay")?.classList.remove("show");
+      document.getElementById("caseClearOverlay")?.classList.remove("show");
       window.scrollTo(0, 0);
 
     };
@@ -4417,6 +4962,71 @@
       );
 
   }
+
+
+
+  function addResearchNote(action, result, type = "연구 기록") {
+    caseState.notes.push({
+      day: caseState.day,
+      type,
+      action,
+      result
+    });
+
+    updateNoteBadge();
+
+    const overlay = document.getElementById("researchNoteOverlay");
+    if (overlay && overlay.classList.contains("show")) {
+      renderResearchNotebook();
+    }
+  }
+
+
+  function updateNoteBadge() {
+    const count = document.getElementById("noteCount");
+    if (count) count.textContent = caseState.notes.length;
+  }
+
+
+  function renderResearchNotebook() {
+    const list = document.getElementById("researchNoteList");
+    if (!list) return;
+
+    list.innerHTML = caseState.notes
+      .map((note, index) => {
+        const data = typeof note === "string"
+          ? { day: caseState.day, type: "기록", action: `연구 기록 ${index + 1}`, result: note }
+          : note;
+
+        return `
+          <div class="research-note-entry">
+            <div class="note-entry-meta">
+              <span>DAY ${String(data.day).padStart(2, "0")}</span>
+              <b>${data.type}</b>
+            </div>
+            <div>
+              <div class="note-entry-action">행동 · ${data.action}</div>
+              <div class="note-entry-result"><strong>변화 →</strong> ${data.result}</div>
+            </div>
+          </div>
+        `;
+      })
+      .join("");
+  }
+
+
+  window.openResearchNotebook = function () {
+    renderResearchNotebook();
+    const overlay = document.getElementById("researchNoteOverlay");
+    if (overlay) overlay.classList.add("show");
+  };
+
+
+  window.closeResearchNotebook = function (event) {
+    if (event && event.target !== event.currentTarget) return;
+    const overlay = document.getElementById("researchNoteOverlay");
+    if (overlay) overlay.classList.remove("show");
+  };
 
 
   function spendRP(cost) {
@@ -4464,31 +5074,31 @@
           <div class="panel-kicker">FIELD INVESTIGATION</div>
           <h3 class="panel-title">어떤 정보를 먼저 조사하시겠습니까?</h3>
           <p class="panel-desc">
-            모든 조사를 할 필요는 없습니다. 제한된 연구 포인트를 사용해 원인을 설명하는 데 필요한 증거를 선택하세요.
+            시작 RP는 18이지만 조사와 실험 비용이 높습니다. 모든 조사를 하고 실험까지 하면 RP가 거의 남지 않으므로, 먼저 가설을 세우고 필요한 근거를 선택하세요.
           </p>
 
           <div class="investigation-grid">
 
             <button class="investigation-btn ${caseState.done.weather ? "done" : ""}" onclick="performInvestigation('weather')">
-              <span class="cost">${caseState.done.weather ? "조사 완료" : "1 RP"}</span>
+              <span class="cost">${caseState.done.weather ? "조사 완료" : "2 RP"}</span>
               <h4>기상 기록 비교</h4>
               <p>최근 3개월의 기온과 평년값을 비교합니다.</p>
             </button>
 
             <button class="investigation-btn ${caseState.done.water ? "done" : ""}" onclick="performInvestigation('water')">
-              <span class="cost">${caseState.done.water ? "조사 완료" : "2 RP"}</span>
+              <span class="cost">${caseState.done.water ? "조사 완료" : "3 RP"}</span>
               <h4>수질 검사</h4>
               <p>pH와 수계 변화가 개구리 감소와 관련 있는지 확인합니다.</p>
             </button>
 
             <button class="investigation-btn ${caseState.done.insects ? "done" : ""}" onclick="performInvestigation('insects')">
-              <span class="cost">${caseState.done.insects ? "조사 완료" : "3 RP"}</span>
+              <span class="cost">${caseState.done.insects ? "조사 완료" : "4 RP"}</span>
               <h4>곤충 개체 조사</h4>
               <p>개구리의 주요 먹이원이 얼마나 변했는지 조사합니다.</p>
             </button>
 
             <button class="investigation-btn ${caseState.done.ai ? "done" : ""}" onclick="performInvestigation('ai')">
-              <span class="cost">${caseState.done.ai ? "분석 완료" : "2 RP"}</span>
+              <span class="cost">${caseState.done.ai ? "분석 완료" : "3 RP"}</span>
               <h4>AI 패턴 분석</h4>
               <p>현재 관측값을 바탕으로 AI가 가장 가능성 높은 원인을 예측합니다.</p>
             </button>
@@ -4580,7 +5190,7 @@
           <div class="panel-kicker">CONTROLLED EXPERIMENT</div>
           <h3 class="panel-title">가설을 실험으로 검증하세요.</h3>
           <p class="panel-desc">
-            한 번의 모의 실험에 2 RP가 필요합니다. 다른 조건은 통제하고 한 요인만 변화시켜 결과를 비교합니다.
+            한 번의 모의 실험에 4 RP가 필요하며 사건당 1회만 실행할 수 있습니다. 어떤 가설을 검증할지 먼저 데이터로 판단하세요.
             이 수치는 교육용 시뮬레이션 모델의 결과입니다.
           </p>
 
@@ -4595,42 +5205,12 @@
             </div>
 
             <button class="run-button" onclick="runCaseExperiment()">
-              실험 실행 · 2 RP
+              실험 실행 · 4 RP
             </button>
           </div>
 
           <div id="experimentOutput">
             ${renderExperimentResult()}
-          </div>
-        `;
-
-        return;
-      }
-
-
-      if (panel === "note") {
-
-        setMenuActive("note");
-
-        const noteHtml =
-          caseState.notes
-            .map((note, index) => `
-              <div class="note-item">
-                <b>NOTE ${String(index + 1).padStart(2, "0")}</b><br>
-                ${note}
-              </div>
-            `)
-            .join("");
-
-        content.innerHTML = `
-          <div class="panel-kicker">RESEARCH NOTE</div>
-          <h3 class="panel-title">현재까지의 연구 기록</h3>
-          <p class="panel-desc">
-            관찰, 조사, 실험에서 얻은 근거가 자동으로 정리됩니다. 결론을 낼 때는 한 가지 수치보다 여러 근거의 관계를 확인하세요.
-          </p>
-
-          <div class="note-list">
-            ${noteHtml}
           </div>
         `;
 
@@ -4644,27 +5224,73 @@
           .querySelectorAll(".workbench-menu button")
           .forEach(button => button.classList.remove("active"));
 
+        const directCount = [caseState.done.weather, caseState.done.water, caseState.done.insects]
+          .filter(Boolean).length;
+
+        const reqDirect = directCount >= 2;
+        const reqExperiment = caseState.experimentDone;
+        const reqRp = caseState.rp >= 0;
+
+        const evidenceOptions = [
+          { id: "weather", label: "기상 기록", enabled: caseState.done.weather },
+          { id: "water", label: "수질 검사", enabled: caseState.done.water },
+          { id: "insects", label: "곤충 조사", enabled: caseState.done.insects },
+          { id: "experiment", label: "통제 실험", enabled: caseState.experimentDone },
+          { id: "ai", label: "AI 분석", enabled: caseState.done.ai }
+        ];
+
         content.innerHTML = `
           <div class="panel-kicker">FINAL CONCLUSION</div>
-          <h3 class="panel-title">개구리 개체수 감소의 가장 직접적인 원인을 제출하세요.</h3>
+          <h3 class="panel-title">주원인, 보조 요인, 근거를 함께 제출하세요.</h3>
           <p class="panel-desc">
-            AI의 예측보다 직접 수집한 데이터와 실험 결과를 우선해 판단하세요.
+            단순히 원인 하나를 찍어서는 클리어할 수 없습니다. 직접 조사 2개 이상과 통제 실험이 필요하며, 틀린 제출은 2 RP와 점수를 잃습니다.
           </p>
 
-          <div class="conclusion-box">
-            <div class="form-field">
-              <label>최종 원인</label>
-              <select id="conclusionSelect">
-                <option value="">원인을 선택하세요.</option>
-                <option value="temperature">평균 기온 상승</option>
-                <option value="water">수질 산성화</option>
-                <option value="insects">먹이 곤충 개체수 감소</option>
-                <option value="vegetation">식생 감소</option>
-              </select>
+          <div class="requirement-grid">
+            <div class="requirement-chip ${reqDirect ? "ready" : ""}">직접 조사 2개 이상 · ${directCount}/3</div>
+            <div class="requirement-chip ${reqExperiment ? "ready" : ""}">통제 실험 1회 · ${reqExperiment ? "완료" : "미완료"}</div>
+            <div class="requirement-chip ${reqRp ? "ready" : ""}">근거 3개 선택 · 제출 시 판정</div>
+          </div>
+
+          <div class="conclusion-box" style="grid-template-columns:1fr; align-items:stretch;">
+            <div class="conclusion-form-grid">
+              <div class="form-field">
+                <label>가장 직접적인 주원인</label>
+                <select id="conclusionSelect">
+                  <option value="">주원인을 선택하세요.</option>
+                  <option value="temperature">평균 기온 상승</option>
+                  <option value="water">수질 산성화</option>
+                  <option value="insects">먹이 곤충 개체수 감소</option>
+                  <option value="vegetation">식생 감소</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label>함께 작용한 보조 요인</label>
+                <select id="secondaryConclusionSelect">
+                  <option value="">보조 요인을 선택하세요.</option>
+                  <option value="temperature">평균 기온 상승</option>
+                  <option value="water">수질 산성화</option>
+                  <option value="vegetation">식생 감소</option>
+                  <option value="none">뚜렷한 보조 요인 없음</option>
+                </select>
+              </div>
             </div>
 
-            <button class="run-button" onclick="submitCaseConclusion()">
-              결론 제출
+            <div class="form-field" style="margin-top:8px;">
+              <label>결론을 지지하는 근거 3개 이상 선택</label>
+              <div class="evidence-choice-grid">
+                ${evidenceOptions.map(item => `
+                  <label class="evidence-choice ${item.enabled ? "" : "disabled"}">
+                    <input type="checkbox" name="conclusionEvidence" value="${item.id}" ${item.enabled ? "" : "disabled"}>
+                    ${item.label}
+                  </label>
+                `).join("")}
+              </div>
+            </div>
+
+            <button class="run-button" onclick="submitCaseConclusion()" style="margin-top:9px;">
+              최종 결론 제출
             </button>
           </div>
 
@@ -4682,10 +5308,10 @@
     function (type) {
 
       const costs = {
-        weather: 1,
-        water: 2,
-        insects: 3,
-        ai: 2
+        weather: 2,
+        water: 3,
+        insects: 4,
+        ai: 3
       };
 
       if (caseState.done[type]) {
@@ -4709,8 +5335,10 @@
 
       if (type === "weather") {
 
-        caseState.notes.push(
-          "기상 기록: 현재 평균 26.8°C는 평년 26.5°C보다 0.3°C 높지만 정상 변동 범위에 있다."
+        addResearchNote(
+          "기상 기록 비교 실시",
+          "평균 기온 26.8°C로 평년보다 0.3°C 높았지만 정상 변동 범위로 판정되었다.",
+          "현장 조사"
         );
 
         toast("기상 기록을 확보했습니다. 큰 이상 변화는 확인되지 않았습니다.");
@@ -4720,8 +5348,10 @@
 
       if (type === "water") {
 
-        caseState.notes.push(
-          "수질 검사: pH 5.3으로 산성화가 확인되었다. 개구리에게 부담을 줄 수 있으나 다른 수생생물의 급감은 나타나지 않았다."
+        addResearchNote(
+          "습지 수질 pH 검사 실시",
+          "pH 5.3의 산성화가 확인되었다. 개구리에게 부담을 줄 수 있지만 어류의 급감은 관찰되지 않았다.",
+          "현장 조사"
         );
 
         toast("수질 검사 완료: pH 5.3. 산성화가 확인되었습니다.");
@@ -4731,8 +5361,10 @@
 
       if (type === "insects") {
 
-        caseState.notes.push(
-          "곤충 조사: 기준 개체 지수 100에서 63으로 37% 감소했다. 개구리의 주요 먹이원이 크게 줄어든 상태다."
+        addResearchNote(
+          "먹이 곤충 개체수 조사 실시",
+          "곤충 개체 지수가 100에서 63으로 37% 감소했다. 개구리의 주요 먹이원이 크게 줄어든 상태다.",
+          "현장 조사"
         );
 
         toast("곤충 개체 지수가 37% 감소한 사실을 확인했습니다.");
@@ -4742,8 +5374,10 @@
 
       if (type === "ai") {
 
-        caseState.notes.push(
-          "AI 분석: 평균 기온을 주요 원인으로 예측했지만 신뢰도는 72%이며, 아직 먹이원 자료를 반영하지 못했다."
+        addResearchNote(
+          "AI 패턴 분석 실행",
+          "AI는 평균 기온을 주요 원인으로 예측했지만 신뢰도는 72%였고, 아직 먹이원 조사 자료를 반영하지 못했다.",
+          "보조 분석"
         );
 
         toast("AI 분석이 완료되었습니다. 예측을 직접 검증해야 합니다.");
@@ -4840,7 +5474,7 @@
       }
 
 
-      if (!spendRP(2)) return;
+      if (!spendRP(4)) return;
 
 
       caseState.experimentDone =
@@ -4855,8 +5489,10 @@
 
       if (type === "temperature") {
 
-        caseState.notes.push(
-          "통제 실험: 24.5°C와 26.8°C 조건에서 개구리 생존 지수는 각각 93, 89였다. 차이는 있으나 실제 62% 감소를 설명하기에는 작았다."
+        addResearchNote(
+          "기온 가설 통제 실험",
+          "24.5°C와 26.8°C 조건의 생존 지수는 93과 89였다. 변화는 있었지만 실제 62% 감소를 설명하기에는 작았다.",
+          "통제 실험"
         );
 
       }
@@ -4864,8 +5500,10 @@
 
       if (type === "water") {
 
-        caseState.notes.push(
-          "통제 실험: pH 6.8과 pH 5.3 조건에서 생존 지수는 각각 96, 81이었다. 산성화의 영향은 확인되지만 실제 감소 폭 전체를 설명하지 못했다."
+        addResearchNote(
+          "수질 가설 통제 실험",
+          "pH 6.8과 5.3 조건의 생존 지수는 96과 81이었다. 산성화 영향은 확인됐지만 실제 감소 폭 전체를 설명하지 못했다.",
+          "통제 실험"
         );
 
       }
@@ -4873,8 +5511,10 @@
 
       if (type === "insects") {
 
-        caseState.notes.push(
-          "통제 실험: 먹이 공급 100%와 63% 조건에서 개구리 생존·활동 지수는 각각 96, 61이었다. 실제 관측된 감소 패턴과 가장 유사했다."
+        addResearchNote(
+          "먹이량 가설 통제 실험",
+          "먹이 공급 100%와 63% 조건의 생존·활동 지수는 96과 61이었다. 실제 관측된 감소 패턴과 가장 유사했다.",
+          "통제 실험"
         );
 
       }
@@ -4952,67 +5592,105 @@
   window.submitCaseConclusion =
     function () {
 
-      const select =
-        document.getElementById("conclusionSelect");
+      const select = document.getElementById("conclusionSelect");
+      const secondarySelect = document.getElementById("secondaryConclusionSelect");
+      const output = document.getElementById("conclusionOutput");
 
-      const output =
-        document.getElementById("conclusionOutput");
+      if (!select || !secondarySelect || !output) return;
 
-      if (!select || !output) return;
+      const value = select.value;
+      const secondary = secondarySelect.value;
+      const selectedEvidence = Array.from(
+        document.querySelectorAll('input[name="conclusionEvidence"]:checked')
+      ).map(input => input.value);
 
-      const value =
-        select.value;
+      const directCount = [caseState.done.weather, caseState.done.water, caseState.done.insects]
+        .filter(Boolean).length;
 
+      if (directCount < 2 || !caseState.experimentDone) {
+        output.innerHTML = `
+          <div class="conclusion-result">
+            <strong>연구 요건이 부족합니다.</strong><br>
+            직접 현장 조사 2개 이상과 통제 실험 1회를 먼저 완료해야 최종 결론을 제출할 수 있습니다.
+          </div>
+        `;
+        toast("아직 결론을 제출할 만큼 연구가 충분하지 않습니다.");
+        return;
+      }
 
-      if (!value) {
+      if (!value || !secondary) {
+        output.innerHTML = `
+          <div class="conclusion-result">주원인과 보조 요인을 모두 선택해 주세요.</div>
+        `;
+        return;
+      }
+
+      if (selectedEvidence.length < 3) {
+        output.innerHTML = `
+          <div class="conclusion-result">결론을 지지하는 근거를 3개 이상 선택해야 합니다.</div>
+        `;
+        return;
+      }
+
+      caseState.conclusionAttempts += 1;
+      caseState.selectedEvidence = selectedEvidence;
+
+      const coreEvidenceReady =
+        selectedEvidence.includes("insects") &&
+        selectedEvidence.includes("water") &&
+        selectedEvidence.includes("experiment");
+
+      const correct =
+        value === "insects" &&
+        secondary === "water" &&
+        caseState.done.insects &&
+        caseState.done.water &&
+        coreEvidenceReady;
+
+      if (!correct) {
+        caseState.wrongAttempts += 1;
+        caseState.rp = Math.max(0, caseState.rp - 2);
+        caseState.day += 1;
+
+        let hint = "선택한 주원인과 근거의 변화 폭이 서로 일치하는지 다시 비교하세요.";
+
+        if (value === "insects" && secondary !== "water") {
+          hint = "주원인 선택은 타당해 보이지만, 함께 작용한 보조 요인의 실험·관측 근거가 맞는지 다시 확인하세요.";
+        } else if (value === "insects" && secondary === "water" && !coreEvidenceReady) {
+          hint = "원인 선택만으로는 부족합니다. 주원인과 보조 요인을 직접 지지하는 핵심 근거 조합을 다시 고르세요.";
+        }
+
+        addResearchNote(
+          "최종 결론 제출",
+          `근거 연결이 충분하지 않아 결론이 보류되었다. 오답 페널티로 2 RP가 차감되었다.`,
+          "결론 검토"
+        );
+
+        updateCaseUI();
 
         output.innerHTML = `
           <div class="conclusion-result">
-            원인을 먼저 선택해 주세요.
+            <strong>결론 보류 · -2 RP</strong><br>
+            ${hint}<br>
+            이번 사건에서는 단일 수치보다 <b>변화 폭 + 먹이 관계 + 통제 실험</b>의 연결이 중요합니다.
           </div>
         `;
 
+        toast("결론이 충분히 지지되지 않았습니다. 2 RP가 차감되었습니다.");
         return;
-
       }
 
+      caseState.solved = true;
 
-      if (value !== "insects") {
-
-        const feedback = {
-          temperature:
-            "기온은 평년보다 0.3°C 높지만 정상 변동 범위입니다. 이 변화 하나로 개구리 62% 감소를 설명하기 어렵습니다.",
-          water:
-            "pH 5.3의 산성화는 영향을 줄 수 있지만, 어류는 안정적이며 모의 실험에서도 실제 감소 폭보다 영향이 작았습니다.",
-          vegetation:
-            "식생 지수는 약 5% 감소에 그쳤습니다. 개구리 감소 폭과 직접 대응하지 않습니다."
-        };
-
-        output.innerHTML = `
-          <div class="conclusion-result">
-            <strong>결론이 충분히 지지되지 않습니다.</strong><br>
-            ${feedback[value]} 데이터 탭과 연구노트에서 다른 요인과 비교해 보세요.
-          </div>
-        `;
-
-        toast("결론을 다시 검토해 보세요. 틀려도 연구 포인트는 차감되지 않습니다.");
-
-        return;
-
-      }
-
-
-      caseState.solved =
-        true;
-
-      caseState.notes.push(
-        "최종 결론: 먹이 곤충의 37% 감소가 개구리 개체수 감소를 가장 잘 설명한다. 수질 산성화는 보조 요인으로 판단한다."
+      addResearchNote(
+        "최종 원인과 보조 요인 확정",
+        "먹이 곤충 감소를 주원인, 수질 산성화를 보조 요인으로 판단했다. 현장 조사와 통제 실험이 같은 방향의 근거를 제공했다.",
+        "최종 결론"
       );
 
-      output.innerHTML =
-        renderSolvedResult();
-
-      toast("CASE 01의 주요 원인을 찾아냈습니다.");
+      output.innerHTML = renderSolvedResult();
+      updateCaseUI();
+      toast("원인 규명이 완료되었습니다. 마지막으로 생태계 복원 조치를 실행하세요.");
 
     };
 
@@ -5038,7 +5716,7 @@
 
     return `
       <div class="conclusion-result">
-        <strong>CASE SOLVED · ${rank} RANK</strong><br>
+        <strong>원인 규명 완료 · 복원 단계 남음</strong><br>
         가장 직접적인 원인은 <b>먹이 곤충 개체수 감소</b>입니다.
         곤충은 기준치보다 37% 감소했고, 이는 개구리의 먹이 부족으로 이어질 수 있습니다.
         수질 산성화는 추가적인 스트레스 요인이지만 관측된 감소를 단독으로 설명하기에는 근거가 부족합니다.
@@ -5056,37 +5734,102 @@
   }
 
 
+  function calculateCaseScore() {
+    let score = 55;
+
+    if (caseState.done.insects) score += 10;
+    if (caseState.done.water) score += 7;
+    if (caseState.experimentDone) score += 8;
+
+    if (caseState.experimentType === "insects") score += 8;
+    else if (caseState.experimentType === "water") score += 4;
+    else if (caseState.experimentType === "temperature") score += 2;
+
+    score += Math.min(8, Math.max(0, caseState.rp));
+    score += Math.min(4, caseState.selectedEvidence.length);
+    score -= caseState.wrongAttempts * 6;
+
+    return Math.max(0, Math.min(100, Math.round(score)));
+  }
+
+
+  function getRankFromScore(score) {
+    if (score >= 92) return "S";
+    if (score >= 82) return "A";
+    if (score >= 70) return "B";
+    return "C";
+  }
+
+
+  function showCaseClear() {
+    caseState.score = calculateCaseScore();
+    caseState.rank = getRankFromScore(caseState.score);
+
+    const evidenceCount = new Set(caseState.selectedEvidence).size;
+
+    document.getElementById("clearScore").textContent = caseState.score;
+    document.getElementById("clearRank").textContent = caseState.rank + " RANK";
+    document.getElementById("clearRp").textContent = caseState.rp + " RP";
+    document.getElementById("clearDay").textContent = (caseState.day - 7) + " DAY";
+    document.getElementById("clearWrong").textContent = caseState.wrongAttempts + "회";
+    document.getElementById("clearEvidence").textContent = evidenceCount + "개";
+
+    document.getElementById("clearReason").innerHTML =
+      `<b>최종 판단</b> · 먹이 곤충 감소가 개구리 감소의 가장 직접적인 원인이었고, 산성화된 수질은 추가 스트레스 요인으로 작용했습니다.<br>` +
+      `점수는 근거의 질, 실험 선택, 남은 RP, 오답 횟수를 함께 반영합니다.`;
+
+    const nextPanel = document.getElementById("nextLevelPanel");
+    if (nextPanel) nextPanel.classList.remove("show");
+
+    const overlay = document.getElementById("caseClearOverlay");
+    if (overlay) overlay.classList.add("show");
+  }
+
+
+  window.closeClearOverlay = function () {
+    const overlay = document.getElementById("caseClearOverlay");
+    if (overlay) overlay.classList.remove("show");
+  };
+
+
+  window.goNextLevel = function () {
+    const panel = document.getElementById("nextLevelPanel");
+    if (panel) panel.classList.add("show");
+  };
+
+
   window.restoreEcosystem =
     function () {
 
       if (!caseState.solved) return;
+      if (caseState.restored) {
+        showCaseClear();
+        return;
+      }
 
-      caseState.restored =
-        true;
+      caseState.restored = true;
+      caseState.health = 79;
+      caseState.day += 1;
 
-      caseState.health =
-        79;
-
-      document.getElementById("frogStat").textContent =
-        "61";
-
-      document.getElementById("fieldStatusText").textContent =
-        "회복 관찰 중";
-
+      document.getElementById("frogStat").textContent = "61";
+      document.getElementById("fieldStatusText").textContent = "회복 관찰 중";
       document.getElementById("fieldAlertText").textContent =
         "먹이원 보호와 수질 개선 조치 후 개구리 활동 지수가 회복되고 있습니다.";
 
-      const restoredFrog =
-        document.getElementById("restoredFrog");
+      const restoredFrog = document.getElementById("restoredFrog");
+      if (restoredFrog) restoredFrog.style.opacity = "1";
 
-      if (restoredFrog) {
-        restoredFrog.style.opacity = "1";
-      }
+      addResearchNote(
+        "먹이원 보호 + 수질 개선 복원 조치 실행",
+        "개구리 활동 지수가 38에서 61로 회복되기 시작했고 생태계 건강도가 58에서 79로 상승했다.",
+        "복원 조치"
+      );
 
       updateCaseUI();
       openGamePanel("conclusion");
+      toast("복원 조치가 성공했습니다. CASE 01을 클리어했습니다.");
 
-      toast("복원 조치가 적용되었습니다. 생태계 건강도가 상승했습니다.");
+      setTimeout(showCaseClear, 280);
 
     };
 
@@ -5096,6 +5839,17 @@
 
       caseState =
         initialCaseState();
+
+      const noteOverlay = document.getElementById("researchNoteOverlay");
+      if (noteOverlay) noteOverlay.classList.remove("show");
+
+      const clearOverlay = document.getElementById("caseClearOverlay");
+      if (clearOverlay) clearOverlay.classList.remove("show");
+
+      const nextLevelPanel = document.getElementById("nextLevelPanel");
+      if (nextLevelPanel) nextLevelPanel.classList.remove("show");
+
+      updateNoteBadge();
 
       const restoredFrog =
         document.getElementById("restoredFrog");
@@ -5223,6 +5977,7 @@
     }
 
 
+    updateNoteBadge();
     updateAI();
 
   }
