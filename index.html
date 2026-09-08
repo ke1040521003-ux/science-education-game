@@ -754,9 +754,7 @@
     .bottom-grid {
       display: grid;
 
-      grid-template-columns:
-        1.1fr
-        0.9fr;
+      grid-template-columns: 1fr;
 
       gap: 10px;
 
@@ -1893,85 +1891,6 @@
        CLEANER UI UPDATE
     ====================================================== */
 
-    .ai-card.interactive {
-      min-height: auto;
-    }
-
-    .home-ai-wrap {
-      display: grid;
-      gap: 10px;
-    }
-
-    .home-ai-textarea {
-      width: 100%;
-      min-height: 86px;
-      resize: vertical;
-      padding: 12px 13px;
-      border: 1px solid #dde5df;
-      border-radius: 10px;
-      background: #ffffff;
-      color: #465249;
-      font: inherit;
-      font-size: 11px;
-      line-height: 1.6;
-    }
-
-    .home-ai-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .home-ai-button,
-    .home-ai-fill {
-      padding: 10px 12px;
-      border: none;
-      border-radius: 9px;
-      font-size: 11px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .home-ai-button {
-      background: #4f7259;
-      color: white;
-    }
-
-    .home-ai-button:hover,
-    .home-ai-fill:hover {
-      transform: translateY(-1px);
-    }
-
-    .home-ai-fill {
-      border: 1px solid #d8dfd9;
-      background: #ffffff;
-      color: #526157;
-    }
-
-    .home-ai-result {
-      min-height: 82px;
-      padding: 12px 13px;
-      border: 1px solid #e3e9e4;
-      border-radius: 10px;
-      background: #ffffff;
-      color: #6d7871;
-      font-size: 10px;
-      line-height: 1.7;
-      white-space: pre-line;
-    }
-
-    .home-ai-result strong {
-      color: #496451;
-    }
-
-    .ai-hint {
-      margin-top: 3px;
-      color: #97a19a;
-      font-size: 8px;
-      line-height: 1.55;
-    }
-
     .game-topbar {
       gap: 14px;
     }
@@ -2225,6 +2144,438 @@
       }
     }
 
+
+  
+
+    /* =====================================================
+       FULL-VIEWPORT GAME + ANIMATED WETLAND
+       데스크톱에서는 페이지 스크롤 없이 한 화면에서 플레이
+    ====================================================== */
+
+    body.game-active {
+      height: 100dvh;
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+
+    body.game-active > main {
+      display: none;
+    }
+
+    body.game-active .game-screen {
+      height: 100dvh;
+      min-height: 0;
+      overflow: hidden;
+      padding: 12px 16px;
+    }
+
+    body.game-active .game-wrap {
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    body.game-active .game-topbar {
+      min-height: 62px;
+      margin-bottom: 0;
+      padding: 9px 13px;
+      border-radius: 14px;
+    }
+
+    body.game-active .case-heading h2 {
+      font-size: clamp(18px, 1.7vw, 24px);
+    }
+
+    body.game-active .case-heading p {
+      margin-top: 2px;
+      font-size: 10px;
+      line-height: 1.35;
+    }
+
+    body.game-active .status-chip {
+      min-width: 82px;
+      padding: 8px 10px;
+    }
+
+    body.game-active .status-chip strong {
+      font-size: 14px;
+    }
+
+    body.game-active .game-layout {
+      height: 100%;
+      min-height: 0;
+      grid-template-columns: 218px minmax(0, 1fr) 268px;
+      grid-template-rows: minmax(0, 1fr) 205px;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    body.game-active .game-card {
+      min-height: 0;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    body.game-active .game-card-header {
+      padding: 10px 12px 8px;
+    }
+
+    body.game-active .env-list.clean-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding: 9px;
+    }
+
+    body.game-active .env-box {
+      padding: 9px 8px;
+      border-radius: 10px;
+    }
+
+    body.game-active .env-box span {
+      margin-bottom: 4px;
+      font-size: 7px;
+    }
+
+    body.game-active .env-box strong {
+      font-size: 12px;
+    }
+
+    body.game-active .field-card {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+    }
+
+    body.game-active .field-visual {
+      height: 100%;
+      min-height: 0;
+      isolation: isolate;
+      background: #dfe9df;
+    }
+
+    body.game-active .wetland-svg {
+      transform: translateZ(0);
+    }
+
+    body.game-active .field-overlay-top {
+      top: 10px;
+      left: 10px;
+      right: 10px;
+    }
+
+    body.game-active .field-pill {
+      padding: 6px 9px;
+      font-size: 8px;
+      box-shadow: 0 5px 15px rgba(39, 63, 47, .06);
+    }
+
+    body.game-active .field-alert {
+      top: 44px;
+      left: 10px;
+      max-width: 295px;
+      padding: 9px 11px;
+    }
+
+    body.game-active .field-alert p {
+      font-size: 9px;
+      line-height: 1.45;
+    }
+
+    body.game-active .field-footer {
+      gap: 7px;
+      padding: 8px;
+    }
+
+    body.game-active .field-stat {
+      padding: 8px 9px;
+    }
+
+    body.game-active .field-stat span {
+      margin-bottom: 3px;
+      font-size: 8px;
+    }
+
+    body.game-active .field-stat strong {
+      font-size: 12px;
+    }
+
+    body.game-active .ai-side {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 0;
+    }
+
+    body.game-active .ai-side-body {
+      padding: 10px 11px;
+      overflow: hidden;
+    }
+
+    body.game-active .ai-model-box {
+      padding: 10px;
+    }
+
+    body.game-active .ai-model-box h3 {
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    body.game-active .ai-model-box p {
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    body.game-active .ai-warning {
+      margin-top: 7px;
+      padding: 7px 8px;
+      font-size: 8px;
+      line-height: 1.4;
+    }
+
+    body.game-active .side-action {
+      margin-top: 7px;
+      padding: 8px 9px;
+      font-size: 9px;
+    }
+
+    body.game-active .workbench {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      height: 205px;
+      grid-template-columns: 170px minmax(0, 1fr);
+    }
+
+    body.game-active .workbench-menu {
+      padding: 8px;
+    }
+
+    body.game-active .workbench-menu button {
+      margin-bottom: 4px;
+      padding: 8px 9px;
+      font-size: 9px;
+    }
+
+    body.game-active .workbench-content {
+      height: 100%;
+      min-height: 0;
+      padding: 10px 13px;
+      overflow: auto;
+      scrollbar-width: thin;
+    }
+
+    body.game-active .panel-kicker {
+      margin-bottom: 2px;
+      font-size: 7px;
+    }
+
+    body.game-active .panel-title {
+      margin-bottom: 3px;
+      font-size: 14px;
+    }
+
+    body.game-active .panel-desc {
+      margin-bottom: 7px;
+      font-size: 9px;
+      line-height: 1.45;
+    }
+
+    body.game-active .investigation-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    body.game-active .investigation-btn {
+      min-height: 107px;
+      padding: 9px;
+      border-radius: 10px;
+    }
+
+    body.game-active .investigation-btn .cost {
+      margin-bottom: 8px;
+      font-size: 7px;
+    }
+
+    body.game-active .investigation-btn h4 {
+      margin-bottom: 3px;
+      font-size: 10px;
+    }
+
+    body.game-active .investigation-btn p {
+      font-size: 8px;
+      line-height: 1.35;
+    }
+
+    body.game-active .evidence-table th,
+    body.game-active .evidence-table td {
+      padding: 7px 8px;
+      font-size: 8px;
+    }
+
+    body.game-active .note-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    body.game-active .note-item {
+      padding: 8px 9px;
+      font-size: 8px;
+      line-height: 1.4;
+    }
+
+    body.game-active .experiment-box,
+    body.game-active .conclusion-box {
+      margin-top: 5px;
+      padding: 8px;
+    }
+
+    body.game-active .experiment-result,
+    body.game-active .conclusion-result {
+      margin-top: 6px;
+      padding: 8px 9px;
+      font-size: 8px;
+      line-height: 1.45;
+    }
+
+    /* Wetland life animation */
+    .wet-cloud {
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .cloud-a { animation: cloudDriftA 26s ease-in-out infinite alternate; }
+    .cloud-b { animation: cloudDriftB 32s ease-in-out infinite alternate; }
+
+    @keyframes cloudDriftA {
+      from { transform: translateX(-18px); }
+      to { transform: translateX(44px); }
+    }
+
+    @keyframes cloudDriftB {
+      from { transform: translateX(28px); }
+      to { transform: translateX(-36px); }
+    }
+
+    .reed-cluster {
+      transform-box: fill-box;
+      transform-origin: 50% 100%;
+      animation: reedSway 4.5s ease-in-out infinite alternate;
+    }
+
+    .reed-right { animation-delay: -2.2s; }
+
+    @keyframes reedSway {
+      from { transform: rotate(-1.2deg); }
+      to { transform: rotate(1.5deg); }
+    }
+
+    .water-glint {
+      animation: waterGlint 5s ease-in-out infinite alternate;
+    }
+
+    .glint-b { animation-delay: -2.4s; }
+
+    @keyframes waterGlint {
+      0% { opacity: .12; transform: translateX(-10px); }
+      100% { opacity: .42; transform: translateX(16px); }
+    }
+
+    .pond-ripple {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: ripplePulse 3.2s ease-out infinite;
+    }
+
+    .ripple-b { animation-delay: -1.7s; }
+
+    @keyframes ripplePulse {
+      0% { transform: scale(.72); opacity: .34; }
+      85%, 100% { transform: scale(1.28); opacity: 0; }
+    }
+
+    .frog-breathe {
+      transform-box: fill-box;
+      transform-origin: 50% 75%;
+      animation: frogBreathe 1.8s ease-in-out infinite alternate;
+    }
+
+    .frog-breathe-delay { animation-delay: -.9s; }
+
+    @keyframes frogBreathe {
+      from { transform: scale(1, .97); }
+      to { transform: scale(1.025, 1.03); }
+    }
+
+    .wet-frog,
+    .wet-fish,
+    .wet-insect {
+      pointer-events: none;
+    }
+
+    @media (max-height: 760px) and (min-width: 1101px) {
+      body.game-active .game-screen { padding: 8px 10px; }
+      body.game-active .game-topbar { min-height: 55px; padding: 6px 10px; }
+      body.game-active .case-heading p { display: none; }
+      body.game-active .game-layout { grid-template-rows: minmax(0, 1fr) 178px; gap: 8px; }
+      body.game-active .workbench { height: 178px; }
+      body.game-active .investigation-btn { min-height: 88px; }
+      body.game-active .panel-desc { display: none; }
+    }
+
+    @media (max-width: 1100px) {
+      body.game-active {
+        height: auto;
+        overflow: auto;
+      }
+
+      body.game-active .game-screen {
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+      }
+
+      body.game-active .game-wrap {
+        height: auto;
+        display: block;
+      }
+
+      body.game-active .game-topbar {
+        margin-bottom: 10px;
+      }
+
+      body.game-active .game-layout {
+        height: auto;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+
+      body.game-active .field-card {
+        min-height: 520px;
+      }
+
+      body.game-active .workbench {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        height: auto;
+        min-height: 240px;
+      }
+
+      body.game-active .workbench-content {
+        overflow: visible;
+      }
+
+      body.game-active .investigation-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wet-cloud,
+      .reed-cluster,
+      .water-glint,
+      .pond-ripple,
+      .frog-breathe {
+        animation: none !important;
+      }
+    }
 
   </style>
 </head>
@@ -2953,47 +3304,7 @@
 
 
 
-      <!-- AI -->
-      <div class="ai-card interactive">
 
-        <div class="card-heading">
-          <div class="card-title">
-            홈페이지 AI 분석
-          </div>
-
-          <div class="card-subtitle">
-            직접 입력 가능
-          </div>
-        </div>
-
-        <div class="home-ai-wrap">
-          <textarea
-            class="home-ai-textarea"
-            id="homeAiPrompt"
-            placeholder="예시) 평균 기온 26.8°C, 습도 71%, 식생 0.72, 개구리 개체수 38/100일 때 어떤 원인을 먼저 의심해야 할까?"
-          ></textarea>
-
-          <div class="home-ai-actions">
-            <button class="home-ai-button" onclick="requestHomepageAI()">
-              AI 분석 요청
-            </button>
-
-            <button class="home-ai-fill" onclick="fillHomeAiExample()">
-              예시 입력
-            </button>
-          </div>
-
-          <div class="home-ai-result" id="homeAiResult">
-            <strong>분석 대기 중</strong><br>
-            질문을 입력하면 홈페이지에서 바로 생태계 원인 추정과 조사 우선순위를 볼 수 있습니다.
-          </div>
-
-          <div class="ai-hint">
-            실제 AI를 연결하려면 script 안의 <b>AI_ENDPOINT</b>에 Firebase Functions, Vercel, Netlify 같은 서버 주소를 넣으면 됩니다.
-          </div>
-        </div>
-
-      </div>
 
 
     </div>
@@ -3095,106 +3406,277 @@
 
         <div class="field-visual" id="fieldVisual">
 
-          <svg class="wetland-svg" viewBox="0 0 900 520" preserveAspectRatio="none" aria-hidden="true">
+          <svg class="wetland-svg" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="개구리, 물고기, 곤충이 움직이는 습지 A-17 생태계 현장">
             <defs>
-              <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#eef4ef" />
-                <stop offset="100%" stop-color="#e1ebe2" />
+              <linearGradient id="wetSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#dfeceb"/>
+                <stop offset="55%" stop-color="#edf3e9"/>
+                <stop offset="100%" stop-color="#d9e4d4"/>
               </linearGradient>
 
-              <linearGradient id="hillBackGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#c0cec1" />
-                <stop offset="100%" stop-color="#a7baa8" />
+              <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#fffbe0" stop-opacity=".92"/>
+                <stop offset="45%" stop-color="#f8efc9" stop-opacity=".38"/>
+                <stop offset="100%" stop-color="#f8efc9" stop-opacity="0"/>
+              </radialGradient>
+
+              <linearGradient id="farHill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#aec3b3"/>
+                <stop offset="100%" stop-color="#849f8b"/>
               </linearGradient>
 
-              <linearGradient id="hillFrontGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#8ea58f" />
-                <stop offset="100%" stop-color="#6f8b72" />
+              <linearGradient id="nearHill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#77947c"/>
+                <stop offset="100%" stop-color="#54705d"/>
               </linearGradient>
 
-              <linearGradient id="waterGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#cfe0e2" />
-                <stop offset="100%" stop-color="#9fbec3" />
+              <linearGradient id="bankGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#7e9c76"/>
+                <stop offset="100%" stop-color="#526e57"/>
               </linearGradient>
 
-              <linearGradient id="reedGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#7fa17f" />
-                <stop offset="100%" stop-color="#5f7d67" />
+              <linearGradient id="mudGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#8a8870"/>
+                <stop offset="100%" stop-color="#666956"/>
               </linearGradient>
+
+              <linearGradient id="waterDeep" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#a7c8c8"/>
+                <stop offset="42%" stop-color="#7fabad"/>
+                <stop offset="100%" stop-color="#557f82"/>
+              </linearGradient>
+
+              <linearGradient id="waterLight" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#e4f0e9" stop-opacity=".62"/>
+                <stop offset="100%" stop-color="#bed8d5" stop-opacity=".08"/>
+              </linearGradient>
+
+              <linearGradient id="reedStem" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#93ac72"/>
+                <stop offset="100%" stop-color="#496b52"/>
+              </linearGradient>
+
+              <linearGradient id="frogSkin" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#83a76d"/>
+                <stop offset="100%" stop-color="#476950"/>
+              </linearGradient>
+
+              <linearGradient id="frogSkin2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#90ad70"/>
+                <stop offset="100%" stop-color="#55745b"/>
+              </linearGradient>
+
+              <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#2b4738" flood-opacity=".18"/>
+              </filter>
+
+              <filter id="waterBlur" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="5"/>
+              </filter>
+
+              <clipPath id="pondClip">
+                <path d="M390 358 C465 312 558 310 631 332 C712 356 780 338 858 366 C928 391 970 449 946 493 C918 545 821 551 724 539 C628 527 550 553 468 526 C391 500 332 443 350 399 C357 382 370 369 390 358 Z"/>
+              </clipPath>
             </defs>
 
-            <rect width="900" height="520" fill="url(#skyGrad)" />
+            <!-- sky -->
+            <rect width="1000" height="560" fill="url(#wetSky)"/>
+            <circle cx="805" cy="92" r="115" fill="url(#sunGlow)"/>
 
-            <path d="M0 265 C100 220 172 225 260 248 C345 270 430 195 525 218 C625 241 724 248 900 190 L900 520 L0 520 Z" fill="url(#hillBackGrad)" opacity="0.9" />
-            <path d="M0 336 C88 298 170 326 262 286 C339 253 415 248 526 302 C610 342 709 273 900 296 L900 520 L0 520 Z" fill="url(#hillFrontGrad)" />
+            <!-- soft moving clouds -->
+            <g class="wet-cloud cloud-a" opacity=".32">
+              <ellipse cx="125" cy="102" rx="65" ry="21" fill="#ffffff"/>
+              <ellipse cx="170" cy="93" rx="46" ry="27" fill="#ffffff"/>
+              <ellipse cx="211" cy="105" rx="58" ry="19" fill="#ffffff"/>
+            </g>
+            <g class="wet-cloud cloud-b" opacity=".22">
+              <ellipse cx="585" cy="135" rx="72" ry="19" fill="#ffffff"/>
+              <ellipse cx="630" cy="124" rx="43" ry="25" fill="#ffffff"/>
+              <ellipse cx="669" cy="137" rx="58" ry="17" fill="#ffffff"/>
+            </g>
 
-            <path d="M520 308 C491 338 488 387 553 418 C635 458 733 444 807 480 L900 520 L900 382 C836 375 786 350 731 332 C654 305 579 287 520 308 Z" fill="url(#waterGrad)" />
-            <ellipse cx="666" cy="391" rx="118" ry="48" fill="rgba(255,255,255,0.16)" />
+            <!-- distant landscape -->
+            <path d="M0 276 C82 236 144 243 216 259 C301 277 351 213 431 221 C516 230 565 274 646 250 C738 222 815 206 1000 229 L1000 560 L0 560 Z" fill="url(#farHill)"/>
+            <path d="M0 338 C79 299 160 322 236 300 C320 276 370 264 446 296 C537 334 596 298 667 286 C760 270 850 299 1000 279 L1000 560 L0 560 Z" fill="url(#nearHill)"/>
 
-            <path d="M0 430 C140 388 300 433 408 407 C525 377 641 443 900 401 L900 520 L0 520 Z" fill="#6f8b72" />
-            <path d="M0 457 C125 429 243 467 388 439 C511 416 704 470 900 438 L900 520 L0 520 Z" fill="#5f7b66" opacity="0.8" />
+            <!-- distant tree silhouettes -->
+            <g opacity=".38" fill="#496a55">
+              <circle cx="86" cy="290" r="28"/><circle cx="113" cy="286" r="35"/><circle cx="144" cy="295" r="27"/>
+              <circle cx="285" cy="276" r="24"/><circle cx="312" cy="268" r="34"/><circle cx="348" cy="280" r="28"/>
+              <circle cx="743" cy="263" r="30"/><circle cx="779" cy="252" r="39"/><circle cx="820" cy="267" r="31"/>
+              <circle cx="900" cy="260" r="28"/><circle cx="932" cy="252" r="36"/>
+            </g>
 
-            <!-- reeds -->
-            <g opacity="0.95">
-              <path d="M124 420 C130 367 132 332 142 286" stroke="url(#reedGrad)" stroke-width="5" stroke-linecap="round"/>
-              <path d="M147 426 C154 377 158 340 170 303" stroke="url(#reedGrad)" stroke-width="4" stroke-linecap="round"/>
-              <path d="M176 426 C183 377 190 348 198 314" stroke="url(#reedGrad)" stroke-width="4" stroke-linecap="round"/>
-              <path d="M778 428 C781 383 784 353 792 318" stroke="url(#reedGrad)" stroke-width="5" stroke-linecap="round"/>
-              <path d="M808 430 C812 389 817 360 825 326" stroke="url(#reedGrad)" stroke-width="4" stroke-linecap="round"/>
-              <ellipse cx="147" cy="279" rx="8" ry="20" fill="#8ba286"/>
-              <ellipse cx="171" cy="297" rx="7" ry="18" fill="#8ca685"/>
-              <ellipse cx="791" cy="310" rx="8" ry="19" fill="#8ca286"/>
-              <ellipse cx="824" cy="320" rx="7" ry="18" fill="#8ca685"/>
+            <!-- wetland bank and pond -->
+            <path d="M0 387 C108 350 226 369 323 345 C397 327 423 321 470 339 C417 372 338 407 341 443 C344 494 422 531 514 542 L0 560 Z" fill="url(#bankGrad)"/>
+            <path d="M350 397 C392 347 473 327 560 328 C655 328 708 352 786 350 C869 347 946 382 970 429 C992 472 959 520 891 542 C807 570 721 534 632 541 C534 549 450 546 392 501 C344 463 325 427 350 397 Z" fill="url(#mudGrad)" opacity=".72"/>
+            <path d="M390 358 C465 312 558 310 631 332 C712 356 780 338 858 366 C928 391 970 449 946 493 C918 545 821 551 724 539 C628 527 550 553 468 526 C391 500 332 443 350 399 C357 382 370 369 390 358 Z" fill="url(#waterDeep)"/>
+
+            <!-- subtle water light + animated ripples -->
+            <g clip-path="url(#pondClip)">
+              <ellipse cx="620" cy="384" rx="280" ry="92" fill="url(#waterLight)" transform="rotate(-5 620 384)"/>
+              <path class="water-glint glint-a" d="M416 406 C498 384 579 397 661 384 C744 371 820 382 905 403" fill="none" stroke="#e8f3ef" stroke-width="4" stroke-linecap="round" opacity=".34"/>
+              <path class="water-glint glint-b" d="M397 459 C475 440 561 452 638 444 C731 434 817 442 917 470" fill="none" stroke="#dceeed" stroke-width="3" stroke-linecap="round" opacity=".26"/>
+              <ellipse class="pond-ripple ripple-a" cx="548" cy="421" rx="45" ry="11" fill="none" stroke="#d9ece8" stroke-width="2" opacity=".34"/>
+              <ellipse class="pond-ripple ripple-b" cx="787" cy="466" rx="38" ry="9" fill="none" stroke="#d9ece8" stroke-width="2" opacity=".3"/>
+            </g>
+
+            <!-- shoreline stones -->
+            <g filter="url(#softShadow)">
+              <ellipse cx="357" cy="418" rx="22" ry="12" fill="#757a68"/>
+              <ellipse cx="385" cy="397" rx="14" ry="9" fill="#8a8f78"/>
+              <ellipse cx="916" cy="427" rx="19" ry="11" fill="#737968"/>
+              <ellipse cx="892" cy="408" rx="12" ry="7" fill="#8f927d"/>
+            </g>
+
+            <!-- fallen log -->
+            <g transform="translate(230 399) rotate(-8)" filter="url(#softShadow)">
+              <rect x="0" y="0" width="150" height="22" rx="11" fill="#735f49"/>
+              <ellipse cx="145" cy="11" rx="10" ry="11" fill="#5d4c3c"/>
+              <path d="M24 3 C56 8 78 5 118 8" stroke="#9b8060" stroke-width="3" fill="none" opacity=".6"/>
+            </g>
+
+            <!-- reeds / grasses left -->
+            <g class="reed-cluster reed-left" stroke="url(#reedStem)" stroke-linecap="round">
+              <path d="M72 506 C81 432 85 374 92 303" stroke-width="5"/>
+              <path d="M96 514 C104 444 109 392 119 324" stroke-width="4"/>
+              <path d="M126 515 C128 450 143 396 151 341" stroke-width="5"/>
+              <path d="M159 514 C166 457 169 414 178 350" stroke-width="4"/>
+              <path d="M196 518 C202 463 205 425 218 369" stroke-width="4"/>
+              <g fill="#766a4d" stroke="none">
+                <ellipse cx="93" cy="291" rx="8" ry="23"/>
+                <ellipse cx="120" cy="313" rx="7" ry="21"/>
+                <ellipse cx="151" cy="330" rx="8" ry="22"/>
+                <ellipse cx="178" cy="340" rx="7" ry="19"/>
+              </g>
+              <g stroke="#5e7c5f" stroke-width="3">
+                <path d="M110 432 L79 404"/><path d="M142 421 L177 390"/><path d="M181 453 L214 424"/>
+              </g>
+            </g>
+
+            <!-- reeds right -->
+            <g class="reed-cluster reed-right" stroke="url(#reedStem)" stroke-linecap="round">
+              <path d="M885 522 C887 460 893 397 902 329" stroke-width="5"/>
+              <path d="M910 520 C915 461 920 415 934 349" stroke-width="4"/>
+              <path d="M946 520 C947 470 956 426 966 370" stroke-width="5"/>
+              <g fill="#75684c" stroke="none">
+                <ellipse cx="902" cy="317" rx="8" ry="22"/>
+                <ellipse cx="934" cy="338" rx="7" ry="20"/>
+                <ellipse cx="966" cy="360" rx="7" ry="21"/>
+              </g>
             </g>
 
             <!-- lily pads -->
-            <g>
-              <ellipse cx="594" cy="395" rx="22" ry="14" fill="#6d8f71"/>
-              <ellipse cx="640" cy="372" rx="19" ry="12" fill="#729777"/>
-              <ellipse cx="713" cy="403" rx="25" ry="14" fill="#6f9274"/>
-              <path d="M592 395 L603 387" stroke="#9fc1a2" stroke-width="2"/>
-              <path d="M640 372 L648 364" stroke="#9fc1a2" stroke-width="2"/>
-            </g>
-
-            <!-- insects -->
-            <g fill="#43574a" opacity="0.9">
-              <circle cx="275" cy="206" r="4"/>
-              <circle cx="311" cy="193" r="3.5"/>
-              <circle cx="345" cy="224" r="4"/>
-              <circle cx="239" cy="242" r="3.5"/>
-            </g>
-
-            <!-- frogs -->
-            <g>
-              <g transform="translate(505 345)">
-                <ellipse cx="0" cy="0" rx="18" ry="12" fill="#58765e"/>
-                <circle cx="-9" cy="-10" r="5" fill="#58765e"/>
-                <circle cx="9" cy="-10" r="5" fill="#58765e"/>
-                <circle cx="-9" cy="-10" r="2" fill="#223127"/>
-                <circle cx="9" cy="-10" r="2" fill="#223127"/>
+            <g filter="url(#softShadow)">
+              <g transform="translate(535 436) rotate(-8)">
+                <ellipse rx="31" ry="16" fill="#5d8b65"/>
+                <path d="M0 0 L22 -11" stroke="#94b397" stroke-width="2"/>
               </g>
-
-              <g transform="translate(560 367)">
-                <ellipse cx="0" cy="0" rx="16" ry="11" fill="#617f68"/>
-                <circle cx="-8" cy="-9" r="4.5" fill="#617f68"/>
-                <circle cx="8" cy="-9" r="4.5" fill="#617f68"/>
-                <circle cx="-8" cy="-9" r="1.8" fill="#223127"/>
-                <circle cx="8" cy="-9" r="1.8" fill="#223127"/>
+              <g transform="translate(627 400) rotate(6)">
+                <ellipse rx="25" ry="14" fill="#6e9870"/>
+                <path d="M0 0 L18 -10" stroke="#a4c1a2" stroke-width="2"/>
               </g>
-
-              <g id="restoredFrog" transform="translate(622 345)" opacity="0.24">
-                <ellipse cx="0" cy="0" rx="17" ry="11" fill="#648269"/>
-                <circle cx="-8" cy="-9" r="4.5" fill="#648269"/>
-                <circle cx="8" cy="-9" r="4.5" fill="#648269"/>
-                <circle cx="-8" cy="-9" r="1.8" fill="#223127"/>
-                <circle cx="8" cy="-9" r="1.8" fill="#223127"/>
+              <g transform="translate(726 448) rotate(-4)">
+                <ellipse rx="36" ry="18" fill="#5e8c66"/>
+                <path d="M0 0 L27 -12" stroke="#a1bea0" stroke-width="2"/>
+              </g>
+              <g transform="translate(817 410) rotate(9)">
+                <ellipse rx="24" ry="13" fill="#739b72"/>
+              </g>
+              <g transform="translate(628 393)">
+                <circle r="7" fill="#f3eee7"/>
+                <circle r="3" fill="#d7b66b"/>
               </g>
             </g>
 
-            <!-- fish -->
-            <g fill="#68838a" opacity="0.95">
-              <path d="M666 388 C679 381 694 382 704 389 C694 396 679 397 666 390 L655 398 L658 389 L655 380 Z"/>
-              <path d="M738 405 C751 398 766 399 776 406 C766 413 751 414 738 407 L727 415 L730 406 L727 397 Z"/>
+            <!-- fish: continuous swimming -->
+            <g class="wet-fish fish-one" opacity=".9">
+              <animateMotion dur="9s" repeatCount="indefinite" rotate="auto" path="M480 470 C570 425 690 430 845 473 C735 500 608 500 480 470 Z"/>
+              <path d="M0 0 C15 -9 34 -8 47 0 C34 9 15 10 0 2 L-14 12 L-10 1 L-14 -10 Z" fill="#496f77"/>
+              <circle cx="34" cy="-2" r="1.8" fill="#dcebea"/>
+            </g>
+            <g class="wet-fish fish-two" opacity=".76">
+              <animateMotion dur="12s" begin="-5s" repeatCount="indefinite" rotate="auto" path="M850 425 C770 395 664 402 564 438 C650 465 760 461 850 425 Z"/>
+              <path d="M0 0 C13 -8 29 -7 41 0 C29 8 13 9 0 2 L-12 10 L-8 1 L-12 -9 Z" fill="#5a7d81"/>
+              <circle cx="29" cy="-2" r="1.6" fill="#dcebea"/>
+            </g>
+
+            <!-- insects: free-flight paths -->
+            <g class="wet-insect insect-one" fill="#3e5446">
+              <animateMotion dur="7s" repeatCount="indefinite" path="M230 248 C315 192 381 236 436 214 C389 291 315 284 230 248 Z"/>
+              <ellipse rx="4" ry="2.2"/>
+              <ellipse cx="-4" cy="-3" rx="5" ry="2" fill="#d9ebe4" opacity=".65" transform="rotate(-25)"/>
+              <ellipse cx="4" cy="-3" rx="5" ry="2" fill="#d9ebe4" opacity=".65" transform="rotate(25)"/>
+            </g>
+            <g class="wet-insect insect-two" fill="#4d5c48">
+              <animateMotion dur="8.5s" begin="-3s" repeatCount="indefinite" path="M690 240 C766 193 835 224 875 271 C818 283 757 271 690 240 Z"/>
+              <ellipse rx="4" ry="2"/>
+              <ellipse cx="-4" cy="-3" rx="5" ry="2" fill="#e3f1ec" opacity=".6" transform="rotate(-25)"/>
+              <ellipse cx="4" cy="-3" rx="5" ry="2" fill="#e3f1ec" opacity=".6" transform="rotate(25)"/>
+            </g>
+            <g class="wet-insect dragonfly" opacity=".88">
+              <animateMotion dur="11s" begin="-6s" repeatCount="indefinite" rotate="auto" path="M164 325 C285 260 406 279 505 326 C401 347 282 366 164 325 Z"/>
+              <rect x="-7" y="-1.5" width="14" height="3" rx="1.5" fill="#395f63"/>
+              <ellipse cx="-3" cy="-5" rx="8" ry="2" fill="#d5eceb" opacity=".55" transform="rotate(-18)"/>
+              <ellipse cx="3" cy="5" rx="8" ry="2" fill="#d5eceb" opacity=".55" transform="rotate(-18)"/>
+            </g>
+
+            <!-- frog 1: hops along bank -->
+            <g class="wet-frog frog-one" filter="url(#softShadow)">
+              <animateTransform attributeName="transform" type="translate" dur="8s" repeatCount="indefinite"
+                values="470 365;470 365;493 344;516 362;516 362;536 346;556 365;556 365"
+                keyTimes="0;.18;.25;.32;.55;.63;.70;1" calcMode="linear"/>
+              <g class="frog-breathe">
+                <ellipse cx="0" cy="3" rx="22" ry="14" fill="url(#frogSkin)"/>
+                <ellipse cx="-16" cy="11" rx="11" ry="5" fill="#45634c" transform="rotate(-20)"/>
+                <ellipse cx="16" cy="11" rx="11" ry="5" fill="#45634c" transform="rotate(20)"/>
+                <circle cx="-11" cy="-9" r="7" fill="#739566"/>
+                <circle cx="11" cy="-9" r="7" fill="#739566"/>
+                <circle cx="-11" cy="-9" r="2.5" fill="#17281d"/>
+                <circle cx="11" cy="-9" r="2.5" fill="#17281d"/>
+                <path d="M-7 5 Q0 10 7 5" fill="none" stroke="#304a38" stroke-width="1.8" stroke-linecap="round"/>
+                <ellipse cx="-7" cy="1" rx="3" ry="2" fill="#a3bd7d" opacity=".45"/>
+              </g>
+            </g>
+
+            <!-- frog 2: lily-pad idle/hop -->
+            <g class="wet-frog frog-two" filter="url(#softShadow)">
+              <animateTransform attributeName="transform" type="translate" dur="10s" begin="-3s" repeatCount="indefinite"
+                values="632 380;632 380;646 369;662 385;662 385;650 376;632 380;632 380"
+                keyTimes="0;.25;.31;.37;.64;.70;.77;1"/>
+              <g class="frog-breathe frog-breathe-delay">
+                <ellipse cx="0" cy="3" rx="18" ry="12" fill="url(#frogSkin2)"/>
+                <ellipse cx="-13" cy="10" rx="9" ry="4" fill="#4e6f55" transform="rotate(-20)"/>
+                <ellipse cx="13" cy="10" rx="9" ry="4" fill="#4e6f55" transform="rotate(20)"/>
+                <circle cx="-9" cy="-7" r="6" fill="#7e9d68"/>
+                <circle cx="9" cy="-7" r="6" fill="#7e9d68"/>
+                <circle cx="-9" cy="-7" r="2.1" fill="#17281d"/>
+                <circle cx="9" cy="-7" r="2.1" fill="#17281d"/>
+              </g>
+            </g>
+
+            <!-- restored frog remains dim until ecosystem restoration -->
+            <g id="restoredFrog" class="wet-frog frog-restored" opacity=".24" filter="url(#softShadow)">
+              <animateTransform attributeName="transform" type="translate" dur="9s" begin="-2s" repeatCount="indefinite"
+                values="735 420;735 420;752 406;770 422;770 422;754 411;735 420;735 420"
+                keyTimes="0;.22;.29;.36;.60;.67;.74;1"/>
+              <g class="frog-breathe frog-breathe-delay">
+                <ellipse cx="0" cy="3" rx="19" ry="12" fill="#6f9769"/>
+                <ellipse cx="-14" cy="10" rx="9" ry="4" fill="#4d7354" transform="rotate(-20)"/>
+                <ellipse cx="14" cy="10" rx="9" ry="4" fill="#4d7354" transform="rotate(20)"/>
+                <circle cx="-9" cy="-7" r="6" fill="#86a76f"/>
+                <circle cx="9" cy="-7" r="6" fill="#86a76f"/>
+                <circle cx="-9" cy="-7" r="2.1" fill="#18291f"/>
+                <circle cx="9" cy="-7" r="2.1" fill="#18291f"/>
+              </g>
+            </g>
+
+            <!-- foreground grass for depth -->
+            <path d="M0 508 C113 478 203 512 303 487 C374 470 412 483 455 503 L455 560 L0 560 Z" fill="#48664f" opacity=".86"/>
+            <path d="M810 507 C877 484 932 494 1000 474 L1000 560 L802 560 Z" fill="#405e49" opacity=".9"/>
+            <g stroke="#55765a" stroke-width="4" stroke-linecap="round" opacity=".9">
+              <path d="M25 555 Q37 515 42 484"/><path d="M51 558 Q60 525 73 496"/><path d="M96 557 Q106 518 120 487"/>
+              <path d="M850 559 Q858 525 867 493"/><path d="M898 559 Q911 520 920 486"/><path d="M949 558 Q959 523 979 492"/>
             </g>
           </svg>
 
@@ -4747,131 +5229,6 @@
 
 
   /* =====================================================
-     홈페이지 AI 연결
-  ====================================================== */
-
-  const AI_ENDPOINT = "";
-
-  window.fillHomeAiExample =
-    function () {
-
-      const prompt =
-        document.getElementById("homeAiPrompt");
-
-      if (!prompt) return;
-
-      prompt.value =
-        "평균 기온 26.8°C, 습도 71%, 식생 지수 0.72, 수질 pH 5.3, 곤충 개체 지수 63, 개구리 개체 지수 38/100일 때 어떤 요인을 먼저 의심해야 하고 어떤 조사를 우선해야 할까?";
-
-    };
-
-
-  function buildLocalAiAnswer(prompt) {
-
-    const lower =
-      prompt.toLowerCase();
-
-    let suspect =
-      "먹이 곤충 감소";
-
-    let reason =
-      "개구리 감소 폭이 크고, 생태계에서 개구리는 먹이원의 변화에 민감하게 반응할 수 있습니다.";
-
-    let priority =
-      "1) 곤충 개체 조사  2) 수질 검사  3) 기상 기록 비교";
-
-    if (lower.includes("ph") || lower.includes("산성") || lower.includes("수질")) {
-      reason += " 입력 내용에 수질 정보가 포함되어 있으므로 pH 변화도 함께 확인해야 합니다.";
-    }
-
-    if (lower.includes("기온") || lower.includes("temperature")) {
-      reason += " 다만 기온은 단독 원인인지 여부를 평년값과 비교해 검증하는 것이 좋습니다.";
-    }
-
-    return (
-      "<strong>AI 분석 결과</strong><br>" +
-      "우선 의심 요인: <b>" + suspect + "</b><br>" +
-      "이유: " + reason + "<br>" +
-      "우선 조사 추천: " + priority + "<br><br>" +
-      "※ 지금은 로컬 예시 응답입니다. 실제 AI를 쓰려면 <b>AI_ENDPOINT</b>에 서버 주소를 넣어 주세요."
-    );
-
-  }
-
-
-  window.requestHomepageAI =
-    async function () {
-
-      const promptBox =
-        document.getElementById("homeAiPrompt");
-
-      const resultBox =
-        document.getElementById("homeAiResult");
-
-      if (!promptBox || !resultBox) return;
-
-      const prompt =
-        promptBox.value.trim();
-
-      if (!prompt) {
-        resultBox.innerHTML =
-          "<strong>질문이 비어 있습니다.</strong><br>분석할 환경 조건이나 궁금한 점을 먼저 입력해 주세요.";
-        return;
-      }
-
-      resultBox.innerHTML =
-        "<strong>분석 중...</strong><br>AI가 생태계 데이터를 해석하고 있습니다.";
-
-      try {
-
-        if (AI_ENDPOINT) {
-
-          const response =
-            await fetch(
-              AI_ENDPOINT,
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                  prompt
-                })
-              }
-            );
-
-          if (!response.ok) {
-            throw new Error("AI 서버 응답 실패");
-          }
-
-          const data =
-            await response.json();
-
-          resultBox.innerHTML =
-            "<strong>AI 분석 결과</strong><br>" +
-            (data.answer || "응답은 왔지만 answer 값이 없습니다.");
-
-          return;
-
-        }
-
-        resultBox.innerHTML =
-          buildLocalAiAnswer(prompt);
-
-      }
-
-      catch (e) {
-
-        resultBox.innerHTML =
-          "<strong>연결 오류</strong><br>AI 서버에 연결하지 못했습니다. endpoint 주소나 함수 배포 상태를 확인해 주세요.";
-
-      }
-
-    };
-
-
-
-  /* =====================================================
      메인 미리보기 데이터 변화
   ====================================================== */
 
@@ -4933,6 +5290,15 @@
 
   );
 
+
+
+
+  // 게임 화면 진입 시 데스크톱에서 페이지 자체가 움직이지 않도록 유지합니다.
+  window.addEventListener("resize", () => {
+    if (document.body.classList.contains("game-active")) {
+      window.scrollTo(0, 0);
+    }
+  });
 
 </script>
 
