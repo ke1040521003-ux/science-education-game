@@ -1888,6 +1888,344 @@
       }
     }
 
+
+    /* =====================================================
+       CLEANER UI UPDATE
+    ====================================================== */
+
+    .ai-card.interactive {
+      min-height: auto;
+    }
+
+    .home-ai-wrap {
+      display: grid;
+      gap: 10px;
+    }
+
+    .home-ai-textarea {
+      width: 100%;
+      min-height: 86px;
+      resize: vertical;
+      padding: 12px 13px;
+      border: 1px solid #dde5df;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #465249;
+      font: inherit;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .home-ai-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .home-ai-button,
+    .home-ai-fill {
+      padding: 10px 12px;
+      border: none;
+      border-radius: 9px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .home-ai-button {
+      background: #4f7259;
+      color: white;
+    }
+
+    .home-ai-button:hover,
+    .home-ai-fill:hover {
+      transform: translateY(-1px);
+    }
+
+    .home-ai-fill {
+      border: 1px solid #d8dfd9;
+      background: #ffffff;
+      color: #526157;
+    }
+
+    .home-ai-result {
+      min-height: 82px;
+      padding: 12px 13px;
+      border: 1px solid #e3e9e4;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #6d7871;
+      font-size: 10px;
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+
+    .home-ai-result strong {
+      color: #496451;
+    }
+
+    .ai-hint {
+      margin-top: 3px;
+      color: #97a19a;
+      font-size: 8px;
+      line-height: 1.55;
+    }
+
+    .game-topbar {
+      gap: 14px;
+    }
+
+    .case-heading h2 {
+      font-size: clamp(22px, 2vw, 28px);
+    }
+
+    .case-heading p {
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .status-chip {
+      min-width: 94px;
+      padding: 11px 12px;
+    }
+
+    .status-chip span {
+      font-size: 9px;
+    }
+
+    .status-chip strong {
+      font-size: 16px;
+    }
+
+    .game-layout {
+      grid-template-columns: 245px minmax(0, 1fr) 285px;
+      gap: 16px;
+    }
+
+    .game-card-header {
+      padding: 16px 17px 13px;
+    }
+
+    .game-card-header strong {
+      font-size: 13px;
+    }
+
+    .env-list.clean-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      padding: 14px;
+    }
+
+    .env-box {
+      padding: 12px 12px;
+      border: 1px solid #e4e9e5;
+      border-radius: 12px;
+      background: #fbfcfb;
+    }
+
+    .env-box span {
+      display: block;
+      margin-bottom: 7px;
+      color: #96a099;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: .9px;
+    }
+
+    .env-box strong {
+      color: #354138;
+      font-size: 14px;
+      letter-spacing: -.2px;
+    }
+
+    .env-box strong.locked {
+      color: #adb5af;
+      font-size: 12px;
+    }
+
+    .field-card .game-card-header {
+      border-bottom: none;
+      padding-bottom: 4px;
+    }
+
+    .field-visual {
+      min-height: 440px;
+      padding: 0;
+      background: linear-gradient(180deg, #eff4ef 0%, #e8efe8 100%);
+    }
+
+    .field-visual::before {
+      background-image: none;
+    }
+
+    .wetland-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .field-overlay-top {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      z-index: 9;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .field-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border: 1px solid rgba(97,116,103,.14);
+      border-radius: 999px;
+      background: rgba(255,255,255,.86);
+      color: #69776e;
+      font-size: 9px;
+      font-weight: 800;
+      backdrop-filter: blur(8px);
+    }
+
+    .field-alert {
+      top: 56px;
+      left: 16px;
+      max-width: 312px;
+      padding: 13px 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 10px 24px rgba(46,66,52,.08);
+    }
+
+    .field-alert b {
+      font-size: 10px;
+    }
+
+    .field-alert p {
+      font-size: 10px;
+      line-height: 1.65;
+    }
+
+    .field-footer {
+      gap: 10px;
+      padding: 12px;
+      background: #fbfcfb;
+    }
+
+    .field-stat {
+      padding: 12px;
+      border-radius: 11px;
+    }
+
+    .field-stat span {
+      font-size: 9px;
+      margin-bottom: 5px;
+    }
+
+    .field-stat strong {
+      font-size: 14px;
+    }
+
+    .ai-side-body {
+      padding: 16px;
+    }
+
+    .ai-model-box {
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .ai-model-box h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .ai-model-box p {
+      font-size: 11px;
+      line-height: 1.75;
+    }
+
+    .side-action {
+      margin-top: 11px;
+      padding: 11px 12px;
+      border-radius: 10px;
+      font-size: 11px;
+    }
+
+    .workbench-content {
+      padding: 22px;
+    }
+
+    .panel-title {
+      font-size: 20px;
+    }
+
+    .panel-desc {
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .investigation-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .investigation-btn {
+      min-height: 126px;
+      padding: 15px;
+      border-radius: 13px;
+    }
+
+    .investigation-btn .cost {
+      margin-bottom: 14px;
+      font-size: 9px;
+    }
+
+    .investigation-btn h4 {
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .investigation-btn p,
+    .note-item,
+    .experiment-result,
+    .conclusion-result,
+    .evidence-table {
+      font-size: 11px;
+    }
+
+    .evidence-table th {
+      font-size: 10px;
+    }
+
+    @media(max-width: 1100px) {
+      .env-list.clean-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media(max-width: 720px) {
+      .env-list.clean-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .field-visual {
+        min-height: 360px;
+      }
+
+      .field-alert {
+        max-width: calc(100% - 32px);
+      }
+    }
+
+
   </style>
 </head>
 
@@ -2616,26 +2954,44 @@
 
 
       <!-- AI -->
+      <div class="ai-card interactive">
 
-      <div class="ai-card">
+        <div class="card-heading">
+          <div class="card-title">
+            홈페이지 AI 분석
+          </div>
 
-
-        <div class="ai-badge">
-          AI ANALYSIS
+          <div class="card-subtitle">
+            직접 입력 가능
+          </div>
         </div>
 
+        <div class="home-ai-wrap">
+          <textarea
+            class="home-ai-textarea"
+            id="homeAiPrompt"
+            placeholder="예시) 평균 기온 26.8°C, 습도 71%, 식생 0.72, 개구리 개체수 38/100일 때 어떤 원인을 먼저 의심해야 할까?"
+          ></textarea>
 
-        <p>
+          <div class="home-ai-actions">
+            <button class="home-ai-button" onclick="requestHomepageAI()">
+              AI 분석 요청
+            </button>
 
-          현재 식생 지수와 개체군 변화는
-          안정적인 범위에 있습니다.
+            <button class="home-ai-fill" onclick="fillHomeAiExample()">
+              예시 입력
+            </button>
+          </div>
 
-          개체수 증가가 지속될 경우
-          식생 소비량이 높아질 가능성이 있으므로
-          추가 관찰이 필요합니다.
+          <div class="home-ai-result" id="homeAiResult">
+            <strong>분석 대기 중</strong><br>
+            질문을 입력하면 홈페이지에서 바로 생태계 원인 추정과 조사 우선순위를 볼 수 있습니다.
+          </div>
 
-        </p>
-
+          <div class="ai-hint">
+            실제 AI를 연결하려면 script 안의 <b>AI_ENDPOINT</b>에 Firebase Functions, Vercel, Netlify 같은 서버 주소를 넣으면 됩니다.
+          </div>
+        </div>
 
       </div>
 
@@ -2694,35 +3050,35 @@
           <strong id="gameHealth">58 / 100</strong>
         </div>
 
-        <div class="env-list">
-          <div class="env-row">
-            <span class="env-label">평균 기온</span>
-            <span class="env-value">26.8°C</span>
+        <div class="env-list clean-grid">
+          <div class="env-box">
+            <span>평균 기온</span>
+            <strong>26.8°C</strong>
           </div>
 
-          <div class="env-row">
-            <span class="env-label">평균 습도</span>
-            <span class="env-value">71%</span>
+          <div class="env-box">
+            <span>평균 습도</span>
+            <strong>71%</strong>
           </div>
 
-          <div class="env-row">
-            <span class="env-label">식생 지수</span>
-            <span class="env-value">0.72</span>
+          <div class="env-box">
+            <span>수질 pH</span>
+            <strong id="gamePh" class="locked">조사 필요</strong>
           </div>
 
-          <div class="env-row">
-            <span class="env-label">수질 pH</span>
-            <span class="env-value locked" id="gamePh">조사 필요</span>
+          <div class="env-box">
+            <span>곤충 개체 지수</span>
+            <strong id="gameInsectIndex" class="locked">조사 필요</strong>
           </div>
 
-          <div class="env-row">
-            <span class="env-label">곤충 개체 지수</span>
-            <span class="env-value locked" id="gameInsectIndex">조사 필요</span>
+          <div class="env-box">
+            <span>개구리 지수</span>
+            <strong>38 / 100</strong>
           </div>
 
-          <div class="env-row">
-            <span class="env-label">개구리 개체 지수</span>
-            <span class="env-value">38 / 100</span>
+          <div class="env-box">
+            <span>조사 진행률</span>
+            <strong id="progressValue">0 / 4</strong>
           </div>
         </div>
       </aside>
@@ -2738,28 +3094,120 @@
         </div>
 
         <div class="field-visual" id="fieldVisual">
+
+          <svg class="wetland-svg" viewBox="0 0 900 520" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#eef4ef" />
+                <stop offset="100%" stop-color="#e1ebe2" />
+              </linearGradient>
+
+              <linearGradient id="hillBackGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#c0cec1" />
+                <stop offset="100%" stop-color="#a7baa8" />
+              </linearGradient>
+
+              <linearGradient id="hillFrontGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#8ea58f" />
+                <stop offset="100%" stop-color="#6f8b72" />
+              </linearGradient>
+
+              <linearGradient id="waterGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#cfe0e2" />
+                <stop offset="100%" stop-color="#9fbec3" />
+              </linearGradient>
+
+              <linearGradient id="reedGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#7fa17f" />
+                <stop offset="100%" stop-color="#5f7d67" />
+              </linearGradient>
+            </defs>
+
+            <rect width="900" height="520" fill="url(#skyGrad)" />
+
+            <path d="M0 265 C100 220 172 225 260 248 C345 270 430 195 525 218 C625 241 724 248 900 190 L900 520 L0 520 Z" fill="url(#hillBackGrad)" opacity="0.9" />
+            <path d="M0 336 C88 298 170 326 262 286 C339 253 415 248 526 302 C610 342 709 273 900 296 L900 520 L0 520 Z" fill="url(#hillFrontGrad)" />
+
+            <path d="M520 308 C491 338 488 387 553 418 C635 458 733 444 807 480 L900 520 L900 382 C836 375 786 350 731 332 C654 305 579 287 520 308 Z" fill="url(#waterGrad)" />
+            <ellipse cx="666" cy="391" rx="118" ry="48" fill="rgba(255,255,255,0.16)" />
+
+            <path d="M0 430 C140 388 300 433 408 407 C525 377 641 443 900 401 L900 520 L0 520 Z" fill="#6f8b72" />
+            <path d="M0 457 C125 429 243 467 388 439 C511 416 704 470 900 438 L900 520 L0 520 Z" fill="#5f7b66" opacity="0.8" />
+
+            <!-- reeds -->
+            <g opacity="0.95">
+              <path d="M124 420 C130 367 132 332 142 286" stroke="url(#reedGrad)" stroke-width="5" stroke-linecap="round"/>
+              <path d="M147 426 C154 377 158 340 170 303" stroke="url(#reedGrad)" stroke-width="4" stroke-linecap="round"/>
+              <path d="M176 426 C183 377 190 348 198 314" stroke="url(#reedGrad)" stroke-width="4" stroke-linecap="round"/>
+              <path d="M778 428 C781 383 784 353 792 318" stroke="url(#reedGrad)" stroke-width="5" stroke-linecap="round"/>
+              <path d="M808 430 C812 389 817 360 825 326" stroke="url(#reedGrad)" stroke-width="4" stroke-linecap="round"/>
+              <ellipse cx="147" cy="279" rx="8" ry="20" fill="#8ba286"/>
+              <ellipse cx="171" cy="297" rx="7" ry="18" fill="#8ca685"/>
+              <ellipse cx="791" cy="310" rx="8" ry="19" fill="#8ca286"/>
+              <ellipse cx="824" cy="320" rx="7" ry="18" fill="#8ca685"/>
+            </g>
+
+            <!-- lily pads -->
+            <g>
+              <ellipse cx="594" cy="395" rx="22" ry="14" fill="#6d8f71"/>
+              <ellipse cx="640" cy="372" rx="19" ry="12" fill="#729777"/>
+              <ellipse cx="713" cy="403" rx="25" ry="14" fill="#6f9274"/>
+              <path d="M592 395 L603 387" stroke="#9fc1a2" stroke-width="2"/>
+              <path d="M640 372 L648 364" stroke="#9fc1a2" stroke-width="2"/>
+            </g>
+
+            <!-- insects -->
+            <g fill="#43574a" opacity="0.9">
+              <circle cx="275" cy="206" r="4"/>
+              <circle cx="311" cy="193" r="3.5"/>
+              <circle cx="345" cy="224" r="4"/>
+              <circle cx="239" cy="242" r="3.5"/>
+            </g>
+
+            <!-- frogs -->
+            <g>
+              <g transform="translate(505 345)">
+                <ellipse cx="0" cy="0" rx="18" ry="12" fill="#58765e"/>
+                <circle cx="-9" cy="-10" r="5" fill="#58765e"/>
+                <circle cx="9" cy="-10" r="5" fill="#58765e"/>
+                <circle cx="-9" cy="-10" r="2" fill="#223127"/>
+                <circle cx="9" cy="-10" r="2" fill="#223127"/>
+              </g>
+
+              <g transform="translate(560 367)">
+                <ellipse cx="0" cy="0" rx="16" ry="11" fill="#617f68"/>
+                <circle cx="-8" cy="-9" r="4.5" fill="#617f68"/>
+                <circle cx="8" cy="-9" r="4.5" fill="#617f68"/>
+                <circle cx="-8" cy="-9" r="1.8" fill="#223127"/>
+                <circle cx="8" cy="-9" r="1.8" fill="#223127"/>
+              </g>
+
+              <g id="restoredFrog" transform="translate(622 345)" opacity="0.24">
+                <ellipse cx="0" cy="0" rx="17" ry="11" fill="#648269"/>
+                <circle cx="-8" cy="-9" r="4.5" fill="#648269"/>
+                <circle cx="8" cy="-9" r="4.5" fill="#648269"/>
+                <circle cx="-8" cy="-9" r="1.8" fill="#223127"/>
+                <circle cx="8" cy="-9" r="1.8" fill="#223127"/>
+              </g>
+            </g>
+
+            <!-- fish -->
+            <g fill="#68838a" opacity="0.95">
+              <path d="M666 388 C679 381 694 382 704 389 C694 396 679 397 666 390 L655 398 L658 389 L655 380 Z"/>
+              <path d="M738 405 C751 398 766 399 776 406 C766 413 751 414 738 407 L727 415 L730 406 L727 397 Z"/>
+            </g>
+          </svg>
+
+          <div class="field-overlay-top">
+            <div class="field-pill">습지 A-17</div>
+            <div class="field-pill" id="fieldQuickTag">개구리 감소 경보</div>
+          </div>
+
           <div class="field-alert">
             <b>OBSERVATION ALERT</b>
             <p id="fieldAlertText">개구리 개체수의 급격한 감소가 확인되었습니다. 원인은 아직 특정되지 않았습니다.</p>
           </div>
 
-          <div class="field-hill"></div>
-          <div class="field-grass"></div>
-          <div class="field-pond"></div>
-
-          <span class="species-node insect" style="left:21%; bottom:118px;">I</span>
-          <span class="species-node insect" style="left:29%; bottom:151px;">I</span>
-          <span class="species-node insect" style="left:39%; bottom:109px;">I</span>
-
-          <span class="species-node frog" id="frog1" style="left:49%; bottom:94px;">F</span>
-          <span class="species-node frog" id="frog2" style="left:58%; bottom:70px;">F</span>
-          <span class="species-node frog" id="frog3" style="left:66%; bottom:112px; opacity:.28;">F</span>
-
-          <span class="species-node fish" style="right:18%; bottom:72px;">Fi</span>
-          <span class="species-node fish" style="right:29%; bottom:90px;">Fi</span>
-
-          <span class="field-label" style="left:18px; bottom:18px;">Vegetation 72</span>
-          <span class="field-label" style="right:18px; bottom:18px;">Water zone</span>
         </div>
 
         <div class="field-footer">
@@ -4146,8 +4594,12 @@
       document.getElementById("fieldAlertText").textContent =
         "먹이원 보호와 수질 개선 조치 후 개구리 활동 지수가 회복되고 있습니다.";
 
-      document.getElementById("frog3").style.opacity =
-        "1";
+      const restoredFrog =
+        document.getElementById("restoredFrog");
+
+      if (restoredFrog) {
+        restoredFrog.style.opacity = "1";
+      }
 
       updateCaseUI();
       openGamePanel("conclusion");
@@ -4163,11 +4615,11 @@
       caseState =
         initialCaseState();
 
-      const frog3 =
-        document.getElementById("frog3");
+      const restoredFrog =
+        document.getElementById("restoredFrog");
 
-      if (frog3) {
-        frog3.style.opacity = ".28";
+      if (restoredFrog) {
+        restoredFrog.style.opacity = ".24";
       }
 
       const frogStat =
@@ -4222,6 +4674,12 @@
     const insectStat =
       document.getElementById("insectStat");
 
+    const progressValue =
+      document.getElementById("progressValue");
+
+    const fieldQuickTag =
+      document.getElementById("fieldQuickTag");
+
 
     if (day) {
       day.textContent =
@@ -4272,10 +4730,145 @@
         caseState.done.insects ? "63" : "?";
     }
 
+    if (progressValue) {
+      progressValue.textContent =
+        Object.values(caseState.done).filter(Boolean).length + " / 4";
+    }
+
+    if (fieldQuickTag) {
+      fieldQuickTag.textContent =
+        caseState.restored ? "회복 진행 중" : "개구리 감소 경보";
+    }
+
 
     updateAI();
 
   }
+
+
+  /* =====================================================
+     홈페이지 AI 연결
+  ====================================================== */
+
+  const AI_ENDPOINT = "";
+
+  window.fillHomeAiExample =
+    function () {
+
+      const prompt =
+        document.getElementById("homeAiPrompt");
+
+      if (!prompt) return;
+
+      prompt.value =
+        "평균 기온 26.8°C, 습도 71%, 식생 지수 0.72, 수질 pH 5.3, 곤충 개체 지수 63, 개구리 개체 지수 38/100일 때 어떤 요인을 먼저 의심해야 하고 어떤 조사를 우선해야 할까?";
+
+    };
+
+
+  function buildLocalAiAnswer(prompt) {
+
+    const lower =
+      prompt.toLowerCase();
+
+    let suspect =
+      "먹이 곤충 감소";
+
+    let reason =
+      "개구리 감소 폭이 크고, 생태계에서 개구리는 먹이원의 변화에 민감하게 반응할 수 있습니다.";
+
+    let priority =
+      "1) 곤충 개체 조사  2) 수질 검사  3) 기상 기록 비교";
+
+    if (lower.includes("ph") || lower.includes("산성") || lower.includes("수질")) {
+      reason += " 입력 내용에 수질 정보가 포함되어 있으므로 pH 변화도 함께 확인해야 합니다.";
+    }
+
+    if (lower.includes("기온") || lower.includes("temperature")) {
+      reason += " 다만 기온은 단독 원인인지 여부를 평년값과 비교해 검증하는 것이 좋습니다.";
+    }
+
+    return (
+      "<strong>AI 분석 결과</strong><br>" +
+      "우선 의심 요인: <b>" + suspect + "</b><br>" +
+      "이유: " + reason + "<br>" +
+      "우선 조사 추천: " + priority + "<br><br>" +
+      "※ 지금은 로컬 예시 응답입니다. 실제 AI를 쓰려면 <b>AI_ENDPOINT</b>에 서버 주소를 넣어 주세요."
+    );
+
+  }
+
+
+  window.requestHomepageAI =
+    async function () {
+
+      const promptBox =
+        document.getElementById("homeAiPrompt");
+
+      const resultBox =
+        document.getElementById("homeAiResult");
+
+      if (!promptBox || !resultBox) return;
+
+      const prompt =
+        promptBox.value.trim();
+
+      if (!prompt) {
+        resultBox.innerHTML =
+          "<strong>질문이 비어 있습니다.</strong><br>분석할 환경 조건이나 궁금한 점을 먼저 입력해 주세요.";
+        return;
+      }
+
+      resultBox.innerHTML =
+        "<strong>분석 중...</strong><br>AI가 생태계 데이터를 해석하고 있습니다.";
+
+      try {
+
+        if (AI_ENDPOINT) {
+
+          const response =
+            await fetch(
+              AI_ENDPOINT,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  prompt
+                })
+              }
+            );
+
+          if (!response.ok) {
+            throw new Error("AI 서버 응답 실패");
+          }
+
+          const data =
+            await response.json();
+
+          resultBox.innerHTML =
+            "<strong>AI 분석 결과</strong><br>" +
+            (data.answer || "응답은 왔지만 answer 값이 없습니다.");
+
+          return;
+
+        }
+
+        resultBox.innerHTML =
+          buildLocalAiAnswer(prompt);
+
+      }
+
+      catch (e) {
+
+        resultBox.innerHTML =
+          "<strong>연결 오류</strong><br>AI 서버에 연결하지 못했습니다. endpoint 주소나 함수 배포 상태를 확인해 주세요.";
+
+      }
+
+    };
+
 
 
   /* =====================================================
